@@ -1,7 +1,9 @@
-# Tämä on isoin otsikko
+# Ohjelmistotekniikka, harjoitustyö
 
-## Tätä voisi kai kutsua nimellä H2
+## Tehtävät
 
-### Tämä olisi puolestaan H3
+### Viikko1
 
-Mutta **normaalia** tekstiä voi myös kirjoittaa, *eikö niin*?
+[gitlog.txt] (https://github.com/danieldenial/ot-harjoitus/blob/main/laskarit/gitlog.txt)
+
+
