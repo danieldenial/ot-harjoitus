@@ -1,0 +1,122 @@
+commit f53b53c46f7f8b2f82c8dd7afdc44a8b94fb943f
+Author: Daniel Purssila <daniel.purssila@helsinki.fi>
+Date:   Fri Mar 17 18:55:08 2023 +0200
+
+    tiedosto poistettu, toisen nimi muutettu
+
+ tiedostoja/file2.txt                 | 0
+ tiedostoja/{file1.txt => file22.txt} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 690dcb820117b35d9071fc3d0c82977f89015ea8
+Author: Daniel Purssila <daniel.purssila@helsinki.fi>
+Date:   Fri Mar 17 18:48:22 2023 +0200
+
+    uusi kansio ja 3 sen tiedostoa lisätty
+
+ tiedostoja/file1.txt | 0
+ tiedostoja/file2.txt | 0
+ tiedostoja/file3.txt | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit beabcea82f35d4ae156bf3986ed846151b84e4f3
+Author: Daniel Purssila <daniel.purssila@helsinki.fi>
+Date:   Fri Mar 17 18:42:17 2023 +0200
+
+    kahta tiedostoa täydennetty
+
+ eka.txt    | 2 +-
+ kolmas.txt | 2 ++
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
+commit cb11e3482b1258063e08679e7975413f50bba54e
+Author: Daniel Purssila <daniel.purssila@helsinki.fi>
+Date:   Fri Mar 17 18:40:30 2023 +0200
+
+    turha tiedosto poistettu
+
+ tiedosto.txt | 66 ------------------------------------------------------------
+ 1 file changed, 66 deletions(-)
+
+commit 7fe5fdf69aafae0271d9898a1260e680f7181dc8
+Author: Daniel Purssila <daniel.purssila@helsinki.fi>
+Date:   Fri Mar 17 18:39:47 2023 +0200
+
+    ekan tiedoston nimi muutettu
+
+ eka.txt | 66 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 66 insertions(+)
+
+commit e557c374376a792ca082f3af9633f77b6b2a99cc
+Author: Daniel Purssila <daniel.purssila@helsinki.fi>
+Date:   Fri Mar 17 18:36:44 2023 +0200
+
+    toka tiedosto poistettu
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit ae8d81e124de3f414cd29fe9f9df13163e0b564c
+Author: Daniel Purssila <daniel.purssila@helsinki.fi>
+Date:   Fri Mar 17 18:33:43 2023 +0200
+
+    pienempiä muokkauksia ekaan
+
+ tiedosto.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 796f2b1ed445039e37c0cec427d9a92c730fd98f
+Author: Daniel Purssila <daniel.purssila@helsinki.fi>
+Date:   Fri Mar 17 18:31:52 2023 +0200
+
+    Paljon lisää tekstiä
+
+ tiedosto.txt | 65 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 65 insertions(+)
+
+commit 1521ce137a5e4c980d7bbd416f6deb2e8123975c
+Author: Daniel Purssila <daniel.purssila@helsinki.fi>
+Date:   Fri Mar 17 17:41:58 2023 +0200
+
+    uusi kansio lisätty
+
+ stuff/nelonen.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 601600a232d56c84996ea77e90423e23fdd11ba0
+Author: Daniel Purssila <daniel.purssila@helsinki.fi>
+Date:   Fri Mar 17 17:40:26 2023 +0200
+
+    tiedostoja taas muokattu
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 07aed22d1d01f26c14d36258b3e76f7826777556
+Author: Daniel Purssila <daniel.purssila@helsinki.fi>
+Date:   Fri Mar 17 17:37:45 2023 +0200
+
+    kolmas tiedosto lisätty
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit fdb5fd8ba886f3cf4d7bf312200de971185937e7
+Author: Daniel Purssila <daniel.purssila@helsinki.fi>
+Date:   Fri Mar 17 17:31:46 2023 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 500a0c679f71b007c313365f5d5a558b6c0641e0
+Author: Daniel Purssila <daniel.purssila@helsinki.fi>
+Date:   Fri Mar 17 17:22:37 2023 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
