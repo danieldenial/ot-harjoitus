@@ -1,3 +1,4 @@
+
 kurssit
 └── ot2023
     └── viikko1
@@ -12,5 +13,4 @@ kurssit
                     ├── __init__.py
                     └── maksukortti_test.py
 
-6 directories, 7 files
-
+5 directories, 7 files
