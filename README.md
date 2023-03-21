@@ -6,6 +6,6 @@
 
 [gitlog.txt](https://github.com/danieldenial/ot-harjoitus/blob/main/laskarit/viikko1/gitlog.txt) 
 
-Toinen tehtävä puuttuu vielä, koska SSH-yhteys ei laitoksen palvelimelle ei onnistunut.
+[komentorivi.txt](https://github.com/danieldenial/ot-harjoitus/blob/main/laskarit/viikko1/komentorivi.txt)
 
-Mutta tuleeko muita muutoksia?
+Jälkimmäinen tehtävä on tehty vain kotikoneella, koska SSH-yhteyden muodostaminen ei ole toistaiseksi onnistunut.
