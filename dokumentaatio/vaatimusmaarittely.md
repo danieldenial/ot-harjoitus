@@ -54,7 +54,7 @@ tietokoneilla pelaavia vastaan?
 paikallisesti tai verkkoon)
 - Vaikeustason valinta
 - Aikaraja kysymyksiin vastaamisessa
-	- Mahdollisesti myös oikean vastauksen pisteyden määräytyminen 
+	- Mahdollisesti myös oikean vastauksen pisteiden määräytyminen 
 vastauksen nopeuden mukaan
 - Jonkun kiinnostavan ja kysymykseen liittyvän tarkentavan tiedon 
 antaminen pelaajalle oikean vastauksen jälkeen (esimerkiksi jos kysytään 
