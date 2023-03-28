@@ -35,14 +35,14 @@ peräkkäistä peliä).
 - Jokaisella kysymyksellä on 4 vastausvaihtoehtoa, joista käyttäjä 
 valitsee yhden.
 	- Sovellus kertoo tai näyttää menikö vastaus oikein vai väärin. 
-	- Oikean vastauksen jälkeen peli jatkuu seuraavaan kysymykseen.
-	- Oikeasta vastauksesta tulee käyttäjälle piste lisää (tai 
-pisteitä, riippuen lopullisesta toteutustavasta).
-	- Peli päättyy joko väärään vastaukseen tai viimeistään siinä 
-vaiheessa, kun käyttäjä on vastannut kaikkiin kysymyksiin oikein sillä 
+-  Oikean vastauksen jälkeen peli jatkuu seuraavaan kysymykseen.
+- Oikeasta vastauksesta tulee käyttäjälle piste lisää (tai pisteitä, 
+riippuen lopullisesta toteutustavasta).
+- Peli päättyy joko väärään vastaukseen tai viimeistään siinä vaiheessa, 
+kun käyttäjä on vastannut kaikkiin kysymyksiin oikein sillä 
 pelikerralla.
-		- Pelin päättymisen jälkeen käyttäjä voi aloittaa 
-suoraan uuden pelin, palata päävalikkoon tai lopettaa sovelluksen käytön.
+	- Pelin päättymisen jälkeen käyttäjä voi aloittaa suoraan uuden 
+pelin, palata päävalikkoon tai lopettaa sovelluksen käytön.
 
 ## Jatkokehitysideoita
 
