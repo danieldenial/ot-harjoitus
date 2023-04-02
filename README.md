@@ -1,15 +1,13 @@
-# Ohjelmistotekniikka, harjoitustyö
+# Gridiron Genius: An NFL Trivia Game
 
-## Tehtävät
+Gridiron Genius on visailupeli, jossa käyttäjä pääsee testaamaan tietojaan 
+liittyen amerikkalaisen jalkapallon NFL-sarjaan.
 
-### Viikko 1
-
-[gitlog.txt](https://github.com/danieldenial/ot-harjoitus/blob/main/laskarit/viikko1/gitlog.txt) 
-
-[komentorivi.txt](https://github.com/danieldenial/ot-harjoitus/blob/main/laskarit/viikko1/komentorivi.txt)
-
-### Viikko 2
+## Dokumentaatio
 
 [Vaatimusmäärittely](https://github.com/danieldenial/ot-harjoitus/blob/main/dokumentaatio/vaatimusmaarittely.md)
 
 [Työaikakirjanpito](https://github.com/danieldenial/ot-harjoitus/blob/main/dokumentaatio/tuntikirjanpito.md)
+
+[Changelog](https://github.com/danieldenial/ot-harjoitus/blob/main/dokumentaatio/changelog.md)
+
