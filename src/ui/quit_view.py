@@ -30,11 +30,11 @@ class QuitView:
     def _initialize_texts(self):
         quit_game_text_1 = tkinter.Label(
             self._frame, text="Quit game?", 
-            font=("Arial", 30), bg="#013369"
+            font=("Arial", 30), fg='white', bg="#013369"
             )
         quit_game_text_2 = tkinter.Label(
             self._frame, text="Are you sure?",
-            font=("Arial", 30), bg="#013369"
+            font=("Arial", 30), fg='white', bg="#013369"
             )
         
         quit_game_text_1.grid(row=1, column=1)

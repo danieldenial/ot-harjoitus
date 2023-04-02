@@ -29,11 +29,11 @@ class NewGameView:
     def _initialize_texts(self):
         new_game_text_1 = tkinter.Label(
             self._frame, text="Time for a new game!", 
-            font=("Arial", 35), bg="#013369"
+            font=("Arial", 35), fg='white', bg="#013369"
             )
         new_game_text_2 = tkinter.Label(
             self._frame, text="Are you the true Gridiron Genius?",
-            font=("Arial", 30), bg="#013369"
+            font=("Arial", 30), fg='white', bg="#013369"
             )
         
         new_game_text_1.grid(row=1, column=1)

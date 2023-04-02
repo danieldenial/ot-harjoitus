@@ -29,7 +29,7 @@ class RulesView:
     def _initialize_texts(self):
         rules_text = tkinter.Label(
             self._frame, text="The rules will be added later.", 
-            font=("Arial", 35), bg="#013369"
+            font=("Arial", 35), fg='white', bg="#013369"
             )
         
         rules_text.grid(row=1, column=1)

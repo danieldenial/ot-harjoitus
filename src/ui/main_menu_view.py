@@ -31,11 +31,11 @@ class MainMenuView:
     def _initialize_labels(self):
         h1_label = tkinter.Label(
             self._frame, text="Gridiron Genius", 
-            font=("Verdana", 40, "bold"), bg="#013369"
+            font=("Verdana", 40, "bold"), fg='white', bg="#013369"
             )
         h2_label = tkinter.Label(
             self._frame, text="An NFL Trivia Game",
-            font=("Verdana", 30), bg="#013369"
+            font=("Verdana", 30), fg='white', bg="#013369"
             )
 
         h1_label.grid(row=1, column=1)
