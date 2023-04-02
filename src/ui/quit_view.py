@@ -1,5 +1,5 @@
 
-import tkinter as tk
+import tkinter
 from tkinter import ttk, constants
 
 class QuitView:
@@ -18,7 +18,7 @@ class QuitView:
         self._frame.destroy()
 
     def _initialize(self):
-        self._frame = tk.Frame(
+        self._frame = tkinter.Frame(
             self._root, bg='#013369', 
             width=800, height=500
             )
@@ -28,11 +28,11 @@ class QuitView:
         self._initialize_grid()
 
     def _initialize_texts(self):
-        quit_game_text_1 = tk.Label(
+        quit_game_text_1 = tkinter.Label(
             self._frame, text="Quit game?", 
             font=("Arial", 30), bg="#013369"
             )
-        quit_game_text_2 = tk.Label(
+        quit_game_text_2 = tkinter.Label(
             self._frame, text="Are you sure?",
             font=("Arial", 30), bg="#013369"
             )

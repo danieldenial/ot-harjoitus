@@ -1,5 +1,5 @@
 
-import tkinter as tk
+import tkinter
 from tkinter import ttk, constants
 
 class NewGameView:
@@ -17,7 +17,7 @@ class NewGameView:
         self._frame.destroy()
 
     def _initialize(self):
-        self._frame = tk.Frame(
+        self._frame = tkinter.Frame(
             self._root, bg='#013369', 
             width=800, height=500
             )
@@ -27,11 +27,11 @@ class NewGameView:
         self._initialize_grid()
 
     def _initialize_texts(self):
-        new_game_text_1 = tk.Label(
+        new_game_text_1 = tkinter.Label(
             self._frame, text="Time for a new game!", 
             font=("Arial", 35), bg="#013369"
             )
-        new_game_text_2 = tk.Label(
+        new_game_text_2 = tkinter.Label(
             self._frame, text="Are you the true Gridiron Genius?",
             font=("Arial", 30), bg="#013369"
             )

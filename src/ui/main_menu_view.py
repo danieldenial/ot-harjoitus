@@ -1,5 +1,5 @@
 
-import tkinter as tk
+import tkinter
 from tkinter import ttk, constants
 
 class MainMenuView:
@@ -19,7 +19,7 @@ class MainMenuView:
         self._frame.destroy()
 
     def _initialize(self):
-        self._frame = tk.Frame(
+        self._frame = tkinter.Frame(
             self._root, bg='#013369', 
             width=800, height=800
             )
@@ -29,11 +29,11 @@ class MainMenuView:
         self._initialize_grid()
 
     def _initialize_labels(self):
-        h1_label = tk.Label(
+        h1_label = tkinter.Label(
             self._frame, text="Gridiron Genius", 
             font=("Verdana", 40, "bold"), bg="#013369"
             )
-        h2_label = tk.Label(
+        h2_label = tkinter.Label(
             self._frame, text="An NFL Trivia Game",
             font=("Verdana", 30), bg="#013369"
             )

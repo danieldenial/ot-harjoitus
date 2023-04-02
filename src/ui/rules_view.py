@@ -1,5 +1,5 @@
 
-import tkinter as tk
+import tkinter
 from tkinter import ttk, constants
 
 class RulesView:
@@ -17,7 +17,7 @@ class RulesView:
         self._frame.destroy()
 
     def _initialize(self):
-        self._frame = tk.Frame(
+        self._frame = tkinter.Frame(
             self._root, bg='#013369', 
             width=800, height=500
             )
@@ -27,7 +27,7 @@ class RulesView:
         self._initialize_grid()
 
     def _initialize_texts(self):
-        rules_text = tk.Label(
+        rules_text = tkinter.Label(
             self._frame, text="The rules will be added later.", 
             font=("Arial", 35), bg="#013369"
             )
