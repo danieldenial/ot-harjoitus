@@ -2,6 +2,7 @@
 from ui.main_menu_view import MainMenuView
 from ui.new_game_view import NewGameView
 from ui.quit_view import QuitView
+from ui.rules_view import RulesView
 
 class UI:
     def __init__(self, root):
@@ -23,22 +24,39 @@ class UI:
         self._current_view = MainMenuView(
             self._root, 
             self._show_new_game_view,
-            self._show_quit_view
-            )
+            self._show_quit_view,
+            self._show_rules_view
+        )
 
         self._current_view.pack()
 
     def _show_new_game_view(self):
         self._hide_current_view()
 
-        self._current_view = NewGameView(self._root)
+        self._current_view = NewGameView(
+            self._root,
+            self._show_main_menu_view
+        )
+
+        self._current_view.pack()
+
+    def _show_rules_view(self):
+        self._hide_current_view()
+
+        self._current_view = RulesView(
+            self._root,
+            self._show_main_menu_view
+        )
 
         self._current_view.pack()
 
     def _show_quit_view(self):
         self._hide_current_view()
 
-        self._current_view = QuitView(self._root, self._quit_game)
+        self._current_view = QuitView(
+            self._root, self._quit_game, 
+            self._show_main_menu_view
+        )
 
         self._current_view.pack()
 

@@ -1,10 +1,12 @@
+
 import tkinter as tk
 from tkinter import ttk, constants
 
 class NewGameView:
-    def __init__(self, root):
+    def __init__(self, root, main_menu_view):
         self._root = root
         self._frame = None
+        self._main_menu_view = main_menu_view
 
         self._initialize()
 
@@ -53,7 +55,8 @@ class NewGameView:
         
         back_button = ttk.Button(
             self._frame, text="BACK",
-            padding=5, style='custom.TButton'
+            padding=5, style='custom.TButton',
+            command=self._main_menu_view
         )
         
         start_button.grid(row=5, column=1)

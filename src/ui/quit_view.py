@@ -3,10 +3,11 @@ import tkinter as tk
 from tkinter import ttk, constants
 
 class QuitView:
-    def __init__(self, root, quit_game):
+    def __init__(self, root, quit_game, main_menu_view):
         self._root = root
         self._frame = None
         self._quit_game = quit_game
+        self._main_menu_view = main_menu_view
 
         self._initialize()
 
@@ -56,7 +57,8 @@ class QuitView:
         
         back_button = ttk.Button(
             self._frame, text="BACK",
-            padding=5, style='custom.TButton'
+            padding=5, style='custom.TButton',
+            command=self._main_menu_view
         )
         
         quit_button.grid(row=5, column=1)

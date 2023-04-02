@@ -1,12 +1,14 @@
+
 import tkinter as tk
 from tkinter import ttk, constants
 
 class MainMenuView:
-    def __init__(self, root, show_new_game_view, show_quit_view):
+    def __init__(self, root, new_game_view, quit_view, rules_view):
         self._root = root
         self._frame = None
-        self._show_new_game_view = show_new_game_view
-        self._show_quit_view = show_quit_view
+        self._show_new_game_view = new_game_view
+        self._show_quit_view = quit_view
+        self._show_rules_view = rules_view
         
         self._initialize()
     
@@ -19,7 +21,7 @@ class MainMenuView:
     def _initialize(self):
         self._frame = tk.Frame(
             self._root, bg='#013369', 
-            width=1000, height=800
+            width=800, height=800
             )
 
         self._initialize_labels()
@@ -48,24 +50,25 @@ class MainMenuView:
             padding=10, background='#d50a0a', foreground='black'
             )
 
-        new_game_button = ttk.Button(
+        self.new_game_button = ttk.Button(
             self._frame, text="NEW GAME", 
             style='custom.TButton',
             command=self._show_new_game_view
             )
-        rules_button = ttk.Button(
+        self.rules_button = ttk.Button(
             self._frame, text="VIEW RULES", 
-            style='custom.TButton'
+            style='custom.TButton',
+            command=self._show_rules_view
             )
-        quit_button = ttk.Button(
+        self.quit_button = ttk.Button(
             self._frame, text="QUIT GAME", 
             style='custom.TButton',
             command=self._show_quit_view
             )
 
-        new_game_button.grid(row=4, column=0)
-        rules_button.grid(row=4, column=1)
-        quit_button.grid(row=4, column=2)
+        self.new_game_button.grid(row=4, column=0)
+        self.rules_button.grid(row=4, column=1)
+        self.quit_button.grid(row=4, column=2)
 
     def _initialize_grid(self):
         self._frame.grid_rowconfigure(0, minsize=100)
