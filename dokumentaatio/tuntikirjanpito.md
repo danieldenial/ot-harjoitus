@@ -6,3 +6,4 @@
 | 31.3. |  3   | Tutustumista tkinteriin       |
 | 1.4.  |  5   | Koodin rungon muokkausta      |
 | 2.4.  |  4   | Testien luomista ja testausta |
+| 3.4.  |  2   | Yleistä viilailua ja kokeilua |

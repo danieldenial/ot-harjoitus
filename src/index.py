@@ -7,8 +7,8 @@ def main():
     window.title("Gridiron Genius: An NFL Trivia Game")
     window.geometry("800x500")
 
-    ui = UI(window)
-    ui.start()
+    view = UI(window)
+    view.start()
 
     window.mainloop()
 
