@@ -21,7 +21,7 @@ class MainMenuView:
     def _initialize(self):
         self._frame = tkinter.Frame(
             self._root, bg='#013369', 
-            width=800, height=800
+            width=800, height=500
             )
 
         self._initialize_labels()

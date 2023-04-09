@@ -5,9 +5,9 @@ liittyen amerikkalaisen jalkapallon NFL-sarjaan.
 
 ## Dokumentaatio
 
-[Vaatimusmäärittely](https://github.com/danieldenial/ot-harjoitus/blob/main/dokumentaatio/vaatimusmaarittely.md)
+[Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
 
-[Työaikakirjanpito](https://github.com/danieldenial/ot-harjoitus/blob/main/dokumentaatio/tuntikirjanpito.md)
+[Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 
-[Changelog](https://github.com/danieldenial/ot-harjoitus/blob/main/dokumentaatio/changelog.md)
+[Changelog](./dokumentaatio/changelog.md)
 
