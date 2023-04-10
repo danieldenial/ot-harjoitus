@@ -5,12 +5,13 @@ from tkinter import Tk
 from index import UI
 from ui.main_menu_view import MainMenuView
 
+
 class TestButtons(unittest.TestCase):
-    
+
     def setUp(self):
         self.window = Tk()
         self.ui = UI(self.window)
-    
+
     def tearDown(self):
         self.window.destroy()
 
@@ -46,6 +47,7 @@ class TestButtons(unittest.TestCase):
             main_menu_view.quit_button.invoke()
 
         self.ui._show_quit_view.assert_called_once()
+
 
 if __name__ == "__main__":
     unittest.main()

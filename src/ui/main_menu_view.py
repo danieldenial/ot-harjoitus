@@ -1,42 +1,32 @@
 
 import tkinter
-from tkinter import ttk, constants
+from tkinter import ttk
+from ui.base_view import BaseView
 
-class MainMenuView:
+
+class MainMenuView(BaseView):
     def __init__(self, root, new_game_view, quit_view, rules_view):
-        self._root = root
-        self._frame = None
+        super().__init__(root)
         self._show_new_game_view = new_game_view
         self._show_quit_view = quit_view
         self._show_rules_view = rules_view
-        
-        self._initialize()
-    
-    def pack(self):
-        self._frame.pack(fill=constants.X)
 
-    def destroy(self):
-        self._frame.destroy()
+        self._initialize()
 
     def _initialize(self):
-        self._frame = tkinter.Frame(
-            self._root, bg='#013369', 
-            width=800, height=500
-            )
-
         self._initialize_labels()
         self._initialize_buttons()
         self._initialize_grid()
 
     def _initialize_labels(self):
         h1_label = tkinter.Label(
-            self._frame, text="Gridiron Genius", 
+            self._frame, text="Gridiron Genius",
             font=("Verdana", 40, "bold"), fg='white', bg="#013369"
-            )
+        )
         h2_label = tkinter.Label(
             self._frame, text="An NFL Trivia Game",
             font=("Verdana", 30), fg='white', bg="#013369"
-            )
+        )
 
         h1_label.grid(row=1, column=1)
         h2_label.grid(row=2, column=1)
@@ -46,25 +36,25 @@ class MainMenuView:
 
         style.theme_use('default')
         style.configure(
-            'custom.TButton', font=('Verdana', 20), 
+            'custom.TButton', font=('Verdana', 20),
             padding=10, background='#d50a0a', foreground='black'
-            )
+        )
 
         self.new_game_button = ttk.Button(
-            self._frame, text="NEW GAME", 
+            self._frame, text="NEW GAME",
             style='custom.TButton',
             command=self._show_new_game_view
-            )
+        )
         self.rules_button = ttk.Button(
-            self._frame, text="VIEW RULES", 
+            self._frame, text="VIEW RULES",
             style='custom.TButton',
             command=self._show_rules_view
-            )
+        )
         self.quit_button = ttk.Button(
-            self._frame, text="QUIT GAME", 
+            self._frame, text="QUIT GAME",
             style='custom.TButton',
             command=self._show_quit_view
-            )
+        )
 
         self.new_game_button.grid(row=4, column=0)
         self.rules_button.grid(row=4, column=1)

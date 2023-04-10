@@ -9,3 +9,10 @@ kuitenkaan vielä aloittamaan peliä).
 päävalikkoon.
 - Käyttäjä pystyy lopettamaan sovelluksen valikosta (tai palaamaan 
 lopettamisen sijaan takaisin päävalikkoon).
+
+
+## Viikko 4
+
+- Uusia luokkia lisätty 
+- Karsittu aiemman koodin toistoa laittamalla luokat käyttöliittymän 
+näkymistä vastaavat luokat perimään näkymät vanhemmalta luokalta
