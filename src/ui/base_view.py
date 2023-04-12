@@ -5,7 +5,7 @@ from tkinter import constants
 
 class BaseView:
     w = 1000
-    h = 400
+    h = 600
     color = '#013369'
 
     def __init__(self, root):

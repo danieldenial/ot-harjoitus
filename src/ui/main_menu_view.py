@@ -63,7 +63,6 @@ class MainMenuView(BaseView):
     def _initialize_grid(self):
         self._frame.grid_rowconfigure(0, minsize=100)
         self._frame.grid_rowconfigure(3, minsize=50)
-        self._frame.grid_rowconfigure(5, minsize=300)
 
         self._frame.grid_columnconfigure(0, weight=1)
         self._frame.grid_columnconfigure(1, weight=1)

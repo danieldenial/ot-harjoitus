@@ -12,11 +12,11 @@ class RulesView(BaseView):
         self._initialize()
 
     def _initialize(self):
-        self._initialize_texts()
+        self._initialize_labels()
         self._initialize_buttons()
         self._initialize_grid()
 
-    def _initialize_texts(self):
+    def _initialize_labels(self):
         rules_text = tkinter.Label(
             self._frame, text="The rules will be added later.",
             font=("Arial", 35), fg='white', bg="#013369"
@@ -44,7 +44,6 @@ class RulesView(BaseView):
     def _initialize_grid(self):
         self._frame.grid_rowconfigure(0, minsize=100)
         self._frame.grid_rowconfigure(2, minsize=100)
-        self._frame.grid_rowconfigure(4, minsize=300)
 
         self._frame.grid_columnconfigure(0, weight=1)
         self._frame.grid_columnconfigure(1, weight=1)

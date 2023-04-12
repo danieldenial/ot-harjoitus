@@ -59,7 +59,6 @@ class QuitView(BaseView):
         self._frame.grid_rowconfigure(2, minsize=25)
         self._frame.grid_rowconfigure(4, minsize=50)
         self._frame.grid_rowconfigure(6, minsize=25)
-        self._frame.grid_rowconfigure(8, minsize=200)
 
         self._frame.grid_columnconfigure(0, weight=1)
         self._frame.grid_columnconfigure(1, weight=1)

@@ -38,7 +38,8 @@ class UI:
 
         self._current_view = NewGameView(
             self._root,
-            self._show_main_menu_view
+            self._show_main_menu_view, 
+            self._show_gameplay_view
         )
 
         self._current_view.pack()
@@ -51,6 +52,8 @@ class UI:
             self._show_game_end_view
         )
 
+        self._current_view.pack()
+
     def _show_game_end_view(self):
         self._hide_current_view()
 
@@ -59,6 +62,8 @@ class UI:
             self._show_main_menu_view
         )
 
+        self._current_view.pack()
+        
     def _show_rules_view(self):
         self._hide_current_view()
 
