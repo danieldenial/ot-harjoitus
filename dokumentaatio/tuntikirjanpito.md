@@ -11,3 +11,4 @@
 | 10.4. |  3   | Uusien luokkien luomista                      |
 | 11.4. |  2   | Kysymysten siirto csv-tiedostosta sanakirjaan |
 | 12.4. |  1   | Eri näkymien yhdenmukaistamista               |
+| 14.4. |  4   | Virheiden ihmettelyä ja korjausta             |

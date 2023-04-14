@@ -15,20 +15,15 @@ class QuitView(BaseView):
     def _initialize(self):
         self._initialize_texts()
         self._initialize_buttons()
-        self._initialize_grid()
+        self._adjust_elements()
 
     def _initialize_texts(self):
         quit_game_text_1 = tkinter.Label(
             self._frame, text="Quit game?",
-            font=("Arial", 30), fg='white', bg="#013369"
-        )
-        quit_game_text_2 = tkinter.Label(
-            self._frame, text="Are you sure?",
-            font=("Arial", 30), fg='white', bg="#013369"
+            font=("Arial", 40), fg='white', bg="#013369"
         )
 
         quit_game_text_1.grid(row=1, column=1)
-        quit_game_text_2.grid(row=3, column=1)
 
     def _initialize_buttons(self):
         style = ttk.Style()
@@ -40,25 +35,24 @@ class QuitView(BaseView):
         )
 
         quit_button = ttk.Button(
-            self._frame, text="QUIT GAME",
+            self._frame, text="YES",
             padding=10, style='custom.TButton',
             command=self._quit_game
         )
 
         back_button = ttk.Button(
-            self._frame, text="BACK",
-            padding=5, style='custom.TButton',
+            self._frame, text="NO",
+            padding=10, style='custom.TButton',
             command=self._main_menu_view
         )
 
-        quit_button.grid(row=5, column=1)
-        back_button.grid(row=7, column=1)
+        quit_button.grid(row=3, column=1)
+        back_button.grid(row=5, column=1)
 
-    def _initialize_grid(self):
-        self._frame.grid_rowconfigure(0, minsize=100)
+    def _adjust_elements(self):
+        self._frame.grid_rowconfigure(0, minsize=200)
         self._frame.grid_rowconfigure(2, minsize=25)
-        self._frame.grid_rowconfigure(4, minsize=50)
-        self._frame.grid_rowconfigure(6, minsize=25)
+        self._frame.grid_rowconfigure(4, minsize=25)
 
         self._frame.grid_columnconfigure(0, weight=1)
         self._frame.grid_columnconfigure(1, weight=1)

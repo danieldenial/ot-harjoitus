@@ -16,7 +16,7 @@ class MainMenuView(BaseView):
     def _initialize(self):
         self._initialize_labels()
         self._initialize_buttons()
-        self._initialize_grid()
+        self._adjust_elements()
 
     def _initialize_labels(self):
         h1_label = tkinter.Label(
@@ -60,7 +60,7 @@ class MainMenuView(BaseView):
         self.rules_button.grid(row=4, column=1)
         self.quit_button.grid(row=4, column=2)
 
-    def _initialize_grid(self):
+    def _adjust_elements(self):
         self._frame.grid_rowconfigure(0, minsize=100)
         self._frame.grid_rowconfigure(3, minsize=50)
 

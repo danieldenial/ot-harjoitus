@@ -15,7 +15,7 @@ class NewGameView(BaseView):
     def _initialize(self):
         self._initialize_labels()
         self._initialize_buttons()
-        self._initialize_grid()
+        self._adjust_elements()
 
     def _initialize_labels(self):
         new_game_text_1 = tkinter.Label(
@@ -54,7 +54,7 @@ class NewGameView(BaseView):
         start_button.grid(row=5, column=1)
         back_button.grid(row=7, column=1)
 
-    def _initialize_grid(self):
+    def _adjust_elements(self):
         self._frame.grid_rowconfigure(0, minsize=100)
         self._frame.grid_rowconfigure(2, minsize=25)
         self._frame.grid_rowconfigure(4, minsize=50)
