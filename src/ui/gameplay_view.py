@@ -2,27 +2,24 @@
 import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
+from services.questions_service import QuestionService
 
 
 class GameplayView(BaseView):
     def __init__(self, root):
         super().__init__(root)
-        self._question = "Is this an example question?"
-        self._optionA = "A"
-        self._optionB = "B"
-        self._optionC = "C"
-        self._optionD = "D"
-
+        self._root = root
         self._initialize()
 
     def _initialize(self):
+        self._next = QuestionService._next_question(self._root)
         self._initialize_labels()
         self._initialize_buttons()
         self._adjust_elements()
 
     def _initialize_labels(self):
         question_label = tkinter.Label(
-            self._frame, text=self._question,
+            self._frame, text=self._next['Question'],
             font=("Verdana", 25, "bold"), fg='white', bg="#013369"
         )
 
@@ -66,27 +63,27 @@ class GameplayView(BaseView):
         )
 
         self.A_button = ttk.Button(
-            self._frame, text=self._optionA,
+            self._frame, text=self._next['A'],
             style='custom.TButton',
-            command=lambda: self._handle_player_answer("A")
+            command=lambda: self._handle_player_answer('A', self._next['A'])
         )
 
         self.B_button = ttk.Button(
-            self._frame, text=self._optionB,
+            self._frame, text=self._next['B'],
             style='custom.TButton',
-            command=lambda: self._handle_player_answer("B")
+            command=lambda: self._handle_player_answer('B', self._next['B'])
         )
 
         self.C_button = ttk.Button(
-            self._frame, text=self._optionC,
+            self._frame, text=self._next['C'],
             style='custom.TButton',
-            command=lambda: self._handle_player_answer("C")
+            command=lambda: self._handle_player_answer('C', self._next['C'])
         )
 
         self.D_button = ttk.Button(
-            self._frame, text=self._optionD,
+            self._frame, text=self._next['D'],
             style='custom.TButton',
-            command=lambda: self._handle_player_answer("D")
+            command=lambda: self._handle_player_answer('D', self._next['D'])
         )
 
         self.A_button.grid(
@@ -118,37 +115,34 @@ class GameplayView(BaseView):
         self._frame.grid_columnconfigure(1, weight=1)
         self._frame.grid_columnconfigure(2, weight=1)
 
-    def _handle_player_answer(self, click):
+    def _handle_player_answer(self, click, answer):
         self._disable_buttons()
-        if click == "A":
-            self._change_button_green("A")
-        elif click == "B":
-            self._change_button_red("B")
-        elif click == "C":
-            self._change_button_red("C")
-        elif click == "D":
-            self._change_button_red("D")
+        if self._next['Answer'] == answer:
+            self._change_button_green(click)
+        else:
+            self._change_button_red(click)
 
-    def _change_button_green(self, answer):
-        if answer == "A":
+
+    def _change_button_green(self, click):
+        if click == "A":
             self.A_button.configure(style='custom.green.TButton')
-        elif answer == "B":
+        elif click == "B":
             self.B_button.configure(style='custom.green.TButton')
-        elif answer == "C":
+        elif click == "C":
             self.C_button.configure(style='custom.green.TButton')
-        elif answer == "D":
+        elif click == "D":
             self.D_button.configure(style='custom.green.TButton')
         self._add_button()
         
 
-    def _change_button_red(self, answer):
-        if answer == "A":
+    def _change_button_red(self, click):
+        if click == "A":
             self.A_button.configure(style='custom.orange.TButton')
-        elif answer == "B":
+        elif click == "B":
             self.B_button.configure(style='custom.orange.TButton')
-        elif answer == "C":
+        elif click == "C":
             self.C_button.configure(style='custom.orange.TButton')
-        elif answer == "D":
+        elif click == "D":
             self.D_button.configure(style='custom.orange.TButton')
         self._add_button()
 

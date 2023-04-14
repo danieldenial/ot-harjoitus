@@ -2,11 +2,13 @@
 import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
+from services.questions_service import QuestionService
 
 
 class MainMenuView(BaseView):
     def __init__(self, root, new_game_view, quit_view, rules_view):
         super().__init__(root)
+        self._root = root
         self._show_new_game_view = new_game_view
         self._show_quit_view = quit_view
         self._show_rules_view = rules_view
@@ -17,6 +19,8 @@ class MainMenuView(BaseView):
         self._initialize_labels()
         self._initialize_buttons()
         self._adjust_elements()
+        QuestionService.load_questions(self._root)
+        
 
     def _initialize_labels(self):
         h1_label = tkinter.Label(
