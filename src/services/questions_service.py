@@ -3,6 +3,7 @@ from random import choice
 import csv
 from pathlib import Path
 
+
 class QuestionService:
     def __init__(self):
         self._questions = None
@@ -12,7 +13,8 @@ class QuestionService:
         self.load_questions()
 
     def load_questions(self):
-        file_path = Path(__file__).resolve().parent.parent.parent / "files" / "questions.csv"
+        file_path = Path(__file__).resolve(
+        ).parent.parent.parent / "files" / "questions.csv"
 
         dict_number = 1
         self._questions = {}
@@ -22,10 +24,10 @@ class QuestionService:
             for row in reader:
                 self._questions[dict_number] = {
                     'Question': row[0],
-                    'A': row[1], 'B': row[2], 
-                    'C': row[3], 'D': row[4], 
+                    'A': row[1], 'B': row[2],
+                    'C': row[3], 'D': row[4],
                     'Answer': row[5]
-                    }
+                }
                 dict_number += 1
 
         self._key_list = list(self._questions.keys())

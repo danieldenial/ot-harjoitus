@@ -37,7 +37,7 @@ class UI:
 
         self._current_view = NewGameView(
             self._root,
-            self._show_main_menu_view, 
+            self._show_main_menu_view,
             self._show_gameplay_view
         )
 
