@@ -5,9 +5,10 @@ liittyen amerikkalaisen jalkapallon NFL-sarjaan.
 
 ## Dokumentaatio
 
-[Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
+- [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
 
-[Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
+- [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 
-[Changelog](./dokumentaatio/changelog.md)
+- [Changelog](./dokumentaatio/changelog.md)
 
+- [Arkkitehtuurikuvaus](./dokumentaatio/arkkitehtuuri.md)

@@ -11,7 +11,7 @@
 | 10.4. |  3   | Uusien luokkien luomista                           |
 | 11.4. |  2   | Kysymysten siirto CSV-tiedostosta sanakirjaan      |
 | 12.4. |  1   | Eri näkymien yhdenmukaistamista                    |
-| 13.4. |  2   | CSV-tiedoston tuominen sovellukseen                |
+| 13.4. |  2   | Pelin kysymysnäkymän luomista                      |
 | 14.4. |  4   | Virheiden ihmettelyä ja korjausta                  |
-| 17.4. |  2   | Seuraavaan kysymykseen siirtymisen toiminnallisuus |
-| Yht.  |  31  |                                                    |
+| 17.4. |  3   | Seuraavaan kysymykseen siirtymisen toiminnallisuus |
+| Yht.  |  32  |                                                    |

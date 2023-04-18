@@ -1,5 +1,5 @@
 
-from random import choice
+from random import choice, shuffle
 import csv
 from pathlib import Path
 
@@ -10,9 +10,9 @@ class QuestionService:
         self._key_list = None
         self._number = None
 
-        self.load_questions()
+        self._load_questions()
 
-    def load_questions(self):
+    def _load_questions(self):
         file_path = Path(__file__).resolve(
         ).parent.parent.parent / "files" / "questions.csv"
 
@@ -32,13 +32,24 @@ class QuestionService:
 
         self._key_list = list(self._questions.keys())
 
+    def _get_question(self):
+        return self._questions[self._number]['Question']
+    
+    def _get_options(self):
+        options = [
+            self._questions[self._number]['A'],
+            self._questions[self._number]['B'],
+            self._questions[self._number]['C'],
+            self._questions[self._number]['D']
+        ]
+        shuffle(options)
+
+        return options
+
     def _next_question(self):
         if len(self._key_list) > 0:
             self._number = choice(self._key_list)
             self._key_list.remove(self._number)
-            return self._questions[self._number]
-        else:
-            pass
 
-    def _check_question(self, user_answer):
-        return self._questions['answer'] == user_answer
+    def _check_answer(self, user_answer):
+        return self._questions[self._number]['Answer'] == user_answer

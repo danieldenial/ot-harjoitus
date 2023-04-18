@@ -19,7 +19,7 @@ class MainMenuView(BaseView):
         self._initialize_labels()
         self._initialize_buttons()
         self._adjust_elements()
-        QuestionService.load_questions(self._root)
+        QuestionService._load_questions(self._root)
 
     def _initialize_labels(self):
         h1_label = tkinter.Label(
