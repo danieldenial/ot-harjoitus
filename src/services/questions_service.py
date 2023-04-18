@@ -34,7 +34,7 @@ class QuestionService:
 
     def _get_question(self):
         return self._questions[self._number]['Question']
-    
+
     def _get_options(self):
         options = [
             self._questions[self._number]['A'],

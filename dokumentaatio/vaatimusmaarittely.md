@@ -29,7 +29,7 @@ lisätään sellainen  mukaan sovellukseen.
 ### Varsinainen peli
 
 - Ruudulle tulee kysymyksiä yksi kerrallaan ja satunnaisessa 
-järjestyksessä. | TEHTY (ainakin alustavasti)
+järjestyksessä. | TEHTY (joskin ulkoasu vaatii vielä muokkausta)
 	- Yksikään kysymyksistä ei toistu saman yksittäisen pelikerran 
 aikana (kysymykset saattavat kuitenkin toistua, jos käyttäjä pelaa monta 
 peräkkäistä peliä). | TEHTY

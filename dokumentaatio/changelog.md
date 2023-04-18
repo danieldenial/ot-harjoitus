@@ -12,11 +12,12 @@ lopettamisen sijaan takaisin päävalikkoon).
 
 ## Viikko 4
 
-- Uusia luokkia lisätty.
 - Karsittu aiemman koodin toistoa laittamalla luokat käyttöliittymän näkymistä vastaavat luokat perimään näkymät vanhemmalta 
 luokalta.
 - Yritetty parantaa käyttöliittymän näkymien yhtenäisyyttä eri käyttöjärjestelmissä/koneilla (vaatii vielä lisätyötä).
+- Yritetty eriyttää sovelluslogiikka käyttöliittymästä. (Tämäkin vaatii edelleen lisätyötä).
 - Lisätty 20 kysymystä csv-tiedostoon, jonka sisältö tuodaan peliin sanakirjan muodossa sovelluksen avaamisen yhteydessä. 
 Kysymykset esitetään pelissä satunnaisessa järjestyksessä.
+- Uusia luokkia lisätty pelinkulkua ja kysymysten käsittelyä varten.
 - Luotu varsinaisen kyselypelin toiminnallisuuksia: Käyttäjä näkee nyt pelin aloitettuaan kysymyksen sekä siihen liittyvät 
 vastausvaihtoehdot ja pystyy valitsemaan oman vastauksensa. Peli jatkuu seuraavaan kysymykseen, jos vastaus on oikein.
