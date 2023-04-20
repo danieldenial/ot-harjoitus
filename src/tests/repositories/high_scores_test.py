@@ -3,6 +3,7 @@ import unittest
 import os
 from repositories.high_scores import HighScores
 
+
 class TestHighScores(unittest.TestCase):
 
     def setUp(self):
@@ -16,7 +17,7 @@ class TestHighScores(unittest.TestCase):
         self.assertIsNotNone(self._HS._high_score)
 
     def test_new_high_score_works(self):
-        self._HS._set_new_high_score(20)
+        self._HS.set_new_high_score(20)
         self.assertEqual(self._HS._high_score, 20)
 
     def test_reset_high_score_works(self):

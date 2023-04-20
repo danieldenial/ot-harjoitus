@@ -2,6 +2,7 @@
 import unittest
 from services.score_service import ScoreServices
 
+
 class TestHighScoreService(unittest.TestCase):
 
     def setUp(self):
@@ -9,7 +10,7 @@ class TestHighScoreService(unittest.TestCase):
 
     def test_get_current_score(self):
         comparison = f"Score: {self.HS._current_score}"
-        self.assertEqual(self.HS._get_current_score(),comparison)
+        self.assertEqual(self.HS._get_current_score(), comparison)
 
     def test_get_high_score(self):
         self.assertEqual(self.HS._get_high_score(), self.HS._high_score)

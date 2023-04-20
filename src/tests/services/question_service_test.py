@@ -24,7 +24,7 @@ class TestQuestionService(unittest.TestCase):
             self.Qs._get_question(),
             self.Qs._questions[self.Qs._number]['Question']
         )
-    
+
     def test_get_options(self):
         self.Qs._next_question()
         options1 = self.Qs._get_options()
@@ -36,7 +36,7 @@ class TestQuestionService(unittest.TestCase):
         ]
         options1.sort()
         options2.sort()
-        self.assertEqual(options1,options2)
+        self.assertEqual(options1, options2)
 
     def test_check_answer(self):
         self.Qs._next_question()

@@ -4,8 +4,9 @@ import os
 import csv
 from repositories.questions import Questions
 
+
 class TestQuestions(unittest.TestCase):
-    
+
     def setUp(self):
         self.Qs = Questions()
 

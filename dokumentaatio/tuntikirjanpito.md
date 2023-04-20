@@ -16,4 +16,5 @@
 | 17.4. |  3   | Seuraavaan kysymykseen siirtymisen toiminnallisuus                       |
 | 18.4. |  3   | Sovelluslogiikan erottamista käyttöliittymästä (+testejä)                |
 | 19.4. |  2   | Pisteiden lisääminen peliin ja parhaan tuloksen talletus csv-tiedostoon  |
-| Yht.  |  35  |                                                                          |
+| 20.4. |  2   | Testien lisäämistä eri luokille ja toiminnallisuuksille                  |
+| Yht.  |  39  |                                                                          |
