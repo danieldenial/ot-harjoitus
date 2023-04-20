@@ -21,3 +21,10 @@ Kysymykset esitetään pelissä satunnaisessa järjestyksessä.
 - Uusia luokkia lisätty pelinkulkua ja kysymysten käsittelyä varten.
 - Luotu varsinaisen kyselypelin toiminnallisuuksia: Käyttäjä näkee nyt pelin aloitettuaan kysymyksen sekä siihen liittyvät 
 vastausvaihtoehdot ja pystyy valitsemaan oman vastauksensa. Peli jatkuu seuraavaan kysymykseen, jos vastaus on oikein.
+
+
+## Viikko 5
+
+- Pelin yhteydessä näkyy pelaajan pistemäärä. Jokaisesta oikeasta 
+vastauksesta saa tässä vaiheessa yhden pisteen.
+- Paras saavutettu pistemäärä (high score) talletetaan csv-tiedostoon.

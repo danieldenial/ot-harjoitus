@@ -38,7 +38,7 @@ valitsee yhden. | TEHTY
 	- Sovellus kertoo tai näyttää menikö vastaus oikein vai väärin. | TEHTY 
 - Oikean vastauksen jälkeen peli jatkuu seuraavaan kysymykseen. | TEHTY
 - Oikeasta vastauksesta tulee käyttäjälle piste lisää (tai pisteitä, 
-riippuen lopullisesta toteutustavasta).
+riippuen lopullisesta toteutustavasta). | TEHTY
 - Peli päättyy joko väärään vastaukseen tai viimeistään siinä vaiheessa, 
 kun käyttäjä on vastannut kaikkiin pelin kysymyksiin oikein sillä 
 pelikerralla. | TEHTY (väärän vastauksen osalta)

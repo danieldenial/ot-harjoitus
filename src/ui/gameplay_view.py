@@ -3,24 +3,26 @@ import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
 from services.questions_service import QuestionService
+from services.score_services import ScoreServices
 
 
 class GameplayView(BaseView):
     def __init__(self, root):
         super().__init__(root)
         self._root = root
-        self.q = QuestionService()
+        self._q = QuestionService()
+        self._score = ScoreServices()
         self._click = None
         self._initialize()
 
     def _initialize(self):
-        self.q._next_question()
+        self._q._next_question()
         self._initialize_labels()
         self._initialize_buttons()
 
     def _initialize_labels(self):
-        q_text = self.q._get_question()
-        self._options = self.q._get_options()
+        q_text = self._q._get_question()
+        self._options = self._q._get_options()
 
         self._question_label = tkinter.Label(
             self._frame, text=q_text,
@@ -47,15 +49,46 @@ class GameplayView(BaseView):
             font=("Verdana", 25), fg='white', bg='#013369'
         )
 
-        self._question_label.place(x=50, y=30)
+        self._score_label = tkinter.Label(
+            self._frame, text=self._score._get_current_score(),
+            font=("Verdana", 18), fg='white', bg='#013369'
+        )
 
-        self._A_label.place(x=150, y=150)
+        self._question_label.grid(
+            row=0, column=0, columnspan=2,
+            padx=10, pady=10,
+            sticky=tkinter.W+tkinter.E
+        )
 
-        self._B_label.place(x=150, y=225)
+        self._A_label.grid(
+            row=1, column=1,
+            padx=(0, 10), pady=10,
+            sticky=tkinter.W
+        )
 
-        self._C_label.place(x=150, y=300)
+        self._B_label.grid(
+            row=2, column=1,
+            padx=(0, 10), pady=10,
+            sticky=tkinter.W
+        )
 
-        self._D_label.place(x=150, y=375)
+        self._C_label.grid(
+            row=3, column=1,
+            padx=(0, 10), pady=10,
+            sticky=tkinter.W
+        )
+
+        self._D_label.grid(
+            row=4, column=1,
+            padx=(0, 10), pady=10,
+            sticky=tkinter.W
+        )
+
+        self._score_label.grid(
+            row=5, column=1,
+            padx=10, pady=10,
+            sticky=tkinter.E
+        )
 
     def _initialize_buttons(self):
         style = ttk.Style()
@@ -116,23 +149,42 @@ class GameplayView(BaseView):
             command=lambda: self._handle_player_answer('D', self._options[3])
         )
 
-        self.A_button.place(x=50, y=150)
+        self.A_button.grid(
+            row=1, column=0,
+            padx=(10, 0), pady=10,
+            sticky=tkinter.W
+        )
 
-        self.B_button.place(x=50, y=225)
+        self.B_button.grid(
+            row=2, column=0,
+            padx=(10, 0), pady=10,
+            sticky=tkinter.W
+        )
 
-        self.C_button.place(x=50, y=300)
+        self.C_button.grid(
+            row=3, column=0,
+            padx=(10, 0), pady=10,
+            sticky=tkinter.W
+        )
 
-        self.D_button.place(x=50, y=375)
+        self.D_button.grid(
+            row=4, column=0,
+            padx=(10, 0), pady=10,
+            sticky=tkinter.W
+        )
 
     def _handle_player_answer(self, click, answer):
         self._click = click
 
         self._disable_buttons()
 
-        if self.q._check_answer(answer):
+        if self._q._check_answer(answer):
             self._change_button_green()
+            self._score._increase_score()
+            self._score_label.config(text=self._score._get_current_score())
         else:
             self._change_button_red()
+            self._score._check_score()
 
     def _change_button_green(self):
         if self._click == "A":
@@ -182,8 +234,15 @@ class GameplayView(BaseView):
             command=lambda: self._update_view()
         )
 
-        self.continue_label.place(x=75, y=450)
-        self.continue_button.place(x=75, y=500)
+        self.continue_label.grid(
+            row=5, column=0,
+            padx=10, pady=10
+        )
+
+        self.continue_button.grid(
+            row=6, column=0,
+            padx=10, pady=10
+        )
 
     def _add_wrong_answer_widgets(self):
         pass
@@ -200,4 +259,5 @@ class GameplayView(BaseView):
         self.D_button.destroy()
         self.continue_button.destroy()
         self.continue_label.destroy()
+        self._score_label.destroy()
         self._initialize()
