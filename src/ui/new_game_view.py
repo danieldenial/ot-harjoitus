@@ -35,19 +35,19 @@ class NewGameView(BaseView):
 
         style.theme_use('default')
         style.configure(
-            'custom.TButton', font=('Verdana', 20),
+            'custom.game_menu.TButton', font=('Verdana', 20),
             background='#d50a0a', foreground='black'
         )
 
         start_button = ttk.Button(
             self._frame, text="START GAME",
-            padding=10, style='custom.TButton',
+            padding=10, style='custom.game_menu.TButton',
             command=self._gameplay_view
         )
 
         back_button = ttk.Button(
             self._frame, text="BACK",
-            padding=5, style='custom.TButton',
+            padding=5, style='custom.game_menu.TButton',
             command=self._main_menu_view
         )
 

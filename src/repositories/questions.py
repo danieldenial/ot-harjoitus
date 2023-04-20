@@ -5,16 +5,15 @@ from pathlib import Path
 class Questions:
     def __init__(self):
         self._questions_dictionary = {}
+        self._file_path = Path(__file__).resolve(
+        ).parent.parent.parent / "files" / "questions.csv"
 
         self._load_questions()
 
     def _load_questions(self):
-        file_path = Path(__file__).resolve(
-        ).parent.parent.parent / "files" / "questions.csv"
-
         dict_number = 1
 
-        with open(file_path, mode='r', encoding='utf-8') as csvfile:
+        with open(self._file_path, mode='r', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile)
             for row in reader:
                 self._questions_dictionary[dict_number] = {

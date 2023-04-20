@@ -18,4 +18,4 @@ class ScoreServices:
 
     def _check_score(self):
         if self._current_score > self._high_score:
-            HighScores().new_high_score(self._current_score)
+            HighScores()._set_new_high_score(self._current_score)

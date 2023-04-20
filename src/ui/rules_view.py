@@ -29,13 +29,13 @@ class RulesView(BaseView):
 
         style.theme_use('default')
         style.configure(
-            'custom.TButton', font=('Verdana', 20),
+            'custom.rules_menu.TButton', font=('Verdana', 20),
             background='#d50a0a', foreground='black'
         )
 
         back_button = ttk.Button(
             self._frame, text="BACK",
-            padding=5, style='custom.TButton',
+            padding=5, style='custom.rules_menu.TButton',
             command=self._main_menu_view
         )
 

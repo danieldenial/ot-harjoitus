@@ -2,14 +2,15 @@
 import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
-from services.questions_service import QuestionService
-from services.score_services import ScoreServices
+from services.question_service import QuestionService
+from services.score_service import ScoreServices
 
 
 class GameplayView(BaseView):
-    def __init__(self, root):
+    def __init__(self, root, main_menu_view):
         super().__init__(root)
         self._root = root
+        self._main_menu_view = main_menu_view
         self._q = QuestionService()
         self._score = ScoreServices()
         self._click = None
@@ -96,7 +97,7 @@ class GameplayView(BaseView):
         style.theme_use('default')
 
         style.configure(
-            'custom.TButton', font=('Verdana', 20),
+            'custom.option.TButton', font=('Verdana', 20),
             background='#d50a0a', foreground='black',
             height=10, width=3
         )
@@ -127,25 +128,25 @@ class GameplayView(BaseView):
 
         self.A_button = ttk.Button(
             self._frame, text='A',
-            style='custom.TButton',
+            style='custom.option.TButton',
             command=lambda: self._handle_player_answer('A', self._options[0])
         )
 
         self.B_button = ttk.Button(
             self._frame, text='B',
-            style='custom.TButton',
+            style='custom.option.TButton',
             command=lambda: self._handle_player_answer('B', self._options[1])
         )
 
         self.C_button = ttk.Button(
             self._frame, text='C',
-            style='custom.TButton',
+            style='custom.option.TButton',
             command=lambda: self._handle_player_answer('C', self._options[2])
         )
 
         self.D_button = ttk.Button(
             self._frame, text='D',
-            style='custom.TButton',
+            style='custom.option.TButton',
             command=lambda: self._handle_player_answer('D', self._options[3])
         )
 
@@ -224,13 +225,13 @@ class GameplayView(BaseView):
 
         style.theme_use('default')
         style.configure(
-            'custom.cont.TButton', font=('Verdana', 20),
+            'custom.continue.TButton', font=('Verdana', 20),
             background='#d50a0a', foreground='black',
         )
 
         self.continue_button = ttk.Button(
             self._frame, text="CONTINUE",
-            style='custom.cont.TButton',
+            style='custom.continue.TButton',
             command=lambda: self._update_view()
         )
 
@@ -245,7 +246,34 @@ class GameplayView(BaseView):
         )
 
     def _add_wrong_answer_widgets(self):
-        pass
+        self.game_over_label = tkinter.Label(
+            self._frame, text='Oops, game over!',
+            font=("Verdana", 20, 'bold'), fg='white', bg='#013369'
+        )
+
+        style = ttk.Style()
+
+        style.theme_use('default')
+        style.configure(
+            'custom.end.TButton', font=('Verdana', 20),
+            background='#d50a0a', foreground='black',
+        )
+
+        self.main_menu_button = ttk.Button(
+            self._frame, text="MAIN MENU",
+            style='custom.end.TButton',
+            command=self._main_menu_view
+        )
+
+        self.game_over_label.grid(
+            row=5, column=0,
+            padx=10, pady=10
+        )
+
+        self.main_menu_button.grid(
+            row=6, column=0,
+            padx=10, pady=10
+        )
 
     def _update_view(self):
         self._question_label.destroy()

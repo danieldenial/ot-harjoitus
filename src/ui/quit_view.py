@@ -30,19 +30,19 @@ class QuitView(BaseView):
 
         style.theme_use('default')
         style.configure(
-            'custom.TButton', font=('Verdana', 20),
+            'custom.quit_menu.TButton', font=('Verdana', 20),
             background='#d50a0a', foreground='black'
         )
 
         quit_button = ttk.Button(
             self._frame, text="YES",
-            padding=10, style='custom.TButton',
+            padding=10, style='custom.quit_menu.TButton',
             command=self._quit_game
         )
 
         back_button = ttk.Button(
             self._frame, text="NO",
-            padding=10, style='custom.TButton',
+            padding=10, style='custom.quit_menu.TButton',
             command=self._main_menu_view
         )
 

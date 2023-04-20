@@ -2,7 +2,6 @@
 import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
-from services.questions_service import QuestionService
 
 
 class MainMenuView(BaseView):
@@ -38,23 +37,23 @@ class MainMenuView(BaseView):
 
         style.theme_use('default')
         style.configure(
-            'custom.TButton', font=('Verdana', 20),
+            'custom.main_menu.TButton', font=('Verdana', 20),
             padding=10, background='#d50a0a', foreground='black'
         )
 
         self.new_game_button = ttk.Button(
             self._frame, text="NEW GAME",
-            style='custom.TButton',
+            style='custom.main_menu.TButton',
             command=self._show_new_game_view
         )
         self.rules_button = ttk.Button(
             self._frame, text="VIEW RULES",
-            style='custom.TButton',
+            style='custom.main_menu.TButton',
             command=self._show_rules_view
         )
         self.quit_button = ttk.Button(
             self._frame, text="QUIT GAME",
-            style='custom.TButton',
+            style='custom.main_menu.TButton',
             command=self._show_quit_view
         )
 
