@@ -19,15 +19,15 @@ class TestQuestionService(unittest.TestCase):
         self.assertNotEqual(self.Qs._key_list, comparison)
 
     def test_get_question(self):
-        self.Qs._next_question()
+        self.Qs.next_question()
         self.assertEqual(
-            self.Qs._get_question(),
+            self.Qs.get_question(),
             self.Qs._questions[self.Qs._number]['Question']
         )
 
     def test_get_options(self):
-        self.Qs._next_question()
-        options1 = self.Qs._get_options()
+        self.Qs.next_question()
+        options1 = self.Qs.get_options()
         options2 = [
             self.Qs._questions[self.Qs._number]['A'],
             self.Qs._questions[self.Qs._number]['B'],
@@ -39,13 +39,13 @@ class TestQuestionService(unittest.TestCase):
         self.assertEqual(options1, options2)
 
     def test_check_answer(self):
-        self.Qs._next_question()
+        self.Qs.next_question()
         answer = self.Qs._questions[self.Qs._number]['Answer']
-        self.assertEqual(self.Qs._check_answer(answer), True)
+        self.assertEqual(self.Qs.check_answer(answer), True)
 
     def test_question_changes(self):
-        self.Qs._next_question()
+        self.Qs.next_question()
         question1 = self.Qs._questions[self.Qs._number]['Question']
-        self.Qs._next_question()
+        self.Qs.next_question()
         question2 = self.Qs._questions[self.Qs._number]['Question']
         self.assertNotEqual(question1, question2)

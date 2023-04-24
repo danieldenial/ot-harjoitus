@@ -7,23 +7,24 @@ from services.score_service import ScoreServices
 
 
 class GameplayView(BaseView):
-    def __init__(self, root, main_menu_view):
+    def __init__(self, root, main_menu_view, new_game_view):
         super().__init__(root)
         self._root = root
         self._main_menu_view = main_menu_view
+        self._new_game_view = new_game_view
         self._q = QuestionService()
         self._score = ScoreServices()
         self._click = None
         self._initialize()
 
     def _initialize(self):
-        self._q._next_question()
+        self._q.next_question()
         self._initialize_labels()
         self._initialize_buttons()
 
     def _initialize_labels(self):
-        q_text = self._q._get_question()
-        self._options = self._q._get_options()
+        q_text = self._q.get_question()
+        self._options = self._q.get_options()
 
         self._question_label = tkinter.Label(
             self._frame, text=q_text,
@@ -51,7 +52,7 @@ class GameplayView(BaseView):
         )
 
         self._score_label = tkinter.Label(
-            self._frame, text=self._score._get_current_score(),
+            self._frame, text=self._score.get_current_score(),
             font=("Verdana", 18), fg='white', bg='#013369'
         )
 
@@ -179,13 +180,13 @@ class GameplayView(BaseView):
 
         self._disable_buttons()
 
-        if self._q._check_answer(answer):
+        if self._q.check_answer(answer):
             self._change_button_green()
-            self._score._increase_score()
-            self._score_label.config(text=self._score._get_current_score())
+            self._score.increase_score()
+            self._score_label.config(text=self._score.get_current_score())
         else:
             self._change_button_red()
-            self._score._check_score()
+            self._score.check_score()
 
     def _change_button_green(self):
         if self._click == "A":
@@ -265,6 +266,12 @@ class GameplayView(BaseView):
             command=self._main_menu_view
         )
 
+        self.new_game_button = ttk.Button(
+            self._frame, text="NEW GAME",
+            style='custom.end.TButton',
+            command=self._new_game_view
+        )
+
         self.game_over_label.grid(
             row=5, column=0,
             padx=10, pady=10
@@ -272,6 +279,11 @@ class GameplayView(BaseView):
 
         self.main_menu_button.grid(
             row=6, column=0,
+            padx=10, pady=10
+        )
+
+        self.new_game_button.grid(
+            row=7, column=0,
             padx=10, pady=10
         )
 

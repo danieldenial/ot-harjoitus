@@ -48,7 +48,8 @@ class UI:
 
         self._current_view = GameplayView(
             self._root,
-            self._show_main_menu_view
+            self._show_main_menu_view,
+            self._show_new_game_view
         )
 
         self._current_view.pack()

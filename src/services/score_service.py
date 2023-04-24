@@ -7,15 +7,15 @@ class ScoreServices:
         self._current_score = 0
         self._high_score = HighScores()._high_score
 
-    def _get_current_score(self):
+    def get_current_score(self):
         return f"Score: {self._current_score}"
 
-    def _get_high_score(self):
+    def get_high_score(self):
         return self._high_score
 
-    def _increase_score(self):
+    def increase_score(self):
         self._current_score += 1
 
-    def _check_score(self):
+    def check_score(self):
         if self._current_score > self._high_score:
             HighScores().set_new_high_score(self._current_score)

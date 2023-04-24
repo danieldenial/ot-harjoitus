@@ -24,7 +24,7 @@ lisätään sellainen  mukaan sovellukseen.
 - Käyttäjä voi aloittaa uuden pelin. | TEHTY
 - Käyttäjä voi katsoa pelin ohjeita.
 - Käyttäjä voi sulkea sovelluksen. | TEHTY
-- Käyttäjä näkee ruudulta parhaan siihenastisen tuloksen.
+- Käyttäjä näkee ruudulta parhaan siihenastisen tuloksen. | TEHTY
 
 ### Varsinainen peli
 
@@ -41,7 +41,7 @@ valitsee yhden. | TEHTY
 riippuen lopullisesta toteutustavasta). | TEHTY
 - Peli päättyy joko väärään vastaukseen tai viimeistään siinä vaiheessa, 
 kun käyttäjä on vastannut kaikkiin pelin kysymyksiin oikein sillä 
-pelikerralla. | TEHTY (väärän vastauksen osalta)
+pelikerralla. | TEHTY
 	- Pelin päättymisen jälkeen käyttäjä voi aloittaa suoraan uuden 
 pelin, palata päävalikkoon tai lopettaa sovelluksen käytön. | TEHTY 
 (päävalikkoon palaamisen osalta)

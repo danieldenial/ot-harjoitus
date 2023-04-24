@@ -2,6 +2,7 @@
 import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
+from services.score_service import ScoreServices
 
 
 class NewGameView(BaseView):
@@ -23,12 +24,17 @@ class NewGameView(BaseView):
             font=("Arial", 35), fg='white', bg="#013369"
         )
         new_game_text_2 = tkinter.Label(
-            self._frame, text="Are you the true Gridiron Genius?",
+            self._frame, text=f"The current high score is {ScoreServices().get_high_score()}.",
+            font=("Arial", 30), fg='white', bg="#013369"
+        )
+        new_game_text_3 = tkinter.Label(
+            self._frame, text="Can you beat it?",
             font=("Arial", 30), fg='white', bg="#013369"
         )
 
         new_game_text_1.grid(row=1, column=1)
         new_game_text_2.grid(row=3, column=1)
+        new_game_text_3.grid(row=5, column=1)
 
     def _initialize_buttons(self):
         style = ttk.Style()
@@ -51,14 +57,15 @@ class NewGameView(BaseView):
             command=self._main_menu_view
         )
 
-        start_button.grid(row=5, column=1)
-        back_button.grid(row=7, column=1)
+        start_button.grid(row=7, column=1)
+        back_button.grid(row=9, column=1)
 
     def _adjust_elements(self):
         self._frame.grid_rowconfigure(0, minsize=100)
         self._frame.grid_rowconfigure(2, minsize=25)
-        self._frame.grid_rowconfigure(4, minsize=50)
-        self._frame.grid_rowconfigure(6, minsize=25)
+        self._frame.grid_rowconfigure(4, minsize=25)
+        self._frame.grid_rowconfigure(6, minsize=50)
+        self._frame.grid_rowconfigure(8, minsize=25)
 
         self._frame.grid_columnconfigure(0, weight=1)
         self._frame.grid_columnconfigure(1, weight=1)

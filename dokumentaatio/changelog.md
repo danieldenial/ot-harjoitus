@@ -27,5 +27,6 @@ vastausvaihtoehdot ja pystyy valitsemaan oman vastauksensa. Peli jatkuu seuraava
 
 - Pelin yhteydessä näkyy pelaajan pistemäärä. Jokaisesta oikeasta 
 vastauksesta saa tässä vaiheessa yhden pisteen.
-- Paras saavutettu pistemäärä (high score) talletetaan csv-tiedostoon.
+- Paras tähänastinen pistemäärä/tulos (high score) talletetaan csv-tiedostoon.
+- Paras tähänastinen pistemäärä/tulos näytetään ennen jokaisen pelin alkua.
 - Käyttäjä voi palata väärän vastauksen jälkeen päävalikkoon.

@@ -10,10 +10,10 @@ class QuestionService:
         shuffle(self._key_list)
         self._number = None
 
-    def _get_question(self):
+    def get_question(self):
         return self._questions[self._number]['Question']
 
-    def _get_options(self):
+    def get_options(self):
         options = [
             self._questions[self._number]['A'],
             self._questions[self._number]['B'],
@@ -24,9 +24,9 @@ class QuestionService:
 
         return options
 
-    def _check_answer(self, user_answer):
+    def check_answer(self, user_answer):
         return self._questions[self._number]['Answer'] == user_answer
 
-    def _next_question(self):
+    def next_question(self):
         if len(self._key_list) > 0:
             self._number = self._key_list.pop()
