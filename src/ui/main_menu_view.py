@@ -41,25 +41,25 @@ class MainMenuView(BaseView):
             padding=10, background='#d50a0a', foreground='black'
         )
 
-        self.new_game_button = ttk.Button(
+        new_game_button = ttk.Button(
             self._frame, text="NEW GAME",
             style='custom.main_menu.TButton',
             command=self._show_new_game_view
         )
-        self.rules_button = ttk.Button(
+        rules_button = ttk.Button(
             self._frame, text="VIEW RULES",
             style='custom.main_menu.TButton',
             command=self._show_rules_view
         )
-        self.quit_button = ttk.Button(
+        quit_button = ttk.Button(
             self._frame, text="QUIT GAME",
             style='custom.main_menu.TButton',
             command=self._show_quit_view
         )
 
-        self.new_game_button.grid(row=4, column=0)
-        self.rules_button.grid(row=4, column=1)
-        self.quit_button.grid(row=4, column=2)
+        new_game_button.grid(row=4, column=0)
+        rules_button.grid(row=4, column=1)
+        quit_button.grid(row=4, column=2)
 
     def _adjust_elements(self):
         self._frame.grid_rowconfigure(0, minsize=100)

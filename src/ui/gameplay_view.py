@@ -20,7 +20,7 @@ class GameplayView(BaseView):
         self._initialize()
 
     def _initialize(self):
-        self._q.next_question()
+        self._q.get_next_question_key()
         self._initialize_labels()
         self._initialize_buttons()
 
@@ -129,49 +129,49 @@ class GameplayView(BaseView):
             foreground=[('active', 'black')]
         )
 
-        self.A_button = ttk.Button(
+        self._A_button = ttk.Button(
             self._frame, text='A',
             style='custom.option.TButton',
             command=lambda: self._handle_player_answer('A', self._options[0])
         )
 
-        self.B_button = ttk.Button(
+        self._B_button = ttk.Button(
             self._frame, text='B',
             style='custom.option.TButton',
             command=lambda: self._handle_player_answer('B', self._options[1])
         )
 
-        self.C_button = ttk.Button(
+        self._C_button = ttk.Button(
             self._frame, text='C',
             style='custom.option.TButton',
             command=lambda: self._handle_player_answer('C', self._options[2])
         )
 
-        self.D_button = ttk.Button(
+        self._D_button = ttk.Button(
             self._frame, text='D',
             style='custom.option.TButton',
             command=lambda: self._handle_player_answer('D', self._options[3])
         )
 
-        self.A_button.grid(
+        self._A_button.grid(
             row=1, column=0,
             padx=(10, 0), pady=10,
             sticky=tkinter.W
         )
 
-        self.B_button.grid(
+        self._B_button.grid(
             row=2, column=0,
             padx=(10, 0), pady=10,
             sticky=tkinter.W
         )
 
-        self.C_button.grid(
+        self._C_button.grid(
             row=3, column=0,
             padx=(10, 0), pady=10,
             sticky=tkinter.W
         )
 
-        self.D_button.grid(
+        self._D_button.grid(
             row=4, column=0,
             padx=(10, 0), pady=10,
             sticky=tkinter.W
@@ -192,34 +192,34 @@ class GameplayView(BaseView):
 
     def _change_button_green(self):
         if self._click == "A":
-            self.A_button.configure(style='custom.green.TButton')
+            self._A_button.configure(style='custom.green.TButton')
         elif self._click == "B":
-            self.B_button.configure(style='custom.green.TButton')
+            self._B_button.configure(style='custom.green.TButton')
         elif self._click == "C":
-            self.C_button.configure(style='custom.green.TButton')
+            self._C_button.configure(style='custom.green.TButton')
         elif self._click == "D":
-            self.D_button.configure(style='custom.green.TButton')
+            self._D_button.configure(style='custom.green.TButton')
         self._add_right_answer_widgets()
 
     def _change_button_red(self):
         if self._click == "A":
-            self.A_button.configure(style='custom.orange.TButton')
+            self._A_button.configure(style='custom.orange.TButton')
         elif self._click == "B":
-            self.B_button.configure(style='custom.orange.TButton')
+            self._B_button.configure(style='custom.orange.TButton')
         elif self._click == "C":
-            self.C_button.configure(style='custom.orange.TButton')
+            self._C_button.configure(style='custom.orange.TButton')
         elif self._click == "D":
-            self.D_button.configure(style='custom.orange.TButton')
+            self._D_button.configure(style='custom.orange.TButton')
         self._add_wrong_answer_widgets()
 
     def _disable_buttons(self):
-        self.A_button.configure(command=lambda: None)
-        self.B_button.configure(command=lambda: None)
-        self.C_button.configure(command=lambda: None)
-        self.D_button.configure(command=lambda: None)
+        self._A_button.configure(command=lambda: None)
+        self._B_button.configure(command=lambda: None)
+        self._C_button.configure(command=lambda: None)
+        self._D_button.configure(command=lambda: None)
 
     def _add_right_answer_widgets(self):
-        self.continue_label = tkinter.Label(
+        self._continue_label = tkinter.Label(
             self._frame, text='That is correct!',
             font=("Verdana", 20, 'bold'), fg='white', bg='#013369'
         )
@@ -232,24 +232,24 @@ class GameplayView(BaseView):
             background='#d50a0a', foreground='black',
         )
 
-        self.continue_button = ttk.Button(
+        self._continue_button = ttk.Button(
             self._frame, text="CONTINUE",
             style='custom.continue.TButton',
             command=lambda: self._update_view()
         )
 
-        self.continue_label.grid(
+        self._continue_label.grid(
             row=5, column=0,
             padx=10, pady=10
         )
 
-        self.continue_button.grid(
+        self._continue_button.grid(
             row=6, column=0,
             padx=10, pady=10
         )
 
     def _add_wrong_answer_widgets(self):
-        self.game_over_label = tkinter.Label(
+        self._game_over_label = tkinter.Label(
             self._frame, text='Oops, game over!',
             font=("Verdana", 20, 'bold'), fg='white', bg='#013369'
         )
@@ -262,40 +262,40 @@ class GameplayView(BaseView):
             background='#d50a0a', foreground='black',
         )
 
-        self.main_menu_button = ttk.Button(
+        self._main_menu_button = ttk.Button(
             self._frame, text="MAIN MENU",
             style='custom.end.TButton',
             command=self._main_menu_view
         )
 
-        self.new_game_button = ttk.Button(
+        self._new_game_button = ttk.Button(
             self._frame, text="NEW GAME",
             style='custom.end.TButton',
             command=self._new_game_view
         )
 
-        self.quit_game_button = ttk.Button(
+        self._quit_game_button = ttk.Button(
             self._frame, text="QUIT",
             style='custom.end.TButton',
             command=self._quit_game_view
         )
 
-        self.game_over_label.grid(
+        self._game_over_label.grid(
             row=5, column=0,
             padx=10, pady=10
         )
 
-        self.new_game_button.grid(
+        self._new_game_button.grid(
             row=6, column=0,
             padx=10, pady=10
         )
 
-        self.main_menu_button.grid(
+        self._main_menu_button.grid(
             row=7, column=0,
             padx=10, pady=10
         )
 
-        self.quit_game_button.grid(
+        self._quit_game_button.grid(
             row=8, column=0,
             padx=10, pady=10
         )
@@ -306,11 +306,11 @@ class GameplayView(BaseView):
         self._B_label.destroy()
         self._C_label.destroy()
         self._D_label.destroy()
-        self.A_button.destroy()
-        self.B_button.destroy()
-        self.C_button.destroy()
-        self.D_button.destroy()
-        self.continue_button.destroy()
-        self.continue_label.destroy()
+        self._A_button.destroy()
+        self._B_button.destroy()
+        self._C_button.destroy()
+        self._D_button.destroy()
+        self._continue_button.destroy()
+        self._continue_label.destroy()
         self._score_label.destroy()
         self._initialize()

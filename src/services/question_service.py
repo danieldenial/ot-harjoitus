@@ -27,6 +27,6 @@ class QuestionService:
     def check_answer(self, user_answer):
         return self._questions[self._number]['Answer'] == user_answer
 
-    def next_question(self):
+    def get_next_question_key(self):
         if len(self._key_list) > 0:
             self._number = self._key_list.pop()
