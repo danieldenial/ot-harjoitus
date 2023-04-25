@@ -16,6 +16,7 @@ class GameplayView(BaseView):
         self._q = QuestionService()
         self._score = ScoreServices()
         self._click = None
+        
         self._initialize()
 
     def _initialize(self):

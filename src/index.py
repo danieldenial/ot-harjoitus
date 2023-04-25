@@ -1,8 +1,8 @@
 
 from tkinter import Tk
 from ui.ui import UI
-from repositories.questions import Questions
-from repositories.high_scores import HighScores
+from repositories.question_repository import QuestionRepository
+from repositories.high_score_repository import HighScoreRepository
 
 
 def main():
@@ -12,8 +12,8 @@ def main():
     window.configure(background='#013369')
 
     view = UI(window)
-    Questions()
-    HighScores()
+    QuestionRepository()
+    HighScoreRepository()
     view.start()
 
     window.mainloop()

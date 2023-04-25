@@ -2,7 +2,7 @@ import csv
 from pathlib import Path
 
 
-class Questions:
+class QuestionRepository:
     def __init__(self):
         self._questions_dictionary = {}
         self._file_path = Path(__file__).resolve(

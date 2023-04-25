@@ -3,7 +3,7 @@ from pathlib import Path
 import csv
 
 
-class HighScores:
+class HighScoreRepository:
     def __init__(self):
         self._high_score = None
         self._file_path = Path(__file__).resolve(

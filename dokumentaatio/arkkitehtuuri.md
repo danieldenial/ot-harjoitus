@@ -14,6 +14,19 @@ Tietojen pysyväistalletuksesta vastaava koodi sijaitsee pakkauksessa _repositor
 
 ## Päätoiminnallisuudet
 
+### Sovelluksen käynnistyminen
+
+```mermaid
+sequenceDiagram
+    participant Main
+    participant UI
+    participant QuestionRepository
+    participant HighScoreRepository
+    Main->>UI: UI(window)
+    UI->>UI: show_main_menu_view()
+    Main->>QuestionRepository: load_questions()
+    Main->>HighScoreRepository: load_high_score()
+
 ### Uuden pelin aloittaminen
 
 ```mermaid
@@ -28,3 +41,4 @@ sequenceDiagram
     UI->>QuestionService: get_options()
     UI->>ScoreService: get_current_score()
 ```
+

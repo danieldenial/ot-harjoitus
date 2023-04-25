@@ -2,13 +2,13 @@
 import unittest
 import os
 import csv
-from repositories.questions import Questions
+from repositories.question_repository import QuestionRepository
 
 
 class TestQuestions(unittest.TestCase):
 
     def setUp(self):
-        self.Qs = Questions()
+        self.Qs = QuestionRepository()
 
     def test_question_file_exists(self):
         path = os.path.isfile(self.Qs._file_path)

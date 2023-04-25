@@ -1,11 +1,11 @@
 
 from random import shuffle
-from repositories.questions import Questions
+from repositories.question_repository import QuestionRepository
 
 
 class QuestionService:
     def __init__(self):
-        self._questions = Questions()._questions_dictionary
+        self._questions = QuestionRepository()._questions_dictionary
         self._key_list = list(self._questions.keys())
         shuffle(self._key_list)
         self._number = None

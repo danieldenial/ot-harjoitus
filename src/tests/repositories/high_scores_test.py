@@ -1,13 +1,13 @@
 
 import unittest
 import os
-from repositories.high_scores import HighScores
+from repositories.high_score_repository import HighScoreRepository
 
 
 class TestHighScores(unittest.TestCase):
 
     def setUp(self):
-        self._HS = HighScores()
+        self._HS = HighScoreRepository()
 
     def test_high_score_file_exists(self):
         path = os.path.isfile(self._HS._file_path)
