@@ -26,6 +26,7 @@ sequenceDiagram
     UI->>UI: show_main_menu_view()
     Main->>QuestionRepository: load_questions()
     Main->>HighScoreRepository: load_high_score()
+```
 
 ### Uuden pelin aloittaminen
 
