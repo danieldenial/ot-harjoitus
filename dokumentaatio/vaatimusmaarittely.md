@@ -44,7 +44,7 @@ kun käyttäjä on vastannut kaikkiin pelin kysymyksiin oikein sillä
 pelikerralla. | TEHTY
 	- Pelin päättymisen jälkeen käyttäjä voi aloittaa suoraan uuden 
 pelin, palata päävalikkoon tai lopettaa sovelluksen käytön. | TEHTY 
-(päävalikkoon palaamisen osalta)
+(pl. sovelluksen lopettaminen)
 
 ## Jatkokehitysideoita
 

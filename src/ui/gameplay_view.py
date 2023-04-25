@@ -7,11 +7,12 @@ from services.score_service import ScoreServices
 
 
 class GameplayView(BaseView):
-    def __init__(self, root, main_menu_view, new_game_view):
+    def __init__(self, root, main_menu_view, new_game_view, quit_game_view):
         super().__init__(root)
         self._root = root
         self._main_menu_view = main_menu_view
         self._new_game_view = new_game_view
+        self._quit_game_view = quit_game_view
         self._q = QuestionService()
         self._score = ScoreServices()
         self._click = None
@@ -272,18 +273,29 @@ class GameplayView(BaseView):
             command=self._new_game_view
         )
 
+        self.quit_game_button = ttk.Button(
+            self._frame, text="QUIT",
+            style='custom.end.TButton',
+            command=self._quit_game_view
+        )
+
         self.game_over_label.grid(
             row=5, column=0,
             padx=10, pady=10
         )
 
-        self.main_menu_button.grid(
+        self.new_game_button.grid(
             row=6, column=0,
             padx=10, pady=10
         )
 
-        self.new_game_button.grid(
+        self.main_menu_button.grid(
             row=7, column=0,
+            padx=10, pady=10
+        )
+
+        self.quit_game_button.grid(
+            row=8, column=0,
             padx=10, pady=10
         )
 
