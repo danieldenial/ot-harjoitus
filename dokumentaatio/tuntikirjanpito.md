@@ -18,5 +18,7 @@
 | 19.4. |  2   | Pisteiden lisääminen peliin ja parhaan tuloksen talletus csv-tiedostoon  |
 | 20.4. |  2   | Testien lisäämistä eri luokille ja toiminnallisuuksille                  |
 | 22.4. |  1   | Koodin yhtenäistämistä                                                   |
-| 25.4. |  2   | Dokumentaatiota kuntoon
-| Yht.  |  42  |                                                                          |
+| 25.4. |  2   | Dokumentaatiota kuntoon                                                  |
+| 28.4. |  2   | Alikehysten luomista pelinkulkua kuvaavalle luokalle                     |
+| 29.4. |  2   | Docstring-dokumentointia käyttöliittymästä vastaaville luokille          |
+| Yht.  |  46  |                                                                          |

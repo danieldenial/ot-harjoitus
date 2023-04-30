@@ -30,3 +30,11 @@ vastauksesta saa tässä vaiheessa yhden pisteen.
 - Paras tähänastinen pistemäärä/tulos (high score) talletetaan csv-tiedostoon.
 - Paras tähänastinen pistemäärä/tulos näytetään ennen jokaisen pelin alkua.
 - Käyttäjä voi palata väärän vastauksen jälkeen päävalikkoon.
+
+## Viikko 6
+
+- Pelin kysymyksille, vastausvaihtoehdoille ja muille pelinaikaisille 
+ruudulla näkyville elementeille on luotu omat kehykset.
+- Pidemmätkin kysymykset näkyvät ruudulla nyt paremmin, koska ne on jaettu 
+useammalle riville.
+- Dokumentaatiota edistetty lisäämällä reilusti docstringiä.

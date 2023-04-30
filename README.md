@@ -19,7 +19,7 @@ Sovellus on testattu Python-versiolla `3.8`, joten vanhempien versioiden kanssa 
 
 ## GitHub-release
 
-[Versio 1.0](https://github.com/danieldenial/ot-harjoitus/releases/tag/viikko5)
+- [Versio 1.0](https://github.com/danieldenial/ot-harjoitus/releases/tag/viikko5)
 
 ## Asennus
 

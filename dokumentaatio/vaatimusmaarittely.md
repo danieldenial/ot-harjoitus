@@ -21,30 +21,29 @@ lisätään sellainen  mukaan sovellukseen.
 
 ### Päävalikko
 
-- Käyttäjä voi aloittaa uuden pelin. | TEHTY
-- Käyttäjä voi katsoa pelin ohjeita.
-- Käyttäjä voi sulkea sovelluksen. | TEHTY
-- Käyttäjä näkee ruudulta parhaan siihenastisen tuloksen. | TEHTY
+- Käyttäjä voi aloittaa uuden pelin. [x]
+- Käyttäjä voi katsoa pelin ohjeita. []
+- Käyttäjä voi sulkea sovelluksen. [x]
+- Käyttäjä näkee ruudulta parhaan siihenastisen tuloksen. [x]
 
 ### Varsinainen peli
 
 - Ruudulle tulee kysymyksiä yksi kerrallaan ja satunnaisessa 
-järjestyksessä. | TEHTY (joskin ulkoasu vaatii vielä muokkausta)
+järjestyksessä. [x]
 	- Yksikään kysymyksistä ei toistu saman yksittäisen pelikerran 
 aikana (kysymykset saattavat kuitenkin toistua, jos käyttäjä pelaa monta 
-peräkkäistä peliä). | TEHTY
+peräkkäistä peliä). [x]
 - Jokaisella kysymyksellä on 4 vastausvaihtoehtoa, joista käyttäjä 
-valitsee yhden. | TEHTY
-	- Sovellus kertoo tai näyttää menikö vastaus oikein vai väärin. | TEHTY 
-- Oikean vastauksen jälkeen peli jatkuu seuraavaan kysymykseen. | TEHTY
+valitsee yhden. [x]
+	- Sovellus kertoo tai näyttää menikö vastaus oikein vai väärin. [x] 
+- Oikean vastauksen jälkeen peli jatkuu seuraavaan kysymykseen. [x]
 - Oikeasta vastauksesta tulee käyttäjälle piste lisää (tai pisteitä, 
-riippuen lopullisesta toteutustavasta). | TEHTY
+riippuen lopullisesta toteutustavasta). [x]
 - Peli päättyy joko väärään vastaukseen tai viimeistään siinä vaiheessa, 
 kun käyttäjä on vastannut kaikkiin pelin kysymyksiin oikein sillä 
-pelikerralla. | TEHTY
+pelikerralla. [x]
 	- Pelin päättymisen jälkeen käyttäjä voi aloittaa suoraan uuden 
-pelin, palata päävalikkoon tai lopettaa sovelluksen käytön. | TEHTY 
-(pl. sovelluksen lopettaminen)
+pelin, palata päävalikkoon tai lopettaa sovelluksen käytön. [x]
 
 ## Jatkokehitysideoita
 

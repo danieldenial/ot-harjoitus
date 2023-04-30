@@ -6,7 +6,21 @@ from services.score_service import ScoreServices
 
 
 class NewGameView(BaseView):
+    """Uutta peliä edeltävä näkymä.
+
+    Args:
+        BaseView: Sovelluksen perusnäkymästä vastaava luokka
+    """
+
     def __init__(self, root, main_menu_view, gameplay_view):
+        """Luokan konstruktori, joka alustaa uutta peliä edeltävän näkymän.
+
+        Args:
+            root: Luokan juuri-ikkuna
+            main_menu_view: Metodi, jolla siirrytään päävalikon näkymään
+            gameplay_view: Metodi, jolla siirrytään pelinkulkua kuvaavaan näkymään
+        """
+
         super().__init__(root)
         self._main_menu_view = main_menu_view
         self._gameplay_view = gameplay_view
@@ -14,11 +28,17 @@ class NewGameView(BaseView):
         self._initialize()
 
     def _initialize(self):
+        """Aloittaa uutta peliä edeltävän näkymän luomisen kutsumalla ikkunaan eri elementtejä sijoittavia metodeja.
+        """
+
         self._initialize_labels()
         self._initialize_buttons()
         self._adjust_elements()
 
     def _initialize_labels(self):
+        """Luo näkymään kuuluvat tekstit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
+        """
+
         new_game_text_1 = tkinter.Label(
             self._frame, text="Time for a new game!",
             font=("Arial", 35), fg='white', bg="#013369"
@@ -37,6 +57,9 @@ class NewGameView(BaseView):
         new_game_text_3.grid(row=5, column=1)
 
     def _initialize_buttons(self):
+        """Luo näkymään kuuluvat napit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
+        """
+
         style = ttk.Style()
 
         style.theme_use('default')
@@ -61,6 +84,10 @@ class NewGameView(BaseView):
         back_button.grid(row=9, column=1)
 
     def _adjust_elements(self):
+        """Auttaa säätämään muiden elementtien sijainteja.
+        (Tätä metodia ei lopulta varmaan tarvita, kunhan luokan muut metodit toteutetaan ensin vähän paremmin.)
+        """
+
         self._frame.grid_rowconfigure(0, minsize=100)
         self._frame.grid_rowconfigure(2, minsize=25)
         self._frame.grid_rowconfigure(4, minsize=25)

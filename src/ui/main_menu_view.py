@@ -5,7 +5,22 @@ from ui.base_view import BaseView
 
 
 class MainMenuView(BaseView):
+    """Sovelluksen päävalikon näkymä.
+
+    Args:
+        BaseView: Sovelluksen perusnäkymästä vastaava luokka
+    """
+
     def __init__(self, root, new_game_view, quit_view, rules_view):
+        """Luokan konstruktori, joka alustaa päävalikon näkymän.
+
+        Args:
+            root: Luokan juuri-ikkuna
+            new_game_view: Metodi, jolla siirrytään uutta peliä edeltävään näkymään
+            quit_view: Metodi, jolla siirrytään sovelluksen sulkemista edeltävään näkymään
+            rules_view: Metodi, jolla siirrytään pelin sääntöjä näyttävään näkymään
+        """
+
         super().__init__(root)
         self._root = root
         self._show_new_game_view = new_game_view
@@ -15,11 +30,17 @@ class MainMenuView(BaseView):
         self._initialize()
 
     def _initialize(self):
+        """Aloittaa päävalikon näkymän luomisen kutsumalla ikkunaan eri elementtejä sijoittavia metodeja.
+        """
+
         self._initialize_labels()
         self._initialize_buttons()
         self._adjust_elements()
 
     def _initialize_labels(self):
+        """Luo näkymään kuuluvat tekstit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
+        """
+
         h1_label = tkinter.Label(
             self._frame, text="Gridiron Genius",
             font=("Verdana", 40, "bold"), fg='white', bg="#013369"
@@ -33,6 +54,9 @@ class MainMenuView(BaseView):
         h2_label.grid(row=2, column=1)
 
     def _initialize_buttons(self):
+        """Luo näkymään kuuluvat napit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
+        """
+
         style = ttk.Style()
 
         style.theme_use('default')
@@ -62,6 +86,10 @@ class MainMenuView(BaseView):
         quit_button.grid(row=4, column=2)
 
     def _adjust_elements(self):
+        """Auttaa säätämään muiden elementtien sijainteja.
+        (Tätä metodia ei lopulta varmaan tarvita, kunhan luokan muut metodit toteutetaan ensin vähän paremmin.)
+        """
+
         self._frame.grid_rowconfigure(0, minsize=100)
         self._frame.grid_rowconfigure(3, minsize=50)
 
