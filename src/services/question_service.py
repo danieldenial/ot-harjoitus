@@ -24,6 +24,9 @@ class QuestionService:
 
         return options
 
+    def get_detail(self):
+        return self._questions[self._number]['Detail']
+
     def check_answer(self, user_answer):
         return self._questions[self._number]['Answer'] == user_answer
 

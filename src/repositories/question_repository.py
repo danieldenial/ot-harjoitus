@@ -20,6 +20,7 @@ class QuestionRepository:
                     'Question': row[0],
                     'A': row[1], 'B': row[2],
                     'C': row[3], 'D': row[4],
-                    'Answer': row[5]
+                    'Answer': row[5],
+                    'Detail': row[6]
                 }
                 dict_number += 1

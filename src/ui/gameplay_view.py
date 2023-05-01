@@ -64,7 +64,7 @@ class GameplayView(BaseView):
         self._question_label = tkinter.Label(
             self._question_frame, text=q_text,
             font=("Verdana", 25, "bold"), fg='white', bg='#013369',
-            wraplength=800, anchor=tkinter.W, justify=tkinter.LEFT
+            wraplength=900, anchor=tkinter.W, justify=tkinter.LEFT
         )
 
         self._A_label = tkinter.Label(
@@ -192,25 +192,25 @@ class GameplayView(BaseView):
 
         self._A_button.grid(
             row=0, column=0,
-            padx=10, pady=10,
+            padx=(20,10), pady=10,
             sticky=tkinter.W
         )
 
         self._B_button.grid(
             row=1, column=0,
-            padx=10, pady=10,
+            padx=20, pady=10,
             sticky=tkinter.W
         )
 
         self._C_button.grid(
             row=2, column=0,
-            padx=10, pady=10,
+            padx=20, pady=10,
             sticky=tkinter.W
         )
 
         self._D_button.grid(
             row=3, column=0,
-            padx=10, pady=10,
+            padx=20, pady=10,
             sticky=tkinter.W
         )
 
@@ -275,9 +275,17 @@ class GameplayView(BaseView):
         """Lisää oikean vastauksen jälkeen ikkunaan ilmaantuvat elementit. 
         """
 
+        detail = self._q.get_detail()
+
         self._continue_label = tkinter.Label(
             self._score_and_state_frame, text='That is correct!',
             font=("Verdana", 20, 'bold'), fg='white', bg='#013369'
+        )
+
+        self._detail_label = tkinter.Label(
+            self._score_and_state_frame, text=detail,
+            font=("Verdana", 18), fg='white', bg='#013369',
+            wraplength=900, anchor=tkinter.W, justify=tkinter.LEFT
         )
 
         style = ttk.Style()
@@ -296,12 +304,20 @@ class GameplayView(BaseView):
 
         self._continue_label.grid(
             row=1, column=0,
-            padx=10, pady=10
+            padx=5, pady=10,
+            sticky=tkinter.W
+        )
+
+        self._detail_label.grid(
+            row=2, column=0,
+            padx=10, pady=10,
+            sticky=tkinter.W
         )
 
         self._continue_button.grid(
-            row=2, column=0,
-            padx=10, pady=10
+            row=3, column=0,
+            padx=10, pady=10,
+            sticky=tkinter.W
         )
 
     def _add_wrong_answer_widgets(self):
@@ -375,6 +391,7 @@ class GameplayView(BaseView):
         self._D_button.destroy()
         self._continue_button.destroy()
         self._continue_label.destroy()
+        self._detail_label.destroy()
         self._score_label.destroy()
         self._initialize()
 

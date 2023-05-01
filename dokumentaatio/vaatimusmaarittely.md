@@ -21,29 +21,29 @@ lisätään sellainen  mukaan sovellukseen.
 
 ### Päävalikko
 
-- Käyttäjä voi aloittaa uuden pelin. [x]
-- Käyttäjä voi katsoa pelin ohjeita. []
-- Käyttäjä voi sulkea sovelluksen. [x]
-- Käyttäjä näkee ruudulta parhaan siihenastisen tuloksen. [x]
+- Käyttäjä voi aloittaa uuden pelin. | TEHTY
+- Käyttäjä voi katsoa pelin ohjeita.
+- Käyttäjä voi sulkea sovelluksen. | TEHTY
+- Käyttäjä näkee ruudulta parhaan siihenastisen tuloksen. | TEHTY
 
 ### Varsinainen peli
 
 - Ruudulle tulee kysymyksiä yksi kerrallaan ja satunnaisessa 
-järjestyksessä. [x]
+järjestyksessä. | TEHTY
 	- Yksikään kysymyksistä ei toistu saman yksittäisen pelikerran 
 aikana (kysymykset saattavat kuitenkin toistua, jos käyttäjä pelaa monta 
-peräkkäistä peliä). [x]
+peräkkäistä peliä). | TEHTY
 - Jokaisella kysymyksellä on 4 vastausvaihtoehtoa, joista käyttäjä 
-valitsee yhden. [x]
-	- Sovellus kertoo tai näyttää menikö vastaus oikein vai väärin. [x] 
-- Oikean vastauksen jälkeen peli jatkuu seuraavaan kysymykseen. [x]
+valitsee yhden. | TEHTY
+	- Sovellus kertoo tai näyttää menikö vastaus oikein vai väärin. | TEHTY 
+- Oikean vastauksen jälkeen peli jatkuu seuraavaan kysymykseen. | TEHTY
 - Oikeasta vastauksesta tulee käyttäjälle piste lisää (tai pisteitä, 
-riippuen lopullisesta toteutustavasta). [x]
+riippuen lopullisesta toteutustavasta). | TEHTY
 - Peli päättyy joko väärään vastaukseen tai viimeistään siinä vaiheessa, 
 kun käyttäjä on vastannut kaikkiin pelin kysymyksiin oikein sillä 
-pelikerralla. [x]
+pelikerralla. | TEHTY
 	- Pelin päättymisen jälkeen käyttäjä voi aloittaa suoraan uuden 
-pelin, palata päävalikkoon tai lopettaa sovelluksen käytön. [x]
+pelin, palata päävalikkoon tai lopettaa sovelluksen käytön. | TEHTY
 
 ## Jatkokehitysideoita
 
@@ -59,5 +59,5 @@ vastauksen nopeuden mukaan
 - Jonkun kiinnostavan ja kysymykseen liittyvän tarkentavan tiedon 
 antaminen pelaajalle oikean vastauksen jälkeen (esimerkiksi jos kysytään 
 eniten maaleja kerännyttä pelaajaa, niin oikean vastauksen jälkeen 
-kerrotaan tarkka maalimäärä).
+kerrotaan tarkka maalimäärä). | TEHTY
 - Lisää kysymyksiä
