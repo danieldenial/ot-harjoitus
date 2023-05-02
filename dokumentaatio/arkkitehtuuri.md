@@ -17,7 +17,7 @@ Tietojen pysyväistalletuksesta vastaava koodi sijaitsee pakkauksessa _repositor
 Käyttöliittymä sisältää viisi erilaista näkymää:
 
 - Päävalikko
-- Säännöt (vielä työn alla)
+- Säännöt
 - Uusi peli
 - Pelinkulku
 - Lopetus
@@ -25,10 +25,9 @@ Käyttöliittymä sisältää viisi erilaista näkymää:
 Näistä näkymistä pelinkulku on dynaaminen näkymä, jonka sisältö vaihtuu kysymysten mukana.
 
 Kaikki näkymät on toteutettu omana luokkanaan ja niistä vain yksi näkyy kerrallaan. Ulkoasun 
-yhtenäistämiseksi ja koodin toiston välttämiseksi kaikki yllä olevat näkymät peruvat 
-perusnäkymän _ BaseView_, jonka luoman kehyksen päälle ne rakentuvat. Näkymien 
-hallinnoinnista 
-vastaa luokka _ UI_. Käyttöliittymä on pyritty eristämään sovelluslogiikasta, 
+yhtenäistämiseksi ja koodin toiston välttämiseksi kaikki yllä olevat näkymät perivat 
+perusnäkymän _BaseView_, jonka luoman kehyksen päälle ne rakentuvat. Näkymien 
+hallinnoinnista vastaa luokka _UI_. Käyttöliittymä on pyritty eristämään sovelluslogiikasta, 
 josta vastaa puolestaan sovelluksen _services_-luokat.
 
 ## Sovelluslogiikka
