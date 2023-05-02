@@ -28,7 +28,8 @@ class NewGameView(BaseView):
         self._initialize()
 
     def _initialize(self):
-        """Aloittaa uutta peliä edeltävän näkymän luomisen kutsumalla ikkunaan eri elementtejä sijoittavia metodeja.
+        """Aloittaa uutta peliä edeltävän näkymän luomisen kutsumalla
+        ikkunaan eri elementtejä sijoittavia metodeja.
         """
 
         self._initialize_labels()
@@ -85,7 +86,8 @@ class NewGameView(BaseView):
 
     def _adjust_elements(self):
         """Auttaa säätämään muiden elementtien sijainteja.
-        (Tätä metodia ei lopulta varmaan tarvita, kunhan luokan muut metodit toteutetaan ensin vähän paremmin.)
+        (Tätä metodia ei lopulta varmaan tarvita,
+        kunhan luokan muut metodit toteutetaan ensin vähän paremmin.)
         """
 
         self._frame.grid_rowconfigure(0, minsize=100)

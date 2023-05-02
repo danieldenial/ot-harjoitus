@@ -82,3 +82,14 @@ class TestQuestions(unittest.TestCase):
                     self.Qs._questions_dictionary[num]['Answer']
                 )
                 num += 1
+
+    def test_compare_details(self):
+        with open(self.Qs._file_path, mode='r', encoding='utf-8') as csvfile:
+            reader = csv.reader(csvfile)
+            num = 1
+            for row in reader:
+                self.assertEqual(
+                    row[6],
+                    self.Qs._questions_dictionary[num]['Detail']
+                )
+                num += 1

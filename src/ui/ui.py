@@ -40,7 +40,8 @@ class UI:
         self.current_view = None
 
     def _show_main_menu_view(self):
-        """Kutsuu nykyisen näkymän piilottamisesta vastaavaa metodia ja luo sitten päävalikon näkymän.
+        """Kutsuu nykyisen näkymän piilottamisesta vastaavaa metodia 
+        ja luo sitten päävalikon näkymän.
         """
 
         self._hide_current_view()
@@ -55,7 +56,8 @@ class UI:
         self._current_view.pack()
 
     def _show_new_game_view(self):
-        """Kutsuu nykyisen näkymän piilottamisesta vastaavaa metodia ja luo sitten uutta peliä edeltävän näkymän.
+        """Kutsuu nykyisen näkymän piilottamisesta vastaavaa metodia 
+        ja luo sitten uutta peliä edeltävän näkymän.
         """
 
         self._hide_current_view()
@@ -69,7 +71,8 @@ class UI:
         self._current_view.pack()
 
     def _show_gameplay_view(self):
-        """Kutsuu nykyisen näkymän piilottamisesta vastaavaa metodia ja luo sitten itse pelinkulusta vastaavan näkymän.
+        """Kutsuu nykyisen näkymän piilottamisesta vastaavaa metodia 
+        ja luo sitten itse pelinkulusta vastaavan näkymän.
         """
 
         self._hide_current_view()
@@ -84,7 +87,8 @@ class UI:
         self._current_view.pack()
 
     def _show_rules_view(self):
-        """Kutsuu nykyisen näkymän piilottamisesta vastaavaa metodia ja luo sitten pelin säännöt sisältävän näkymän.
+        """Kutsuu nykyisen näkymän piilottamisesta vastaavaa metodia 
+        ja luo sitten pelin säännöt sisältävän näkymän.
         """
 
         self._hide_current_view()
@@ -97,7 +101,8 @@ class UI:
         self._current_view.pack()
 
     def _show_quit_view(self):
-        """Kutsuu nykyisen näkymän piilottamisesta vastaavaa metodia ja luo sitten sovelluksen sulkemista edeltävän näkymän. 
+        """Kutsuu nykyisen näkymän piilottamisesta vastaavaa metodia 
+        ja luo sitten sovelluksen sulkemista edeltävän näkymän. 
         """
 
         self._hide_current_view()

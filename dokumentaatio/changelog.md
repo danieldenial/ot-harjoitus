@@ -38,4 +38,5 @@ luotu omat kehykset. Pidemmätkin kysymykset näkyvät ruudulla nyt paremmin, ko
 riville.
 - Käyttäjälle näytetään/kerrotaan oikean vastauksen jälkeen pieni kysymyksen aiheeseen tai vastaukseen 
 liittyvä tarkentava tieto.
-- Dokumentaatiota edistetty lisäämällä reilusti docstringiä.
+- Dokumentaatiota edistetty lisäämällä docstringiä käyttöliittymästä vastaaville luokille.
+- Pelin alustavat säännöt lisätty sääntönäkymään.
