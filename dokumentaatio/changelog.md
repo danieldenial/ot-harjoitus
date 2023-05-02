@@ -34,7 +34,8 @@ vastauksesta saa tässä vaiheessa yhden pisteen.
 ## Viikko 6
 
 - Pelin kysymyksille, vastausvaihtoehdoille ja muille pelinaikaisille ruudulla näkyville elementeille on 
-luotu omat kehykset. Pidemmätkin kysymykset näkyvät ruudulla nyt paremmin, koska ne on jaettu useammalle 
+luotu omat kehykset, jotta sijoittelu onnistuu paremmin.
+-  Pidemmätkin kysymykset näkyvät ruudulla nyt paremmin, koska ne on jaettu useammalle 
 riville.
 - Dokumentaatiota on edistetty lisäämällä docstringiä käyttöliittymästä vastaaville luokille.
 - Pelin alustavat säännöt on lisätty sääntönäkymään. Tämän myötä sovelluksen perusversion kaikki 

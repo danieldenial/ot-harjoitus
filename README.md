@@ -13,7 +13,7 @@ Sovellus on testattu Python-versiolla `3.8`, joten vanhempien versioiden kanssa 
 
 - [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
 
-- [Arkkitehtuurikuvaus](./dokumentaati/arkkitehtuuri.md)
+- [Arkkitehtuurikuvaus](./dokumentaatio/arkkitehtuuri.md)
 
 - [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 
