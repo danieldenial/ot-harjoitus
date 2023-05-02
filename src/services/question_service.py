@@ -24,7 +24,7 @@ class QuestionService:
 
         return options
 
-    def get_detail(self):
+    def get_detail_text(self):
         return self._questions[self._number]['Detail']
 
     def check_answer(self, user_answer):

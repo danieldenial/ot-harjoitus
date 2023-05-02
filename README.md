@@ -9,17 +9,21 @@ Sovellus on testattu Python-versiolla `3.8`, joten vanhempien versioiden kanssa 
 
 ## Dokumentaatio
 
+- [Käyttöohje](./dokumentaatio/kayttoohje.md)
+
 - [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
+
+- [Arkkitehtuurikuvaus](./dokumentaati/arkkitehtuuri.md)
 
 - [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 
 - [Changelog](./dokumentaatio/changelog.md)
 
-- [Arkkitehtuurikuvaus](./dokumentaatio/arkkitehtuuri.md)
-
 ## GitHub-release
 
 - [Versio 1.0](https://github.com/danieldenial/ot-harjoitus/releases/tag/viikko5)
+
+- [Versio 1.1](https://github.com/danieldenial/ot-harjoitus/releases/tag/viikko6)
 
 ## Asennus
 
@@ -75,5 +79,3 @@ Tiedoston [.pylintrc](./.pylintrc) määrittelemien tarkistusten suorittamisen k
 ```bash
 poetry run invoke lint
 ```
-
-

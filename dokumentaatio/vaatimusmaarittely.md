@@ -22,7 +22,7 @@ lisätään sellainen  mukaan sovellukseen.
 ### Päävalikko
 
 - Käyttäjä voi aloittaa uuden pelin. | TEHTY
-- Käyttäjä voi katsoa pelin ohjeita.
+- Käyttäjä voi katsoa pelin ohjeita. | TEHTY
 - Käyttäjä voi sulkea sovelluksen. | TEHTY
 - Käyttäjä näkee ruudulta parhaan siihenastisen tuloksen. | TEHTY
 

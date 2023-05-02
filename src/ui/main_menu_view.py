@@ -77,7 +77,7 @@ class MainMenuView(BaseView):
             command=self._show_rules_view
         )
         quit_button = ttk.Button(
-            self._frame, text="QUIT GAME",
+            self._frame, text="QUIT",
             style='custom.main_menu.TButton',
             command=self._show_quit_view
         )

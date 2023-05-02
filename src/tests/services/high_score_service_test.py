@@ -1,12 +1,12 @@
 
 import unittest
-from services.score_service import ScoreServices
+from services.score_service import ScoreService
 
 
 class TestHighScoreService(unittest.TestCase):
 
     def setUp(self):
-        self.HS = ScoreServices()
+        self.HS = ScoreService()
 
     def test_get_current_score(self):
         comparison = f"Score: {self.HS._current_score}"

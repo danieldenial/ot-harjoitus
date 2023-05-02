@@ -22,5 +22,5 @@
 | 28.4. |  2   | Alikehysten luomista pelinkulkua kuvaavalle luokalle                     |
 | 29.4. |  2   | Docstring-dokumentointia käyttöliittymästä vastaaville luokille          |
 |  1.5. |  2   | Oikean vastauksen jälkeen näkyvien tarkentavien lisätietojen lisääminen  |
-|  2.5. |  2   | Sääntöjen lisääminen ja yleistä koodin kanssa painimista                 |
-| Yht.  |  50  |                                                                          |
+|  2.5. |  4   | Sääntöjen lisääminen, dokumentointia ja yleistä koodin kanssa painimista |
+| Yht.  |  52  |                                                                          |

@@ -3,7 +3,7 @@ import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
 from services.question_service import QuestionService
-from services.score_service import ScoreServices
+from services.score_service import ScoreService
 
 
 class GameplayView(BaseView):
@@ -29,7 +29,7 @@ class GameplayView(BaseView):
         self._new_game_view = new_game_view
         self._quit_game_view = quit_game_view
         self._q = QuestionService()
-        self._score = ScoreServices()
+        self._score = ScoreService()
         self._click = None
 
         self._initialize_subframes()
@@ -277,7 +277,7 @@ class GameplayView(BaseView):
         """Lisää oikean vastauksen jälkeen ikkunaan ilmaantuvat elementit. 
         """
 
-        detail = self._q.get_detail()
+        detail = self._q.get_detail_text()
 
         self.continue_label = tkinter.Label(
             self._score_and_state_frame, text='That is correct!',

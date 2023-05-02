@@ -2,7 +2,7 @@
 import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
-from services.score_service import ScoreServices
+from services.score_service import ScoreService
 
 
 class NewGameView(BaseView):
@@ -45,7 +45,7 @@ class NewGameView(BaseView):
             font=("Arial", 35), fg='white', bg="#013369"
         )
         new_game_text_2 = tkinter.Label(
-            self._frame, text=f"The current high score is {ScoreServices().get_high_score()}.",
+            self._frame, text=f"The current high score is {ScoreService().get_high_score()}.",
             font=("Arial", 30), fg='white', bg="#013369"
         )
         new_game_text_3 = tkinter.Label(
