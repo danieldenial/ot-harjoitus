@@ -26,7 +26,7 @@ palata takaisin päävalikkoon painamalla "BACK"-painiketta.
 
 Pelin alettua vaihtuu näkymä seuraavanlaiseksi:
 
-![](./kuvat/kysymysnäkymä.png)
+![](./kuvat/kysymysnakyma.png)
 
 Käyttäjä näkee ruudulta kysymyksen, siihen liittyvät vastausvaihtoehdot 
 sekä oman senhetkisen tuloksensa ("Score").
@@ -55,7 +55,7 @@ Käyttäjä voi jatkaa seuraavaan kysymykseen painamalla
 Mikäli käyttäjän valitsema vastaus on väärin, päättyy peli ja näkymä 
 päivittyy seuraavanlaiseksi:
 
-![](/kuvat/vaara_vastaus.png)
+![](./kuvat/vaara_vastaus.png)
 
 Käyttäjä voi huomata vastauksensa menneen väärin painikkeen oranssiksi 
 muuttuneesta väristä sekä lyhyestä tekstimuotoisesta vahvistuksesta.
