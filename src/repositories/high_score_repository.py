@@ -20,6 +20,9 @@ class HighScoreRepository:
         except (FileNotFoundError, ValueError, StopIteration):
             self._high_score = 0
 
+    def give_high_score(self):
+        return self._high_score
+
     def set_new_high_score(self, new_score):
         with open(self._file_path, mode="w", encoding="utf-8") as file:
             writer = csv.writer(file)

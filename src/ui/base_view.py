@@ -14,8 +14,8 @@ class BaseView:
         _frame: Luokan luoman näkymän kehys
     """
 
-    w = 1000
-    h = 600
+    w = 1280
+    h = 720
     color = '#013369'
 
     def __init__(self, root):

@@ -15,7 +15,7 @@ class TestQuestions(unittest.TestCase):
         self.assertEqual(path, True)
 
     def test_dictionary_is_not_empty(self):
-        self.assertGreater(len(self.Qs._questions_dictionary), 0)
+        self.assertGreater(len(self.Qs.questions_dictionary), 0)
 
     def test_compare_questions(self):
         with open(self.Qs._file_path, mode='r', encoding='utf-8') as csvfile:
@@ -24,7 +24,7 @@ class TestQuestions(unittest.TestCase):
             for row in reader:
                 self.assertEqual(
                     row[0],
-                    self.Qs._questions_dictionary[num]['Question']
+                    self.Qs.questions_dictionary[num]['Question']
                 )
                 num += 1
 
@@ -35,7 +35,7 @@ class TestQuestions(unittest.TestCase):
             for row in reader:
                 self.assertEqual(
                     row[1],
-                    self.Qs._questions_dictionary[num]['A']
+                    self.Qs.questions_dictionary[num]['A']
                 )
                 num += 1
 
@@ -46,7 +46,7 @@ class TestQuestions(unittest.TestCase):
             for row in reader:
                 self.assertEqual(
                     row[2],
-                    self.Qs._questions_dictionary[num]['B']
+                    self.Qs.questions_dictionary[num]['B']
                 )
                 num += 1
 
@@ -57,7 +57,7 @@ class TestQuestions(unittest.TestCase):
             for row in reader:
                 self.assertEqual(
                     row[3],
-                    self.Qs._questions_dictionary[num]['C']
+                    self.Qs.questions_dictionary[num]['C']
                 )
                 num += 1
 
@@ -68,7 +68,7 @@ class TestQuestions(unittest.TestCase):
             for row in reader:
                 self.assertEqual(
                     row[4],
-                    self.Qs._questions_dictionary[num]['D']
+                    self.Qs.questions_dictionary[num]['D']
                 )
                 num += 1
 
@@ -79,7 +79,7 @@ class TestQuestions(unittest.TestCase):
             for row in reader:
                 self.assertEqual(
                     row[5],
-                    self.Qs._questions_dictionary[num]['Answer']
+                    self.Qs.questions_dictionary[num]['Answer']
                 )
                 num += 1
 
@@ -90,6 +90,6 @@ class TestQuestions(unittest.TestCase):
             for row in reader:
                 self.assertEqual(
                     row[6],
-                    self.Qs._questions_dictionary[num]['Detail']
+                    self.Qs.questions_dictionary[num]['Detail']
                 )
                 num += 1

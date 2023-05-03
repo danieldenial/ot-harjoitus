@@ -14,7 +14,7 @@ class UI:
         _current_view: Sovelluksen ikkunan ja käyttöliittymän senhetkinen näkymä
     """
 
-    def __init__(self, root):
+    def __init__(self, root, questions, scores):
         """Luokan konstruktori, joka alustaa uuden käyttöliittymän näkymän.
 
         Args:
@@ -22,6 +22,8 @@ class UI:
         """
 
         self._root = root
+        self._question_data = questions
+        self._score_data = scores
         self._current_view = None
 
     def start(self):
@@ -65,14 +67,15 @@ class UI:
         self._current_view = NewGameView(
             self._root,
             self._show_main_menu_view,
-            self._show_gameplay_view
+            self._show_gameplay_view,
+            self._score_data
         )
 
         self._current_view.pack()
 
     def _show_gameplay_view(self):
         """Kutsuu nykyisen näkymän piilottamisesta vastaavaa metodia 
-        ja luo sitten itse pelinkulusta vastaavan näkymän.
+        ja luo sitten varsinaisesta pelinkulusta vastaavan näkymän.
         """
 
         self._hide_current_view()
@@ -81,7 +84,9 @@ class UI:
             self._root,
             self._show_main_menu_view,
             self._show_new_game_view,
-            self._show_quit_view
+            self._show_quit_view,
+            self._question_data,
+            self._score_data
         )
 
         self._current_view.pack()

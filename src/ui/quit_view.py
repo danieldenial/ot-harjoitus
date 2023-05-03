@@ -55,7 +55,7 @@ class QuitView(BaseView):
         style.theme_use('default')
         style.configure(
             'custom.quit_menu.TButton', font=('Verdana', 20),
-            background='#d50a0a', foreground='black'
+            background='#8a9095', foreground='black'
         )
 
         quit_button = ttk.Button(

@@ -39,35 +39,35 @@ class RulesView(BaseView):
         """
 
         rules_text_1 = tkinter.Label(
-            self._frame, 
+            self._frame,
             text="Gridiron Genius is a multiple choice trivia game about the NFL.",
             font=("Arial", 25), fg='white', bg="#013369",
             padx=10, pady=10
         )
 
         rules_text_2 = tkinter.Label(
-            self._frame, 
+            self._frame,
             text="Once you start the game, you will see a question and four options.",
             font=("Arial", 25), fg='white', bg="#013369",
             padx=10, pady=10
         )
 
         rules_text_3 = tkinter.Label(
-            self._frame, 
+            self._frame,
             text="Click on A, B, C or D to select the answer you think is correct.",
             font=("Arial", 25), fg='white', bg="#013369",
             padx=10, pady=10
         )
 
         rules_text_4 = tkinter.Label(
-            self._frame, 
+            self._frame,
             text="You will get 1 point for each right answer.",
             font=("Arial", 25), fg='white', bg="#013369",
             padx=10, pady=10
         )
 
         rules_text_5 = tkinter.Label(
-            self._frame, 
+            self._frame,
             text="All questions and answers are valid as of May 2023.",
             font=("Arial", 25), fg='white', bg="#013369",
             padx=10, pady=10
@@ -88,7 +88,7 @@ class RulesView(BaseView):
         style.theme_use('default')
         style.configure(
             'custom.rules_menu.TButton', font=('Verdana', 20),
-            background='#d50a0a', foreground='black'
+            background='#8a9095', foreground='black'
         )
 
         back_button = ttk.Button(

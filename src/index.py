@@ -8,12 +8,13 @@ from repositories.high_score_repository import HighScoreRepository
 def main():
     window = Tk()
     window.title("Gridiron Genius: An NFL Trivia Game")
-    window.geometry('1000x600')
+    window.geometry('1280x720')
     window.configure(background='#013369')
 
-    view = UI(window)
-    QuestionRepository()
-    HighScoreRepository()
+    questions = QuestionRepository()
+    scores = HighScoreRepository()
+
+    view = UI(window, questions, scores)
     view.start()
 
     window.mainloop()

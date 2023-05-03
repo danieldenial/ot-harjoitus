@@ -12,7 +12,7 @@ class NewGameView(BaseView):
         BaseView: Sovelluksen perusnäkymästä vastaava luokka
     """
 
-    def __init__(self, root, main_menu_view, gameplay_view):
+    def __init__(self, root, main_menu_view, gameplay_view, score_data):
         """Luokan konstruktori, joka alustaa uutta peliä edeltävän näkymän.
 
         Args:
@@ -24,6 +24,7 @@ class NewGameView(BaseView):
         super().__init__(root)
         self._main_menu_view = main_menu_view
         self._gameplay_view = gameplay_view
+        self._score_service = ScoreService(score_data)
 
         self._initialize()
 
@@ -45,7 +46,8 @@ class NewGameView(BaseView):
             font=("Arial", 35), fg='white', bg="#013369"
         )
         new_game_text_2 = tkinter.Label(
-            self._frame, text=f"The current high score is {ScoreService().get_high_score()}.",
+            self._frame,
+            text=f"The current high score is {self._score_service.get_high_score()}.",
             font=("Arial", 30), fg='white', bg="#013369"
         )
         new_game_text_3 = tkinter.Label(
@@ -66,7 +68,7 @@ class NewGameView(BaseView):
         style.theme_use('default')
         style.configure(
             'custom.game_menu.TButton', font=('Verdana', 20),
-            background='#d50a0a', foreground='black'
+            background='#8a9095', foreground='black'
         )
 
         start_button = ttk.Button(

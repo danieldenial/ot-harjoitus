@@ -1,34 +1,33 @@
 
 from random import shuffle
-from repositories.question_repository import QuestionRepository
 
 
 class QuestionService:
-    def __init__(self):
-        self._questions = QuestionRepository()._questions_dictionary
-        self._key_list = list(self._questions.keys())
+    def __init__(self, question_data):
+        self._question_dictionary = question_data.give_dictionary()
+        self._key_list = list(self._question_dictionary.keys())
         shuffle(self._key_list)
         self._number = None
 
     def get_question(self):
-        return self._questions[self._number]['Question']
+        return self._question_dictionary[self._number]['Question']
 
     def get_options(self):
         options = [
-            self._questions[self._number]['A'],
-            self._questions[self._number]['B'],
-            self._questions[self._number]['C'],
-            self._questions[self._number]['D']
+            self._question_dictionary[self._number]['A'],
+            self._question_dictionary[self._number]['B'],
+            self._question_dictionary[self._number]['C'],
+            self._question_dictionary[self._number]['D']
         ]
         shuffle(options)
 
         return options
 
     def get_detail_text(self):
-        return self._questions[self._number]['Detail']
+        return self._question_dictionary[self._number]['Detail']
 
     def check_answer(self, user_answer):
-        return self._questions[self._number]['Answer'] == user_answer
+        return self._question_dictionary[self._number]['Answer'] == user_answer
 
     def set_next_question_key(self):
         if len(self._key_list) > 0:

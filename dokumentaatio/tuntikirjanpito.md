@@ -23,4 +23,5 @@
 | 29.4. |  2   | Docstring-dokumentointia käyttöliittymästä vastaaville luokille          |
 |  1.5. |  2   | Oikean vastauksen jälkeen näkyvien tarkentavien lisätietojen lisääminen  |
 |  2.5. |  4   | Sääntöjen lisääminen, dokumentointia ja yleistä koodin kanssa painimista |
-| Yht.  |  52  |                                                                          |
+|  3.5. |  5   | Uusien kysymysten keksimistä ja koodin vastuiden selkiyttämistä          |
+| Yht.  |  57  |                                                                          |
