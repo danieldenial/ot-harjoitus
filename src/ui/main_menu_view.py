@@ -2,6 +2,7 @@
 import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
+from ui.button_styles import ButtonStyles
 
 
 class MainMenuView(BaseView):
@@ -26,6 +27,7 @@ class MainMenuView(BaseView):
         self._show_new_game_view = new_game_view
         self._show_quit_view = quit_view
         self._show_rules_view = rules_view
+        self._button_style = ButtonStyles()
 
         self._initialize()
 
@@ -58,27 +60,21 @@ class MainMenuView(BaseView):
         """Luo näkymään kuuluvat napit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
         """
 
-        style = ttk.Style()
-
-        style.theme_use('default')
-        style.configure(
-            'custom.main_menu.TButton', font=('Verdana', 20),
-            padding=10, background='#8a9095', foreground='black'
-        )
+        self._button_style.configure_basic_style()
 
         new_game_button = ttk.Button(
             self._frame, text="NEW GAME",
-            style='custom.main_menu.TButton',
+            style='custom.basic.TButton',
             command=self._show_new_game_view
         )
         rules_button = ttk.Button(
             self._frame, text="VIEW RULES",
-            style='custom.main_menu.TButton',
+            style='custom.basic.TButton',
             command=self._show_rules_view
         )
         quit_button = ttk.Button(
             self._frame, text="QUIT",
-            style='custom.main_menu.TButton',
+            style='custom.basic.TButton',
             command=self._show_quit_view
         )
 

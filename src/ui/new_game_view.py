@@ -2,6 +2,7 @@
 import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
+from ui.button_styles import ButtonStyles
 from services.score_service import ScoreService
 
 
@@ -25,6 +26,7 @@ class NewGameView(BaseView):
         self._main_menu_view = main_menu_view
         self._gameplay_view = gameplay_view
         self._score_service = ScoreService(score_data)
+        self._button_style = ButtonStyles()
 
         self._initialize()
 
@@ -63,23 +65,17 @@ class NewGameView(BaseView):
         """Luo näkymään kuuluvat napit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
         """
 
-        style = ttk.Style()
-
-        style.theme_use('default')
-        style.configure(
-            'custom.game_menu.TButton', font=('Verdana', 20),
-            background='#8a9095', foreground='black'
-        )
+        self._button_style.configure_basic_style()
 
         start_button = ttk.Button(
             self._frame, text="START GAME",
-            padding=10, style='custom.game_menu.TButton',
+            padding=10, style='custom.basic.TButton',
             command=self._gameplay_view
         )
 
         back_button = ttk.Button(
             self._frame, text="BACK",
-            padding=5, style='custom.game_menu.TButton',
+            padding=5, style='custom.basic.TButton',
             command=self._main_menu_view
         )
 

@@ -2,6 +2,7 @@
 import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
+from ui.button_styles import ButtonStyles
 
 
 class QuitView(BaseView):
@@ -23,6 +24,7 @@ class QuitView(BaseView):
         super().__init__(root)
         self._quit_game = quit_game
         self._main_menu_view = main_menu_view
+        self._button_style = ButtonStyles()
 
         self._initialize()
 
@@ -50,23 +52,17 @@ class QuitView(BaseView):
         """Luo näkymään kuuluvat napit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
         """
 
-        style = ttk.Style()
-
-        style.theme_use('default')
-        style.configure(
-            'custom.quit_menu.TButton', font=('Verdana', 20),
-            background='#8a9095', foreground='black'
-        )
+        self._button_style.configure_basic_style()
 
         quit_button = ttk.Button(
             self._frame, text="YES",
-            padding=10, style='custom.quit_menu.TButton',
+            padding=10, style='custom.basic.TButton',
             command=self._quit_game
         )
 
         back_button = ttk.Button(
             self._frame, text="NO",
-            padding=10, style='custom.quit_menu.TButton',
+            padding=10, style='custom.basic.TButton',
             command=self._main_menu_view
         )
 

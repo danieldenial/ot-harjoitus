@@ -33,7 +33,7 @@ class GameplayView(BaseView):
         self._score = ScoreService(score_data)
         self._button_styles = ButtonStyles()
 
-        self._initialize()
+        self._initialize_subframes()
 
     def _initialize_subframes(self):
         """Luo näkymän selkeyttämistä varten tarvittavia alikehyksiä.
@@ -48,14 +48,14 @@ class GameplayView(BaseView):
         self._score_and_state_frame = tkinter.Frame(self._root, bg='#013369')
         self._score_and_state_frame.pack(padx=10, pady=10, anchor=tkinter.W)
 
+        self._initialize()
+
     def _initialize(self):
         """Aloittaa pelinkulkua kuvaavan näkymän luomisen kutsumalla
         ikkunaan eri elementtejä sijoittavia metodeja.
         """
 
         self._q.set_next_question_key()
-
-        self._initialize_subframes()
 
         self._initialize_labels()
         self._initialize_buttons()
@@ -100,45 +100,39 @@ class GameplayView(BaseView):
 
         self.question_label.grid(
             row=0, column=0, columnspan=2,
-            padx=10, pady=10,
-            sticky=tkinter.W+tkinter.E
+            padx=10, pady=10,sticky=tkinter.W+tkinter.E
         )
 
         self.label_a.grid(
-            row=0, column=1,
-            padx=10, pady=10,
-            sticky=tkinter.W
+            row=0, column=1, padx=10,
+            pady=10, sticky=tkinter.W
         )
 
         self.label_b.grid(
-            row=1, column=1,
-            padx=10, pady=10,
-            sticky=tkinter.W
+            row=1, column=1, padx=10,
+            pady=10, sticky=tkinter.W
         )
 
         self.label_c.grid(
-            row=2, column=1,
-            padx=10, pady=10,
-            sticky=tkinter.W
+            row=2, column=1, padx=10,
+            pady=10, sticky=tkinter.W
         )
 
         self.label_d.grid(
-            row=3, column=1,
-            padx=10, pady=10,
-            sticky=tkinter.W
+            row=3, column=1, padx=10,
+            pady=10, sticky=tkinter.W
         )
 
         self.score_label.grid(
-            row=0, column=0,
-            padx=10, pady=(0, 10),
-            sticky=tkinter.W
+            row=0, column=0, padx=10,
+            pady=(0, 10), sticky=tkinter.W
         )
 
     def _initialize_buttons(self):
         """Luo näkymään kuuluvat napit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
         """
 
-        self._button_styles.configure_styles()
+        self._button_styles.configure_option_style()
 
         self.button_a = ttk.Button(
             self._options_frame, text='A',
@@ -164,32 +158,14 @@ class GameplayView(BaseView):
             command=lambda: self._handle_player_answer('D', self.options[3])
         )
 
-        self.button_a.grid(
-            row=0, column=0,
-            padx=(20, 10), pady=10,
-            sticky=tkinter.W
-        )
-
-        self.button_b.grid(
-            row=1, column=0,
-            padx=20, pady=10,
-            sticky=tkinter.W
-        )
-
-        self.button_c.grid(
-            row=2, column=0,
-            padx=20, pady=10,
-            sticky=tkinter.W
-        )
-
-        self.button_d.grid(
-            row=3, column=0,
-            padx=20, pady=10,
-            sticky=tkinter.W
-        )
+        self.button_a.grid(row=0, column=0, padx=(20, 10), pady=10, sticky=tkinter.W)
+        self.button_b.grid(row=1, column=0, padx=20, pady=10, sticky=tkinter.W)
+        self.button_c.grid(row=2, column=0, padx=20, pady=10, sticky=tkinter.W)
+        self.button_d.grid(row=3, column=0, padx=20, pady=10, sticky=tkinter.W)
 
     def _handle_player_answer(self, click, answer):
-        """Käsittelee pelaajan tekemän napin painalluksen, jotta selviää menikö kysymys oikein.
+        """Käsittelee pelaajan tekemän napin painalluksen, 
+        jotta selviää menikö kysymys oikein.
 
         Args:
             click: Painettu nappi (A-D)
@@ -214,6 +190,8 @@ class GameplayView(BaseView):
             click: Käyttäjän painama nappi (A-D)
         """
 
+        self._button_styles.configure_right_answer_style()
+
         if click == "A":
             self.button_a.configure(style='custom.green.TButton')
         elif click == "B":
@@ -232,6 +210,8 @@ class GameplayView(BaseView):
         Args:
             click: Käyttäjän painama nappi
         """
+
+        self._button_styles.configure_wrong_answer_style()
 
         if click == "A":
             self.button_a.configure(style='custom.red.TButton')
@@ -273,27 +253,15 @@ class GameplayView(BaseView):
 
         self.continue_button = ttk.Button(
             self._score_and_state_frame, text="CONTINUE",
-            style='custom.continue.TButton',
+            style='custom.basic.TButton',
             command=lambda: self._update_view()
         )
 
-        self.correct_label.grid(
-            row=1, column=0,
-            padx=5, pady=10,
-            sticky=tkinter.W
-        )
+        self.correct_label.grid(row=1, column=0, padx=5, pady=10, sticky=tkinter.W)
 
-        self.detail_label.grid(
-            row=2, column=0,
-            padx=10, pady=10,
-            sticky=tkinter.W
-        )
+        self.detail_label.grid(row=2, column=0, padx=10, pady=10, sticky=tkinter.W)
 
-        self.continue_button.grid(
-            row=3, column=0,
-            padx=10, pady=10,
-            sticky=tkinter.W
-        )
+        self.continue_button.grid(row=3, column=0, padx=10, pady=10, sticky=tkinter.W)
 
     def _add_wrong_answer_widgets(self):
         """Lisää väärän vastauksen jälkeen ikkunaan ilmaantuvat elementit.
@@ -306,62 +274,45 @@ class GameplayView(BaseView):
 
         self.main_menu_button = ttk.Button(
             self._score_and_state_frame, text="MAIN MENU",
-            style='custom.end.TButton',
+            style='custom.basic.TButton',
             command=lambda: self._destroy_subframes(self._main_menu_view)
         )
 
         self.new_game_button = ttk.Button(
             self._score_and_state_frame, text="NEW GAME",
-            style='custom.end.TButton',
+            style='custom.basic.TButton',
             command=lambda: self._destroy_subframes(self._new_game_view)
         )
 
         self.quit_game_button = ttk.Button(
             self._score_and_state_frame, text="QUIT",
-            style='custom.end.TButton',
+            style='custom.basic.TButton',
             command=lambda: self._destroy_subframes(self._quit_game_view)
         )
 
         self.game_over_label.grid(
-            row=1, column=0,
-            padx=5, pady=10,
-            sticky=tkinter.W,
-            columnspan=2
+            row=1, column=0, padx=5, pady=10, 
+            sticky=tkinter.W, columnspan=2
         )
 
-        self.new_game_button.grid(
-            row=2, column=0,
-            padx=10, pady=10
-        )
-
-        self.main_menu_button.grid(
-            row=2, column=1,
-            padx=10, pady=10
-        )
-
-        self.quit_game_button.grid(
-            row=2, column=2,
-            padx=10, pady=10
-        )
+        self.new_game_button.grid(row=2, column=0, padx=10, pady=10)
+        self.main_menu_button.grid(row=2, column=1,padx=10, pady=10)
+        self.quit_game_button.grid(row=2, column=2, padx=10, pady=10)
 
     def _update_view(self):
         """Päivittää näkymän seuraavaa kysymystä varten 
         poistamalla aiempaan kysymykseen liittyneet elementit.
         """
 
-        self.question_label.destroy()
-        self.label_a.destroy()
-        self.label_b.destroy()
-        self.label_c.destroy()
-        self.label_d.destroy()
-        self.button_a.destroy()
-        self.button_b.destroy()
-        self.button_c.destroy()
-        self.button_d.destroy()
-        self.continue_button.destroy()
-        self.correct_label.destroy()
-        self.detail_label.destroy()
-        self.score_label.destroy()
+        for widget in self._question_frame.winfo_children():
+            widget.destroy()
+
+        for widget in self._options_frame.winfo_children():
+            widget.destroy()
+
+        for widget in self._score_and_state_frame.winfo_children():
+            widget.destroy()
+
         self._initialize()
 
     def _destroy_subframes(self, move_to_view):
