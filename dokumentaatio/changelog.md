@@ -42,3 +42,8 @@ riville.
 suunnitellut toiminnallisuudet on toteutettu ainakin alustavasti. Tulevina viikkoina niitä on 
 mahdollista vielä parannella sekä siirtyä myös jatkokehitysideoiden toteutukseen.
  - Käyttäjälle näytetään/kerrotaan oikean vastauksen jälkeen pieni kysymyksen aiheeseen tai vastaukseen liittyvä tarkentava tieto.
+
+## Viikko 7
+
+- Koodia on tiivistetty merkittävästi etenkin pelinkulun näkymästä 
+vastaavan GameplayView-luokan osalta.

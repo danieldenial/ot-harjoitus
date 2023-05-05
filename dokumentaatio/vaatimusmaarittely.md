@@ -60,4 +60,4 @@ vastauksen nopeuden mukaan
 antaminen pelaajalle oikean vastauksen jälkeen (esimerkiksi jos kysytään 
 eniten maaleja kerännyttä pelaajaa, niin oikean vastauksen jälkeen 
 kerrotaan tarkka maalimäärä). | TEHTY
-- Lisää kysymyksiä
+- Lisää kysymyksiä | TEHTY

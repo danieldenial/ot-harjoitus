@@ -24,4 +24,6 @@
 |  1.5. |  2   | Oikean vastauksen jälkeen näkyvien tarkentavien lisätietojen lisääminen  |
 |  2.5. |  4   | Sääntöjen lisääminen, dokumentointia ja yleistä koodin kanssa painimista |
 |  3.5. |  5   | Uusien kysymysten keksimistä ja koodin vastuiden selkiyttämistä          |
-| Yht.  |  57  |                                                                          |
+|  4.5. |  5   | Koodin tiivistämistä ja docstringin kirjoittamista.                      |
+|  5.5  |  5   | Käyttöliittymän toiminnallisuuksiin tehty isoja muutoksia.               |
+| Yht.  |  67  |                                                                          |

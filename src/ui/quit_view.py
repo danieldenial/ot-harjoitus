@@ -12,7 +12,7 @@ class QuitView(BaseView):
         BaseView: Sovelluksen perusnäkymästä vastaava luokka
     """
 
-    def __init__(self, root, quit_game, main_menu_view):
+    def __init__(self, root, view_manager, quit_game):
         """Luokan konstruktori, joka alustaa sovelluksen sulkemista edeltävän näkymän.
 
         Args:
@@ -23,7 +23,7 @@ class QuitView(BaseView):
 
         super().__init__(root)
         self._quit_game = quit_game
-        self._main_menu_view = main_menu_view
+        self._view_manager = view_manager
         self._button_style = ButtonStyles()
 
         self._initialize()
@@ -57,13 +57,13 @@ class QuitView(BaseView):
         quit_button = ttk.Button(
             self._frame, text="YES",
             padding=10, style='custom.basic.TButton',
-            command=self._quit_game
+            command=lambda: self._quit_game()
         )
 
         back_button = ttk.Button(
             self._frame, text="NO",
             padding=10, style='custom.basic.TButton',
-            command=self._main_menu_view
+            command=self._view_manager.go_to_main_menu_view
         )
 
         quit_button.grid(row=3, column=1)

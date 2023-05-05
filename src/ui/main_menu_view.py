@@ -12,21 +12,16 @@ class MainMenuView(BaseView):
         BaseView: Sovelluksen perusnäkymästä vastaava luokka
     """
 
-    def __init__(self, root, new_game_view, quit_view, rules_view):
+    def __init__(self, root, view_manager):
         """Luokan konstruktori, joka alustaa päävalikon näkymän.
 
         Args:
             root: Luokan juuri-ikkuna
-            new_game_view: Metodi, jolla siirrytään uutta peliä edeltävään näkymään
-            quit_view: Metodi, jolla siirrytään sovelluksen sulkemista edeltävään näkymään
-            rules_view: Metodi, jolla siirrytään pelin sääntöjä näyttävään näkymään
         """
 
         super().__init__(root)
         self._root = root
-        self._show_new_game_view = new_game_view
-        self._show_quit_view = quit_view
-        self._show_rules_view = rules_view
+        self._view_manager = view_manager
         self._button_style = ButtonStyles()
 
         self._initialize()
@@ -53,8 +48,8 @@ class MainMenuView(BaseView):
             font=("Verdana", 30), fg='white', bg="#013369"
         )
 
-        h1_label.grid(row=1, column=1)
-        h2_label.grid(row=2, column=1)
+        h1_label.grid(row=1, column=1, columnspan=2)
+        h2_label.grid(row=2, column=1, columnspan=2)
 
     def _initialize_buttons(self):
         """Luo näkymään kuuluvat napit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
@@ -65,22 +60,29 @@ class MainMenuView(BaseView):
         new_game_button = ttk.Button(
             self._frame, text="NEW GAME",
             style='custom.basic.TButton',
-            command=self._show_new_game_view
+            command=self._view_manager.go_to_new_game_view
+        )
+
+        high_scores_button = ttk.Button(
+            self._frame, text="HIGH SCORES",
+            style='custom.basic.TButton',
+            command=self._view_manager.go_to_high_score_view
         )
         rules_button = ttk.Button(
-            self._frame, text="VIEW RULES",
+            self._frame, text="RULES",
             style='custom.basic.TButton',
-            command=self._show_rules_view
+            command=self._view_manager.go_to_rules_view
         )
         quit_button = ttk.Button(
             self._frame, text="QUIT",
             style='custom.basic.TButton',
-            command=self._show_quit_view
+            command=self._view_manager.go_to_quit_view
         )
 
         new_game_button.grid(row=4, column=0)
-        rules_button.grid(row=4, column=1)
-        quit_button.grid(row=4, column=2)
+        high_scores_button.grid(row=4, column=1)
+        rules_button.grid(row=4, column=2)
+        quit_button.grid(row=4, column=3)
 
     def _adjust_elements(self):
         """Auttaa säätämään muiden elementtien sijainteja.
@@ -94,3 +96,4 @@ class MainMenuView(BaseView):
         self._frame.grid_columnconfigure(0, weight=1)
         self._frame.grid_columnconfigure(1, weight=1)
         self._frame.grid_columnconfigure(2, weight=1)
+        self._frame.grid_columnconfigure(3, weight=1)

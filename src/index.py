@@ -14,7 +14,12 @@ def main():
     questions = QuestionRepository()
     scores = HighScoreRepository()
 
-    view = UI(window, questions, scores)
+    context = {
+        'question_repo': questions,
+        'score_repo': scores
+        }
+
+    view = UI(window, context)
     view.start()
 
     window.mainloop()

@@ -2,14 +2,26 @@ from tkinter import ttk
 
 
 class ButtonStyles:
+    """Luokka, jonka vastuulla on erilaisten tyylien konfiguroiminen sovelluksen painikkeille.
+
+    Attributes:
+        _style: ttk-moduulin objekti, jota konfiguroidaan
+    """
+
     def __init__(self):
+        """Luo konfiguroitavan ttk-moduulin objektin ja asettaa sille oletusteeman.
+        """
+
         self._style = ttk.Style()
         self._style.theme_use('default')
 
     def configure_basic_style(self):
+        """Konfiguroi sovelluksen peruspainikkeiden tyylin.
+        """
+
         self._style.configure(
             'custom.basic.TButton', font=('Verdana', 20),
-            padding=(10,10), background='#8a9095', foreground='black'
+            padding=(10, 10), background='#8a9095', foreground='black'
         )
 
     def configure_option_style(self):
@@ -20,6 +32,8 @@ class ButtonStyles:
         )
 
     def configure_right_answer_style(self):
+        """Konfiguroi oikein menneen vastauksen painikkeen tyylin (väri vihreäksi).
+        """
         self._style.configure(
             'custom.green.TButton', font=('Verdana', 20),
             background='#3B9B00', foreground='black',
@@ -29,6 +43,9 @@ class ButtonStyles:
         self._map_right_answer_style()
 
     def configure_wrong_answer_style(self):
+        """Konfiguroi väärin menneen vastauksen painikkeen tyylin (väri punaiseksi).
+        """
+
         self._style.configure(
             'custom.red.TButton', font=('Verdana', 20),
             background='#d50a0a', foreground='black',
@@ -38,15 +55,20 @@ class ButtonStyles:
         self._map_wrong_answer_style()
 
     def _map_right_answer_style(self):
+        """Muuttaa jo painetun (nyt vihreän) napin asetuksia,
+        jotta se ei enää reagoi käyttäjän uusiin painalluksiin tai hiiren liikkeeseen.
+        """
         self._style.map(
             'custom.green.TButton',
-            background=[('active', '#3B9B00')],
-            foreground=[('active', 'black')],
+            background=[('pressed', '#3B9B00')]
         )
 
     def _map_wrong_answer_style(self):
+        """Muuttaa jo painetun (nyt punaisen) napin asetuksia,
+        jotta se ei enää reagoi käyttäjän uusiin painalluksiin tai hiiren liikkeeseen.
+        """
+
         self._style.map(
             'custom.red.TButton',
-            background=[('active', '#d50a0a')],
-            foreground=[('active', 'black')]
+            background=[('pressed', '#d50a0a')]
         )

@@ -11,10 +11,19 @@ class GameplayView(BaseView):
     """Pelinkulkua (eli kysymykset, vastausvaihtoehdot, jne.) kuvaava näkymä.
 
     Args:
-        BaseView: Sovelluksen perusnäkymästä vastaava luokka
+        BaseView: Sovelluksen perusnäkymästä vastaava luokka, jonka GameplayView perii.
+
+    Attributes:
+        _root: Luokan juuri-ikkuna
+        _main_menu_view: Metodi, jolla siirrytään päävalikon näkymään
+        _new_game_view: Metodi, jolla siirrytään uutta peliä edeltävään näkymään
+        _quit_game_view: Metodi, jolla siirrytään sovelluksen sulkemisen näkymään
+        _question_service: Luokka-olio, joka tarjoaa kysymyksiin liittyviä palveluita
+        _score_service: Luokka-olio, joka tarjoaa pelin pisteisiin liittyviä palveluita
+        _button_styles: Luokka-olio, joka vastaa sovelluksen painikkeiden tyyleistä
     """
 
-    def __init__(self, root, main_menu, new_game, quit_game, question_data, score_data):
+    def __init__(self, root, context, view_manager):
         """Luokan konstruktori, joka alustaa pelinkulkua kuvaavan näkymän.
 
         Args:
@@ -22,15 +31,17 @@ class GameplayView(BaseView):
             main_menu_view: Metodi, jolla siirrytään päävalikon näkymään
             new_game_view: Metodi, jolla siirrytään uutta peliä edeltävään näkymään
             quit_game_view: Metodi, jolla siirrytään sovelluksen sulkemisen näkymään
+            question_data = QuestionRepository-luokan olio
+            score_data = ScoreRepository-luokan olio
         """
 
         super().__init__(root)
         self._root = root
-        self._main_menu_view = main_menu
-        self._new_game_view = new_game
-        self._quit_game_view = quit_game
-        self._q = QuestionService(question_data)
-        self._score = ScoreService(score_data)
+        self._view_manager = view_manager
+        self._question_repo = context['question_repo']
+        self._score_repo = context['score_repo']
+        self._question_service = QuestionService(self._question_repo)
+        self._score_service = ScoreService(self._score_repo)
         self._button_styles = ButtonStyles()
 
         self._initialize_subframes()
@@ -51,11 +62,10 @@ class GameplayView(BaseView):
         self._initialize()
 
     def _initialize(self):
-        """Aloittaa pelinkulkua kuvaavan näkymän luomisen kutsumalla
-        ikkunaan eri elementtejä sijoittavia metodeja.
+        """Aloittaa pelinkulkua kuvaavan näkymän luomisen.
         """
 
-        self._q.set_next_question_key()
+        self._question_service.set_next_question_key()
 
         self._initialize_labels()
         self._initialize_buttons()
@@ -64,64 +74,39 @@ class GameplayView(BaseView):
         """Luo näkymään kuuluvat tekstit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
         """
 
-        q_text = self._q.get_question()
-        self.options = self._q.get_options()
+        question_text = self._question_service.get_question()
+        self.options = self._question_service.get_options()
 
         self.question_label = tkinter.Label(
-            self._question_frame, text=q_text,
+            self._question_frame, text=question_text,
             font=("Verdana", 25, "bold"), fg='white', bg='#013369',
             wraplength=1000, anchor=tkinter.W, justify=tkinter.LEFT
         )
 
-        self.label_a = tkinter.Label(
-            self._options_frame, text=self.options[0],
-            font=("Verdana", 25), fg='white', bg='#013369'
-        )
+        option_labels = []
 
-        self.label_b = tkinter.Label(
-            self._options_frame, text=self.options[1],
-            font=("Verdana", 25), fg='white', bg='#013369'
-        )
-
-        self.label_c = tkinter.Label(
-            self._options_frame, text=self.options[2],
-            font=("Verdana", 25), fg='white', bg='#013369'
-        )
-
-        self.label_d = tkinter.Label(
-            self._options_frame, text=self.options[3],
-            font=("Verdana", 25), fg='white', bg='#013369'
-        )
+        for i in range(4):
+            label = tkinter.Label(
+                self._options_frame, text=self.options[i],
+                font=("Verdana", 25), fg='white', bg='#013369'
+            )
+            option_labels.append(label)
 
         self.score_label = tkinter.Label(
-            self._score_and_state_frame, text=self._score.get_current_score(),
+            self._score_and_state_frame, text=self._score_service.get_current_score(),
             font=("Verdana", 16, "bold"), fg='white', bg='#013369'
         )
 
         self.question_label.grid(
             row=0, column=0, columnspan=2,
-            padx=10, pady=10,sticky=tkinter.W+tkinter.E
+            padx=10, pady=10, sticky=tkinter.W+tkinter.E
         )
 
-        self.label_a.grid(
-            row=0, column=1, padx=10,
-            pady=10, sticky=tkinter.W
-        )
-
-        self.label_b.grid(
-            row=1, column=1, padx=10,
-            pady=10, sticky=tkinter.W
-        )
-
-        self.label_c.grid(
-            row=2, column=1, padx=10,
-            pady=10, sticky=tkinter.W
-        )
-
-        self.label_d.grid(
-            row=3, column=1, padx=10,
-            pady=10, sticky=tkinter.W
-        )
+        for i, option in enumerate(option_labels):
+            option.grid(
+                row=i, column=1, padx=10,
+                pady=10, sticky=tkinter.W
+            )
 
         self.score_label.grid(
             row=0, column=0, padx=10,
@@ -134,34 +119,21 @@ class GameplayView(BaseView):
 
         self._button_styles.configure_option_style()
 
-        self.button_a = ttk.Button(
-            self._options_frame, text='A',
-            style='custom.option.TButton',
-            command=lambda: self._handle_player_answer('A', self.options[0])
-        )
+        opt = ['A', 'B', 'C', 'D']
+        self.buttons = []
 
-        self.button_b = ttk.Button(
-            self._options_frame, text='B',
-            style='custom.option.TButton',
-            command=lambda: self._handle_player_answer('B', self.options[1])
-        )
+        for i, letter in enumerate(opt):
+            button = ttk.Button(
+                self._options_frame, text=letter,
+                style='custom.option.TButton',
+                command=lambda letter=letter, i=i: self._handle_player_answer(
+                    i, self.options[i])
+            )
 
-        self.button_c = ttk.Button(
-            self._options_frame, text='C',
-            style='custom.option.TButton',
-            command=lambda: self._handle_player_answer('C', self.options[2])
-        )
+            self.buttons.append(button)
 
-        self.button_d = ttk.Button(
-            self._options_frame, text='D',
-            style='custom.option.TButton',
-            command=lambda: self._handle_player_answer('D', self.options[3])
-        )
-
-        self.button_a.grid(row=0, column=0, padx=(20, 10), pady=10, sticky=tkinter.W)
-        self.button_b.grid(row=1, column=0, padx=20, pady=10, sticky=tkinter.W)
-        self.button_c.grid(row=2, column=0, padx=20, pady=10, sticky=tkinter.W)
-        self.button_d.grid(row=3, column=0, padx=20, pady=10, sticky=tkinter.W)
+        for i, button in enumerate(self.buttons):
+            button.grid(row=i, column=0, padx=20, pady=10, sticky=tkinter.W)
 
     def _handle_player_answer(self, click, answer):
         """Käsittelee pelaajan tekemän napin painalluksen, 
@@ -174,13 +146,16 @@ class GameplayView(BaseView):
 
         self._disable_buttons()
 
-        if self._q.check_answer(answer):
+        if self._question_service.check_answer(answer):
             self._change_button_green(click)
-            self._score.increase_score()
-            self.score_label.config(text=self._score.get_current_score())
+            self._score_service.increase_score()
+            self.score_label.config(text=self._score_service.get_current_score())
+            self._add_right_answer_widgets()
         else:
             self._change_button_red(click)
-            self._score.check_score()
+            self._score_service.check_score()
+            self._score_service.store_high_scores()
+            self._add_wrong_answer_widgets()
 
     def _change_button_green(self, click):
         """Muuttaa käyttäjän painaman napin vihreäksi
@@ -192,16 +167,8 @@ class GameplayView(BaseView):
 
         self._button_styles.configure_right_answer_style()
 
-        if click == "A":
-            self.button_a.configure(style='custom.green.TButton')
-        elif click == "B":
-            self.button_b.configure(style='custom.green.TButton')
-        elif click == "C":
-            self.button_c.configure(style='custom.green.TButton')
-        elif click == "D":
-            self.button_d.configure(style='custom.green.TButton')
+        self.buttons[click].configure(style='custom.green.TButton')
 
-        self._add_right_answer_widgets()
 
     def _change_button_red(self, click):
         """Muuttaa käyttäjän painaman napin punaiseksi
@@ -213,32 +180,21 @@ class GameplayView(BaseView):
 
         self._button_styles.configure_wrong_answer_style()
 
-        if click == "A":
-            self.button_a.configure(style='custom.red.TButton')
-        elif click == "B":
-            self.button_b.configure(style='custom.red.TButton')
-        elif click == "C":
-            self.button_c.configure(style='custom.red.TButton')
-        elif click == "D":
-            self.button_d.configure(style='custom.red.TButton')
-
-        self._add_wrong_answer_widgets()
+        self.buttons[click].configure(style='custom.red.TButton')
 
     def _disable_buttons(self):
         """Poistaa vastaamisen jälkeen napit käytöstä, 
         jotta pelaaja ei voi vastata kysymykseen uudestaan. 
         """
 
-        self.button_a.configure(command=lambda: None)
-        self.button_b.configure(command=lambda: None)
-        self.button_c.configure(command=lambda: None)
-        self.button_d.configure(command=lambda: None)
+        for button in self.buttons:
+            button.configure(command=lambda: None)
 
     def _add_right_answer_widgets(self):
         """Lisää oikean vastauksen jälkeen ikkunaan ilmaantuvat elementit. 
         """
 
-        detail = self._q.get_detail_text()
+        detail = self._question_service.get_detail_text()
 
         self.correct_label = tkinter.Label(
             self._score_and_state_frame, text='That is correct!',
@@ -257,11 +213,13 @@ class GameplayView(BaseView):
             command=lambda: self._update_view()
         )
 
-        self.correct_label.grid(row=1, column=0, padx=5, pady=10, sticky=tkinter.W)
+        self.correct_label.grid(row=1, column=0, padx=5,
+                                pady=10, sticky=tkinter.W)
+        self.detail_label.grid(row=2, column=0, padx=10,
+                               pady=10, sticky=tkinter.W)
+        self.continue_button.grid(
+            row=3, column=0, padx=10, pady=10, sticky=tkinter.W)
 
-        self.detail_label.grid(row=2, column=0, padx=10, pady=10, sticky=tkinter.W)
-
-        self.continue_button.grid(row=3, column=0, padx=10, pady=10, sticky=tkinter.W)
 
     def _add_wrong_answer_widgets(self):
         """Lisää väärän vastauksen jälkeen ikkunaan ilmaantuvat elementit.
@@ -275,29 +233,40 @@ class GameplayView(BaseView):
         self.main_menu_button = ttk.Button(
             self._score_and_state_frame, text="MAIN MENU",
             style='custom.basic.TButton',
-            command=lambda: self._destroy_subframes(self._main_menu_view)
+            command=lambda: self._destroy_subframes(self._view_manager.go_to_main_menu_view)
         )
 
         self.new_game_button = ttk.Button(
             self._score_and_state_frame, text="NEW GAME",
             style='custom.basic.TButton',
-            command=lambda: self._destroy_subframes(self._new_game_view)
+            command=lambda: self._destroy_subframes(self._view_manager.go_to_new_game_view)
         )
 
         self.quit_game_button = ttk.Button(
             self._score_and_state_frame, text="QUIT",
             style='custom.basic.TButton',
-            command=lambda: self._destroy_subframes(self._quit_game_view)
+            command=lambda: self._destroy_subframes(self._view_manager.go_to_quit_view)
         )
 
         self.game_over_label.grid(
-            row=1, column=0, padx=5, pady=10, 
+            row=1, column=0, padx=5, pady=10,
             sticky=tkinter.W, columnspan=2
         )
 
-        self.new_game_button.grid(row=2, column=0, padx=10, pady=10)
-        self.main_menu_button.grid(row=2, column=1,padx=10, pady=10)
-        self.quit_game_button.grid(row=2, column=2, padx=10, pady=10)
+        self.new_game_button.grid(row=3, column=0, padx=10, pady=10)
+        self.main_menu_button.grid(row=3, column=1, padx=10, pady=10)
+        self.quit_game_button.grid(row=3, column=2, padx=10, pady=10)
+
+        if self._score_service._current_score == self._score_service.provide_high_score():
+            self.high_score_label = tkinter.Label(
+            self._score_and_state_frame, text='But you set the new high score \o/',
+            font=("Verdana", 20, 'bold'), fg='white', bg='#013369'
+            )
+
+            self.high_score_label.grid(
+                row=2, column=0, padx=5, pady=10,
+                sticky=tkinter.W, columnspan=2
+            )
 
     def _update_view(self):
         """Päivittää näkymän seuraavaa kysymystä varten 
@@ -315,7 +284,7 @@ class GameplayView(BaseView):
 
         self._initialize()
 
-    def _destroy_subframes(self, move_to_view):
+    def _destroy_subframes(self, go_to_view):
         """Poistaa näkymän alikehykset toisen luokan näkymään siirtymistä ennen.
 
         Args:
@@ -325,4 +294,4 @@ class GameplayView(BaseView):
         self._question_frame.destroy()
         self._options_frame.destroy()
         self._score_and_state_frame.destroy()
-        move_to_view()
+        go_to_view()

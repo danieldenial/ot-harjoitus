@@ -12,7 +12,7 @@ class RulesView(BaseView):
         BaseView: Sovelluksen perusnäkymästä vastaava luokka
     """
 
-    def __init__(self, root, main_menu_view):
+    def __init__(self, root, view_manager):
         """Luokan konstruktori, joka alustaa pelin säännöt näyttävän näkymän.
 
         Args:
@@ -22,7 +22,7 @@ class RulesView(BaseView):
 
         super().__init__(root)
         self._root = root
-        self._main_menu_view = main_menu_view
+        self._view_manager = view_manager
         self._button_style = ButtonStyles()
 
         self._initialize()
@@ -84,13 +84,13 @@ class RulesView(BaseView):
     def _initialize_buttons(self):
         """Luo näkymään kuuluvat napit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
         """
-        
+
         self._button_style.configure_basic_style()
 
         back_button = ttk.Button(
             self._frame, text="BACK",
             padding=5, style='custom.basic.TButton',
-            command=self._main_menu_view
+            command=self._view_manager.go_to_main_menu_view()
         )
 
         back_button.grid(row=6, column=1, padx=30, pady=30)
