@@ -20,7 +20,6 @@ class MainMenuView(BaseView):
         """
 
         super().__init__(root)
-        self._root = root
         self._view_manager = view_manager
         self._button_style = ButtonStyles()
 

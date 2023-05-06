@@ -20,45 +20,41 @@ class HighScoreRepository:
             with open(self._score_file_path, mode="r", encoding='utf-8') as file:
                 reader = csv.reader(file)
                 for row in reader:
-                    self._high_scores.append(int(row[0]))
+                    self._high_scores.append((int(row[0]), row[1]))
         except (FileNotFoundError, ValueError, StopIteration):
-            for i in range(10):
-                self._high_scores.append(0)
+            self._high_scores = [(0, "N/A") for x in range(10)]
 
     def _load_team_name_list(self):
         try:
-            with open(self._score_file_path, mode="r", encoding='utf-8') as file:
+            with open(self._name_file_path, mode="r", encoding='utf-8') as file:
                 reader = csv.reader(file)
                 for row in reader:
                     self._team_names.append(row[0])
-        except:
+        except (FileNotFoundError, ValueError, StopIteration):
             self._team_names.append("AFC")
             self._team_names.append("NFC")
 
     def get_high_score(self):
-        return max(self._high_scores)
+        return max(self._high_scores)[0]
 
     def get_high_scores_list(self):
         return self._high_scores
-    
+
     def get_team_name_list(self):
         return self._team_names
 
-    def add_new_score_to_list(self, new_score):
+    def add_new_score_to_list(self, new_score, selected_team):
         self._high_scores.sort(reverse=True)
         self._high_scores.pop()
-        self._high_scores.append(new_score)
+        self._high_scores.append((new_score, selected_team))
 
     def write_high_scores_to_file(self):
         self._high_scores.sort(reverse=True)
         with open(self._score_file_path, mode="w", encoding="utf-8") as file:
-                writer = csv.writer(file)
-                for score in self._high_scores:
-                    writer.writerow([score])
-
-    def _reset_high_scores(self):
-        with open(self._score_file_path, mode="w", encoding="utf-8") as file:
             writer = csv.writer(file)
-            for i in range(10):
-                writer.writerow([0])
-        self._high_scores = []
+            for score in self._high_scores:
+                writer.writerow([score[0], score[1]])
+
+    def reset_high_scores(self):
+        self._high_scores = [(0, "N/A") for x in range(10)]
+        self.write_high_scores_to_file()

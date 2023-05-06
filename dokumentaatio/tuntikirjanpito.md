@@ -26,4 +26,5 @@
 |  3.5. |  5   | Uusien kysymysten keksimistä ja koodin vastuiden selkiyttämistä          |
 |  4.5. |  5   | Koodin tiivistämistä ja docstringin kirjoittamista.                      |
 |  5.5  |  5   | Käyttöliittymän toiminnallisuuksiin tehty isoja muutoksia.               |
-| Yht.  |  67  |                                                                          |
+|  6.5. |  5   | Joukkuevalinnan ja parhaiden tulosten talletuksen/taulukon luomista.     |
+| Yht.  |  72  |                                                                          |

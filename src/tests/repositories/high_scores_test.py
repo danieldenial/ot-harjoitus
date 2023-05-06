@@ -14,12 +14,12 @@ class TestHighScores(unittest.TestCase):
         self.assertEqual(path, True)
 
     def test_high_score_is_not_None(self):
-        self.assertIsNotNone(self._HS._high_score)
+        self.assertIsNotNone(self._HS.get_high_score())
 
     def test_new_high_score_works(self):
-        self._HS.add_new_score_to_list(20)
-        self.assertEqual(self._HS._high_score, 20)
+        self._HS.add_new_score_to_list(20, "Rob Lowe")
+        self.assertEqual(self._HS.get_high_score(), 20)
 
     def test_reset_high_score_works(self):
-        self._HS._reset_high_scores()
-        self.assertEqual(self._HS._high_score, 0)
+        self._HS.reset_high_scores()
+        self.assertEqual(self._HS.get_high_score(), 0)

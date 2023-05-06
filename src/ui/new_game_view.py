@@ -25,8 +25,7 @@ class NewGameView(BaseView):
         super().__init__(root)
         self._root = root
         self._view_manager = view_manager
-        self._score_repo = context['score_repo']
-        self._score_service = ScoreService(self._score_repo)
+        self._score_service = context['score_service']
         self._button_style = ButtonStyles()
 
         self._initialize()
@@ -50,7 +49,7 @@ class NewGameView(BaseView):
         )
         new_game_text_2 = tkinter.Label(
             self._frame,
-            text=f"The current high score is {self._score_service.provide_high_score()}.",
+            text=f"The current high score is {self._score_service.get_high_score()}.",
             font=("Arial", 30), fg='white', bg="#013369"
         )
         new_game_text_3 = tkinter.Label(

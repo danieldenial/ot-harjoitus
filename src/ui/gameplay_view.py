@@ -3,8 +3,6 @@ import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
 from ui.button_styles import ButtonStyles
-from services.question_service import QuestionService
-from services.score_service import ScoreService
 
 
 class GameplayView(BaseView):
@@ -15,12 +13,6 @@ class GameplayView(BaseView):
 
     Attributes:
         _root: Luokan juuri-ikkuna
-        _main_menu_view: Metodi, jolla siirrytään päävalikon näkymään
-        _new_game_view: Metodi, jolla siirrytään uutta peliä edeltävään näkymään
-        _quit_game_view: Metodi, jolla siirrytään sovelluksen sulkemisen näkymään
-        _question_service: Luokka-olio, joka tarjoaa kysymyksiin liittyviä palveluita
-        _score_service: Luokka-olio, joka tarjoaa pelin pisteisiin liittyviä palveluita
-        _button_styles: Luokka-olio, joka vastaa sovelluksen painikkeiden tyyleistä
     """
 
     def __init__(self, root, context, view_manager):
@@ -28,21 +20,20 @@ class GameplayView(BaseView):
 
         Args:
             root: Luokan juuri-ikkuna
-            main_menu_view: Metodi, jolla siirrytään päävalikon näkymään
-            new_game_view: Metodi, jolla siirrytään uutta peliä edeltävään näkymään
-            quit_game_view: Metodi, jolla siirrytään sovelluksen sulkemisen näkymään
-            question_data = QuestionRepository-luokan olio
-            score_data = ScoreRepository-luokan olio
         """
 
         super().__init__(root)
         self._root = root
         self._view_manager = view_manager
-        self._question_repo = context['question_repo']
-        self._score_repo = context['score_repo']
-        self._question_service = QuestionService(self._question_repo)
-        self._score_service = ScoreService(self._score_repo)
+        self._question_service = context['question_service']
+        self._score_service = context['score_service']
         self._button_styles = ButtonStyles()
+
+        self._set_up_new_game()
+
+    def _set_up_new_game(self):
+        self._question_service.reset_index_list()
+        self._score_service.reset_current_score()
 
         self._initialize_subframes()
 
@@ -65,7 +56,7 @@ class GameplayView(BaseView):
         """Aloittaa pelinkulkua kuvaavan näkymän luomisen.
         """
 
-        self._question_service.set_next_question_key()
+        self._question_service.set_next_question_index()
 
         self._initialize_labels()
         self._initialize_buttons()
@@ -153,9 +144,9 @@ class GameplayView(BaseView):
             self._add_right_answer_widgets()
         else:
             self._change_button_red(click)
+            new_high_score = self._score_service._current_score > self._score_service.get_high_score()
             self._score_service.check_score()
-            self._score_service.store_high_scores()
-            self._add_wrong_answer_widgets()
+            self._add_wrong_answer_widgets(new_high_score)
 
     def _change_button_green(self, click):
         """Muuttaa käyttäjän painaman napin vihreäksi
@@ -221,7 +212,7 @@ class GameplayView(BaseView):
             row=3, column=0, padx=10, pady=10, sticky=tkinter.W)
 
 
-    def _add_wrong_answer_widgets(self):
+    def _add_wrong_answer_widgets(self, new_high_score):
         """Lisää väärän vastauksen jälkeen ikkunaan ilmaantuvat elementit.
         """
 
@@ -233,19 +224,19 @@ class GameplayView(BaseView):
         self.main_menu_button = ttk.Button(
             self._score_and_state_frame, text="MAIN MENU",
             style='custom.basic.TButton',
-            command=lambda: self._destroy_subframes(self._view_manager.go_to_main_menu_view)
+            command=lambda: self._exit_view(self._view_manager.go_to_main_menu_view)
         )
 
         self.new_game_button = ttk.Button(
             self._score_and_state_frame, text="NEW GAME",
             style='custom.basic.TButton',
-            command=lambda: self._destroy_subframes(self._view_manager.go_to_new_game_view)
+            command=lambda: self._exit_view(self._view_manager.go_to_new_game_view)
         )
 
         self.quit_game_button = ttk.Button(
             self._score_and_state_frame, text="QUIT",
             style='custom.basic.TButton',
-            command=lambda: self._destroy_subframes(self._view_manager.go_to_quit_view)
+            command=lambda: self._exit_view(self._view_manager.go_to_quit_view)
         )
 
         self.game_over_label.grid(
@@ -257,7 +248,7 @@ class GameplayView(BaseView):
         self.main_menu_button.grid(row=3, column=1, padx=10, pady=10)
         self.quit_game_button.grid(row=3, column=2, padx=10, pady=10)
 
-        if self._score_service._current_score == self._score_service.provide_high_score():
+        if new_high_score:
             self.high_score_label = tkinter.Label(
             self._score_and_state_frame, text='But you set the new high score \o/',
             font=("Verdana", 20, 'bold'), fg='white', bg='#013369'
@@ -284,7 +275,7 @@ class GameplayView(BaseView):
 
         self._initialize()
 
-    def _destroy_subframes(self, go_to_view):
+    def _destroy_subframes(self):
         """Poistaa näkymän alikehykset toisen luokan näkymään siirtymistä ennen.
 
         Args:
@@ -294,4 +285,8 @@ class GameplayView(BaseView):
         self._question_frame.destroy()
         self._options_frame.destroy()
         self._score_and_state_frame.destroy()
+
+    def _exit_view(self, go_to_view):
+        self._score_service.store_high_scores()
+        self._destroy_subframes()
         go_to_view()

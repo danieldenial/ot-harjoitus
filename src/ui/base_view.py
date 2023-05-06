@@ -14,9 +14,9 @@ class BaseView:
         _frame: Luokan luoman näkymän kehys
     """
 
-    w = 1280
-    h = 720
-    color = '#013369'
+    width = 1080
+    height = 720
+    BACKGROUND_COLOR = '#013369'
 
     def __init__(self, root):
         """Luokan konstruktori, joka alustaa uuden perusnäkymän.
@@ -27,8 +27,8 @@ class BaseView:
 
         self._root = root
         self._frame = tkinter.Frame(
-            self._root, bg=self.color,
-            width=self.w, height=self.h
+            self._root, bg=self.BACKGROUND_COLOR,
+            width=self.width, height=self.height
         )
 
     def pack(self):

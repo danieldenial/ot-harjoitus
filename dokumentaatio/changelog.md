@@ -47,3 +47,8 @@ mahdollista vielä parannella sekä siirtyä myös jatkokehitysideoiden toteutuk
 
 - Koodia on tiivistetty merkittävästi etenkin pelinkulun näkymästä 
 vastaavan GameplayView-luokan osalta.
+- Käyttäjä voi nyt valita joukkueen, jota hän ikään kuin edustaa pelissä, ja jonka nimiin hänen 
+saavuttamat pisteet laitetaan.
+- Käyttäjä pystyy tarkastelemaan parhaiden tulosten taulukkoa (high scores) ja halutessaan myös 
+nollaamaan sen.
+- Kysymysten määrä on yli kolminkertaistettu.

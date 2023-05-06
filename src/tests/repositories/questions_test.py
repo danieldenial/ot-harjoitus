@@ -14,82 +14,82 @@ class TestQuestions(unittest.TestCase):
         path = os.path.isfile(self.Qs._file_path)
         self.assertEqual(path, True)
 
-    def test_dictionary_is_not_empty(self):
-        self.assertGreater(len(self.Qs.questions_dictionary), 0)
+    def test_question_list_is_not_empty(self):
+        self.assertGreater(len(self.Qs.question_list), 0)
 
     def test_compare_questions(self):
         with open(self.Qs._file_path, mode='r', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile)
-            num = 1
+            index = 0
             for row in reader:
                 self.assertEqual(
                     row[0],
-                    self.Qs.questions_dictionary[num]['Question']
+                    self.Qs.question_list[index]['Question']
                 )
-                num += 1
+                index += 1
 
     def test_compare_option_A(self):
         with open(self.Qs._file_path, mode='r', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile)
-            num = 1
+            index = 0
             for row in reader:
                 self.assertEqual(
                     row[1],
-                    self.Qs.questions_dictionary[num]['A']
+                    self.Qs.question_list[index]['A']
                 )
-                num += 1
+                index += 1
 
     def test_compare_option_B(self):
         with open(self.Qs._file_path, mode='r', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile)
-            num = 1
+            index = 0
             for row in reader:
                 self.assertEqual(
                     row[2],
-                    self.Qs.questions_dictionary[num]['B']
+                    self.Qs.question_list[index]['B']
                 )
-                num += 1
+                index += 1
 
     def test_compare_option_C(self):
         with open(self.Qs._file_path, mode='r', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile)
-            num = 1
+            index = 0
             for row in reader:
                 self.assertEqual(
                     row[3],
-                    self.Qs.questions_dictionary[num]['C']
+                    self.Qs.question_list[index]['C']
                 )
-                num += 1
+                index += 1
 
     def test_compare_option_D(self):
         with open(self.Qs._file_path, mode='r', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile)
-            num = 1
+            index = 0
             for row in reader:
                 self.assertEqual(
                     row[4],
-                    self.Qs.questions_dictionary[num]['D']
+                    self.Qs.question_list[index]['D']
                 )
-                num += 1
+                index += 1
 
     def test_compare_answers(self):
         with open(self.Qs._file_path, mode='r', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile)
-            num = 1
+            index = 0
             for row in reader:
                 self.assertEqual(
                     row[5],
-                    self.Qs.questions_dictionary[num]['Answer']
+                    self.Qs.question_list[index]['Answer']
                 )
-                num += 1
+                index += 1
 
     def test_compare_details(self):
         with open(self.Qs._file_path, mode='r', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile)
-            num = 1
+            index = 0
             for row in reader:
                 self.assertEqual(
                     row[6],
-                    self.Qs.questions_dictionary[num]['Detail']
+                    self.Qs.question_list[index]['Detail']
                 )
-                num += 1
+                index += 1

@@ -1,4 +1,5 @@
 
+from ui.intro_view import IntroView
 from ui.main_menu_view import MainMenuView
 from ui.new_game_view import NewGameView
 from ui.gameplay_view import GameplayView
@@ -32,7 +33,7 @@ class UI:
         """Käynnistää sovelluksen kutsumalla sen luomisesta vastaavaa metodia.
         """
 
-        self.show_main_menu_view()
+        self.show_intro_view()
 
     def _hide_current_view(self):
         """Piilottaa nykyisen näkymän, jotta sovellus voi luoda uuden näkymän.
@@ -41,7 +42,18 @@ class UI:
         if self._current_view:
             self._current_view.destroy()
 
-        self.current_view = None
+        self._current_view = None
+
+    def show_intro_view(self):
+        self._hide_current_view()
+
+        self._current_view = IntroView(
+            self._root,
+            self._context,
+            self._view_manager
+        )
+
+        self._current_view.pack()
 
     def show_main_menu_view(self):
         """Kutsuu nykyisen näkymän piilottamisesta vastaavaa metodia 
@@ -100,6 +112,8 @@ class UI:
             self._view_manager            
         )
 
+        self._current_view.pack()
+
     def show_rules_view(self):
         """Kutsuu nykyisen näkymän piilottamisesta vastaavaa metodia 
         ja luo sitten pelin säännöt sisältävän näkymän.
@@ -124,12 +138,12 @@ class UI:
         self._current_view = QuitView(
             self._root,
             self._view_manager,
-            self._quit_game
+            self._quit_view_callback
         )
 
         self._current_view.pack()
 
-    def _quit_game(self):
+    def _quit_view_callback(self):
         """Sulkee sovelluksen.
         """
 
