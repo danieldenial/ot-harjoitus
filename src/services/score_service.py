@@ -1,6 +1,7 @@
+from repositories.high_score_repository import HighScoreRepository
 
 class ScoreService:
-    def __init__(self, score_repo):
+    def __init__(self, score_repo: HighScoreRepository):
         self._current_score = 0
         self._selected_team = None
         self._score_repo = score_repo

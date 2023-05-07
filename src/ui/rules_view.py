@@ -3,17 +3,16 @@ import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
 from ui.button_styles import ButtonStyles
-from ui.view_manager import ViewManager
 
 
 class RulesView(BaseView):
-    """Pelin säännöt näyttävä näkymä.
+    """Luokka, jonka avulla luodaan pelin säännöt näyttävä näkymä.
 
     Args:
         BaseView: Sovelluksen perusnäkymästä vastaava luokka
     """
 
-    def __init__(self, root, view_manager: ViewManager):
+    def __init__(self, root, main_menu_view):
         """Luokan konstruktori, joka alustaa pelin säännöt näyttävän näkymän.
 
         Args:
@@ -22,7 +21,7 @@ class RulesView(BaseView):
         """
 
         super().__init__(root)
-        self._view_manager = view_manager
+        self._handle_show_main_menu = main_menu_view
         self._button_style = ButtonStyles()
 
         self._initialize()
@@ -85,7 +84,7 @@ class RulesView(BaseView):
         back_button = ttk.Button(
             self._frame, text="BACK",
             padding=5, style='custom.basic.TButton',
-            command=self._view_manager.go_to_main_menu_view
+            command=self._handle_show_main_menu
         )
 
         back_button.grid(row=6, column=1, padx=30, pady=30)

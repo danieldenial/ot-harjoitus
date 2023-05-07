@@ -3,17 +3,16 @@ import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
 from ui.button_styles import ButtonStyles
-from ui.view_manager import ViewManager
 
 
 class MainMenuView(BaseView):
-    """Sovelluksen päävalikon näkymä.
+    """Luokka, jonka avulla luodaan sovelluksen päävalikon näkymä.
 
     Args:
         BaseView: Sovelluksen perusnäkymästä vastaava luokka
     """
 
-    def __init__(self, root, view_manager: ViewManager):
+    def __init__(self, root, views):
         """Luokan konstruktori, joka alustaa päävalikon näkymän.
 
         Args:
@@ -21,7 +20,10 @@ class MainMenuView(BaseView):
         """
 
         super().__init__(root)
-        self._view_manager = view_manager
+        self._handle_show_new_game_view = views['show_new_game']
+        self._handle_show_high_scores = views['show_high_scores']
+        self._handle_show_rules = views['show_rules']
+        self._handle_show_quit_view = views['show_quit']
         self._button_style = ButtonStyles()
 
         self._initialize()
@@ -60,23 +62,23 @@ class MainMenuView(BaseView):
         new_game_button = ttk.Button(
             self._frame, text="NEW GAME",
             style='custom.basic.TButton',
-            command=self._view_manager.go_to_new_game_view
+            command=self._handle_show_new_game_view
         )
 
         high_scores_button = ttk.Button(
             self._frame, text="HIGH SCORES",
             style='custom.basic.TButton',
-            command=self._view_manager.go_to_high_score_view
+            command=self._handle_show_high_scores
         )
         rules_button = ttk.Button(
             self._frame, text="RULES",
             style='custom.basic.TButton',
-            command=self._view_manager.go_to_rules_view
+            command=self._handle_show_rules
         )
         quit_button = ttk.Button(
             self._frame, text="QUIT",
             style='custom.basic.TButton',
-            command=self._view_manager.go_to_quit_view
+            command=self._handle_show_quit_view
         )
 
         new_game_button.grid(row=4, column=0)

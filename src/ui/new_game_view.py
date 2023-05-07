@@ -3,18 +3,17 @@ import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
 from ui.button_styles import ButtonStyles
-from ui.view_manager import ViewManager
 from services.score_service import ScoreService
 
 
 class NewGameView(BaseView):
-    """Uutta peliä edeltävä näkymä.
+    """Luokka, jonka avulla luodaan uutta peliä edeltävä näkymä.
 
     Args:
         BaseView: Sovelluksen perusnäkymästä vastaava luokka
     """
 
-    def __init__(self, root, score_service: ScoreService, view_manager: ViewManager):
+    def __init__(self, root, score_service: ScoreService, views):
         """Luokan konstruktori, joka alustaa uutta peliä edeltävän näkymän.
 
         Args:
@@ -24,8 +23,9 @@ class NewGameView(BaseView):
         """
 
         super().__init__(root)
-        self._view_manager = view_manager
         self._score_service = score_service
+        self._handle_show_gameplay_view = views['show_gameplay_view']
+        self._handle_show_main_menu = views['show_main_menu']
         self._button_style = ButtonStyles()
 
         self._initialize()
@@ -70,13 +70,13 @@ class NewGameView(BaseView):
         start_button = ttk.Button(
             self._frame, text="START GAME",
             padding=10, style='custom.basic.TButton',
-            command=self._view_manager.go_to_gameplay_view
+            command=self._handle_show_gameplay_view
         )
 
         back_button = ttk.Button(
             self._frame, text="BACK",
             padding=5, style='custom.basic.TButton',
-            command=self._view_manager.go_to_main_menu_view
+            command=self._handle_show_main_menu
         )
 
         start_button.grid(row=7, column=1)

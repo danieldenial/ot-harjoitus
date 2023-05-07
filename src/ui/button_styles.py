@@ -1,8 +1,9 @@
+
 from tkinter import ttk
 
 
 class ButtonStyles:
-    """Luokka, jonka vastuulla on erilaisten tyylien konfiguroiminen sovelluksen painikkeille.
+    """Luokka, jonka avulla konfiguroidaan sovelluksen painikkeille eri tyylejä.
 
     Attributes:
         _style: ttk-moduulin objekti, jota konfiguroidaan

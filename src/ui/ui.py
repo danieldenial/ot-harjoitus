@@ -6,7 +6,6 @@ from ui.gameplay_view import GameplayView
 from ui.high_score_view import HighScoreView
 from ui.rules_view import RulesView
 from ui.quit_view import QuitView
-from ui.view_manager import ViewManager
 
 
 class UI:
@@ -27,7 +26,6 @@ class UI:
         self._root = root
         self._question_service = context['question_service']
         self._score_service = context['score_service']
-        self._view_manager = ViewManager(self)
         self._current_view = None
 
     def start(self):
@@ -51,7 +49,7 @@ class UI:
         self._current_view = IntroView(
             self._root,
             self._score_service,
-            self._view_manager
+            self.show_main_menu_view
         )
 
         self._current_view.pack()
@@ -63,9 +61,16 @@ class UI:
 
         self._hide_current_view()
 
+        views = {
+            'show_new_game': self.show_new_game_view,
+            'show_high_scores': self.show_high_score_view,
+            'show_rules': self.show_rules_view,
+            'show_quit': self.show_quit_view
+        }
+
         self._current_view = MainMenuView(
             self._root,
-            self._view_manager
+            views
         )
 
         self._current_view.pack()
@@ -77,10 +82,15 @@ class UI:
 
         self._hide_current_view()
 
+        views = {
+            'show_gameplay_view': self.show_gameplay_view,
+            'show_main_menu': self.show_main_menu_view
+        }
+
         self._current_view = NewGameView(
             self._root,
             self._score_service,
-            self._view_manager
+            views
         )
 
         self._current_view.pack()
@@ -92,11 +102,17 @@ class UI:
 
         self._hide_current_view()
 
+        views = {
+            'show_main_menu': self.show_main_menu_view,
+            'show_new_game_view': self.show_new_game_view,
+            'show_quit_view': self.show_quit_view
+        }
+
         self._current_view = GameplayView(
             self._root,
             self._question_service,
             self._score_service,
-            self._view_manager
+            views
         )
 
         self._current_view.pack()
@@ -111,7 +127,7 @@ class UI:
         self._current_view = HighScoreView(
             self._root,
             self._score_service,
-            self._view_manager
+            self.show_main_menu_view
         )
 
         self._current_view.pack()
@@ -125,7 +141,7 @@ class UI:
 
         self._current_view = RulesView(
             self._root,
-            self._view_manager
+            self.show_main_menu_view
         )
 
         self._current_view.pack()
@@ -139,7 +155,7 @@ class UI:
 
         self._current_view = QuitView(
             self._root,
-            self._view_manager,
+            self.show_main_menu_view,
             self._quit_view_callback
         )
 

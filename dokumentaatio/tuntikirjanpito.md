@@ -27,4 +27,5 @@
 |  4.5. |  5   | Koodin tiivistämistä ja docstringin kirjoittamista.                      |
 |  5.5  |  5   | Käyttöliittymän toiminnallisuuksiin tehty isoja muutoksia.               |
 |  6.5. |  5   | Joukkuevalinnan ja parhaiden tulosten talletuksen/taulukon luomista.     |
-| Yht.  |  72  |                                                                          |
+|  7.5. |  2   | Käyttöliittymän muokkausta ja dokumentaation edistämistä.                |
+| Yht.  |  74  |                                                                          |

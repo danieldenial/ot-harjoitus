@@ -3,15 +3,31 @@ import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
 from ui.button_styles import ButtonStyles
-from ui.view_manager import ViewManager
 from services.score_service import ScoreService
 
 
 class HighScoreView(BaseView):
+    """Luokka, jonka avulla luodaan parhaat tulokset näyttävä näkymä.
 
-    def __init__(self, root, score_service: ScoreService, view_manager: ViewManager):
+    Args:
+        BaseView: Sovelluksen perusnäkymästä vastaava luokka, jonka HighScoreView perii.
+
+    Attributes:
+        _view_manager: Eri näkymien vaihtelusta vastaava luokkaolio
+        _score_service: Näkymän painikkeiden tyyleistä vastaava luokkaolio
+        _button_style: Pisteytykseen liittyvästä sovelluslogiikasta vastaava luokkaolio
+    """
+
+    def __init__(self, root, score_service: ScoreService, main_menu_view):
+        """Luokan konstruktori, joka alustaa sovelluksen avausnäkymän.
+
+        Args:
+            root (_type_): _description_
+            score_service (ScoreService): _description_
+            view_manager (ViewManager): _description_
+        """
         super().__init__(root)
-        self._view_manager = view_manager
+        self._handle_show_main_menu = main_menu_view
         self._score_service = score_service
         self._button_style = ButtonStyles()
 
@@ -62,7 +78,7 @@ class HighScoreView(BaseView):
         main_menu_button = ttk.Button(
             self._frame, text="MAIN MENU",
             style='custom.basic.TButton',
-            command=self._view_manager.go_to_main_menu_view
+            command=self._handle_show_main_menu
         )
 
         reset_scores_button.grid(row=2, column=1, pady=(50, 25))

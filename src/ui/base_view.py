@@ -4,14 +4,7 @@ from tkinter import constants
 
 
 class BaseView:
-    """Sovelluksen perusnäkymä, jonka kaikki käyttöliittymän näkymistä vastaavat luokat perivät.
-
-    Attributes:
-        w: Sovelluksen ikkunan oletusleveys
-        h: Sovelluksen ikkunan oletuskorkeus
-        color: Sovelluksen ikkunan oletustaustaväri
-        _root: Luokan juuri-ikkuna
-        _frame: Luokan luoman näkymän kehys
+    """Luokka, jonka avulla luodaan pohjakehys sovelluksen muita näkymiä varten.
     """
 
     width = 1080

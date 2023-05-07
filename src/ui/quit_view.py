@@ -3,17 +3,16 @@ import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
 from ui.button_styles import ButtonStyles
-from ui.view_manager import ViewManager
 
 
 class QuitView(BaseView):
-    """Sovelluksen sulkemista edeltävä näkymä.
+    """Luokka, jonka avulla luodaan sovelluksen sulkemista edeltävä näkymä.
 
     Args:
         BaseView: Sovelluksen perusnäkymästä vastaava luokka
     """
 
-    def __init__(self, root, view_manager: ViewManager, quit_game):
+    def __init__(self, root, main_menu_view, quit_game):
         """Luokan konstruktori, joka alustaa sovelluksen sulkemista edeltävän näkymän.
 
         Args:
@@ -24,7 +23,7 @@ class QuitView(BaseView):
 
         super().__init__(root)
         self._quit_game = quit_game
-        self._view_manager = view_manager
+        self._handle_show_main_menu = main_menu_view
         self._button_style = ButtonStyles()
 
         self._initialize()
@@ -64,7 +63,7 @@ class QuitView(BaseView):
         back_button = ttk.Button(
             self._frame, text="NO",
             padding=10, style='custom.basic.TButton',
-            command=self._view_manager.go_to_main_menu_view
+            command=self._handle_show_main_menu
         )
 
         quit_button.grid(row=3, column=1)
