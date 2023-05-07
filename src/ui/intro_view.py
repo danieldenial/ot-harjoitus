@@ -2,14 +2,17 @@ import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
 from ui.button_styles import ButtonStyles
+from ui.view_manager import ViewManager
+from services.score_service import ScoreService
+
 
 class IntroView(BaseView):
 
-    def __init__(self, root, context, view_manager):
+    def __init__(self, root, score_service: ScoreService, view_manager: ViewManager):
         super().__init__(root)
         self._view_manager = view_manager
-        self._score_service = context['score_service']
         self._button_style = ButtonStyles()
+        self._score_service = score_service
 
         self._initialize()
 
@@ -17,14 +20,14 @@ class IntroView(BaseView):
         self._initialize_labels()
         self._initialize_buttons()
         self._initialize_team_selection_menu()
-        self._adjust_elements()
+        self._adjust_grid()
 
     def _initialize_labels(self):
         welcome_text = tkinter.Label(
-                    self._frame, text="Welcome to Grididon Genius!",
-                    font=("Arial", 35), fg='white', bg="#013369"
-                )
-        
+            self._frame, text="Welcome to Grididon Genius!",
+            font=("Arial", 35), fg='white', bg="#013369"
+        )
+
         team_question_text = tkinter.Label(
             self._frame, text="Which team would you like to represent today?",
             font=("Arial", 30), fg='white', bg="#013369"
@@ -52,15 +55,17 @@ class IntroView(BaseView):
 
         self._score_service.change_selected_team(team_options[0])
 
-        selected_team.trace("w", lambda *args: self._score_service.change_selected_team(selected_team.get()))
+        selected_team.trace(
+            "w", lambda *args: self._score_service.change_selected_team(selected_team.get()))
 
-        dropdown_menu = tkinter.OptionMenu(self._frame, selected_team, *team_options)
+        dropdown_menu = tkinter.OptionMenu(
+            self._frame, selected_team, *team_options)
 
         dropdown_menu.config(font=('Arial', 20))
 
         dropdown_menu.grid(row=5, column=1, padx=0, pady=50)
 
-    def _adjust_elements(self):
+    def _adjust_grid(self):
         self._frame.grid_rowconfigure(0, minsize=100)
         self._frame.grid_rowconfigure(2, minsize=25)
         self._frame.grid_rowconfigure(4, minsize=25)

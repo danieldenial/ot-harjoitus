@@ -3,6 +3,7 @@ import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
 from ui.button_styles import ButtonStyles
+from ui.view_manager import ViewManager
 
 
 class QuitView(BaseView):
@@ -12,7 +13,7 @@ class QuitView(BaseView):
         BaseView: Sovelluksen perusnäkymästä vastaava luokka
     """
 
-    def __init__(self, root, view_manager, quit_game):
+    def __init__(self, root, view_manager: ViewManager, quit_game):
         """Luokan konstruktori, joka alustaa sovelluksen sulkemista edeltävän näkymän.
 
         Args:
@@ -35,7 +36,7 @@ class QuitView(BaseView):
 
         self._initialize_texts()
         self._initialize_buttons()
-        self._adjust_elements()
+        self._adjust_grid()
 
     def _initialize_texts(self):
         """Luo näkymään kuuluvat tekstit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
@@ -69,7 +70,7 @@ class QuitView(BaseView):
         quit_button.grid(row=3, column=1)
         back_button.grid(row=5, column=1)
 
-    def _adjust_elements(self):
+    def _adjust_grid(self):
         """Auttaa säätämään muiden elementtien sijainteja.
         (Tätä metodia ei lopulta varmaan tarvita, 
         kunhan luokan muut metodit toteutetaan ensin vähän paremmin.)

@@ -3,6 +3,7 @@ import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
 from ui.button_styles import ButtonStyles
+from ui.view_manager import ViewManager
 from services.score_service import ScoreService
 
 
@@ -13,7 +14,7 @@ class NewGameView(BaseView):
         BaseView: Sovelluksen perusnäkymästä vastaava luokka
     """
 
-    def __init__(self, root, context, view_manager):
+    def __init__(self, root, score_service: ScoreService, view_manager: ViewManager):
         """Luokan konstruktori, joka alustaa uutta peliä edeltävän näkymän.
 
         Args:
@@ -23,9 +24,8 @@ class NewGameView(BaseView):
         """
 
         super().__init__(root)
-        self._root = root
         self._view_manager = view_manager
-        self._score_service = context['score_service']
+        self._score_service = score_service
         self._button_style = ButtonStyles()
 
         self._initialize()
@@ -37,7 +37,7 @@ class NewGameView(BaseView):
 
         self._initialize_labels()
         self._initialize_buttons()
-        self._adjust_elements()
+        self._adjust_grid()
 
     def _initialize_labels(self):
         """Luo näkymään kuuluvat tekstit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
@@ -82,7 +82,7 @@ class NewGameView(BaseView):
         start_button.grid(row=7, column=1)
         back_button.grid(row=9, column=1)
 
-    def _adjust_elements(self):
+    def _adjust_grid(self):
         """Auttaa säätämään muiden elementtien sijainteja.
         (Tätä metodia ei lopulta varmaan tarvita,
         kunhan luokan muut metodit toteutetaan ensin vähän paremmin.)

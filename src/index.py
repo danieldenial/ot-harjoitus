@@ -8,6 +8,7 @@ from repositories.high_score_repository import HighScoreRepository
 
 BACKGROUND_COLOR = '#013369'
 
+
 def main():
     window = Tk()
     window.title("Gridiron Genius: An NFL Trivia Game")
@@ -23,7 +24,7 @@ def main():
     context = {
         'question_service': question_service,
         'score_service': score_service
-        }
+    }
 
     view = UI(window, context)
     view.start()

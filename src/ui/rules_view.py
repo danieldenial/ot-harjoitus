@@ -3,6 +3,7 @@ import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
 from ui.button_styles import ButtonStyles
+from ui.view_manager import ViewManager
 
 
 class RulesView(BaseView):
@@ -12,7 +13,7 @@ class RulesView(BaseView):
         BaseView: Sovelluksen perusnäkymästä vastaava luokka
     """
 
-    def __init__(self, root, view_manager):
+    def __init__(self, root, view_manager: ViewManager):
         """Luokan konstruktori, joka alustaa pelin säännöt näyttävän näkymän.
 
         Args:
@@ -33,7 +34,7 @@ class RulesView(BaseView):
 
         self._initialize_labels()
         self._initialize_buttons()
-        self._adjust_elements()
+        self._adjust_grid()
 
     def _initialize_labels(self):
         """Luo näkymään kuuluvat tekstit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
@@ -69,7 +70,7 @@ class RulesView(BaseView):
             font=("Arial", 25), fg='white', bg="#013369"
         )
 
-        rules_text_1.grid(row=0, column=1, sticky="nsew", pady=(100,20))
+        rules_text_1.grid(row=0, column=1, sticky="nsew", pady=(100, 20))
         rules_text_2.grid(row=1, column=1, pady=20)
         rules_text_3.grid(row=2, column=1, pady=20)
         rules_text_4.grid(row=3, column=1, pady=20)
@@ -89,9 +90,16 @@ class RulesView(BaseView):
 
         back_button.grid(row=6, column=1, padx=30, pady=30)
 
-    def _adjust_elements(self):
+    def _adjust_grid(self):
         """Auttaa säätämään muiden elementtien sijainteja.
         """
+
+        self._frame.grid_rowconfigure(0, weight=1)
+        self._frame.grid_rowconfigure(1, weight=1)
+        self._frame.grid_rowconfigure(2, weight=1)
+        self._frame.grid_rowconfigure(3, weight=1)
+        self._frame.grid_rowconfigure(4, weight=1)
+        self._frame.grid_rowconfigure(5, weight=2)
 
         self._frame.grid_columnconfigure(0, weight=1)
         self._frame.grid_columnconfigure(1, weight=1)

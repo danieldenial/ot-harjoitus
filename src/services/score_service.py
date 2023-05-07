@@ -34,7 +34,8 @@ class ScoreService:
 
     def check_score(self):
         if self._current_score > min(self._score_repo.get_high_scores_list())[0]:
-            self._score_repo.add_new_score_to_list(self._current_score, self._selected_team)
+            self._score_repo.add_new_score_to_list(
+                self._current_score, self._selected_team)
 
     def store_high_scores(self):
         self._score_repo.write_high_scores_to_file()

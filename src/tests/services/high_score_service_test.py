@@ -15,7 +15,8 @@ class TestHighScoreService(unittest.TestCase):
         self.assertEqual(self.HS.get_current_score(), comparison)
 
     def test_get_high_score(self):
-        self.assertEqual(self._score_data.get_high_score(), self.HS.get_high_score())
+        self.assertEqual(self._score_data.get_high_score(),
+                         self.HS.get_high_score())
 
     def test_increase_score(self):
         score = self.HS._current_score

@@ -3,6 +3,9 @@ import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
 from ui.button_styles import ButtonStyles
+from ui.view_manager import ViewManager
+from services.question_service import QuestionService
+from services.score_service import ScoreService
 
 
 class GameplayView(BaseView):
@@ -15,7 +18,10 @@ class GameplayView(BaseView):
         _root: Luokan juuri-ikkuna
     """
 
-    def __init__(self, root, context, view_manager):
+    def __init__(self, root, 
+                question_service: QuestionService,
+                score_service: ScoreService,
+                view_manager: ViewManager):
         """Luokan konstruktori, joka alustaa pelinkulkua kuvaavan näkymän.
 
         Args:
@@ -23,10 +29,9 @@ class GameplayView(BaseView):
         """
 
         super().__init__(root)
-        self._root = root
+        self._question_service = question_service
+        self._score_service = score_service
         self._view_manager = view_manager
-        self._question_service = context['question_service']
-        self._score_service = context['score_service']
         self._button_styles = ButtonStyles()
 
         self._set_up_new_game()
@@ -140,11 +145,14 @@ class GameplayView(BaseView):
         if self._question_service.check_answer(answer):
             self._change_button_green(click)
             self._score_service.increase_score()
-            self.score_label.config(text=self._score_service.get_current_score())
+            self.score_label.config(
+                text=self._score_service.get_current_score())
             self._add_right_answer_widgets()
         else:
             self._change_button_red(click)
-            new_high_score = self._score_service._current_score > self._score_service.get_high_score()
+            new_high_score = (
+                self._score_service._current_score > self._score_service.get_high_score()
+            )
             self._score_service.check_score()
             self._add_wrong_answer_widgets(new_high_score)
 
@@ -159,7 +167,6 @@ class GameplayView(BaseView):
         self._button_styles.configure_right_answer_style()
 
         self.buttons[click].configure(style='custom.green.TButton')
-
 
     def _change_button_red(self, click):
         """Muuttaa käyttäjän painaman napin punaiseksi
@@ -211,7 +218,6 @@ class GameplayView(BaseView):
         self.continue_button.grid(
             row=3, column=0, padx=10, pady=10, sticky=tkinter.W)
 
-
     def _add_wrong_answer_widgets(self, new_high_score):
         """Lisää väärän vastauksen jälkeen ikkunaan ilmaantuvat elementit.
         """
@@ -224,13 +230,15 @@ class GameplayView(BaseView):
         self.main_menu_button = ttk.Button(
             self._score_and_state_frame, text="MAIN MENU",
             style='custom.basic.TButton',
-            command=lambda: self._exit_view(self._view_manager.go_to_main_menu_view)
+            command=lambda: self._exit_view(
+                self._view_manager.go_to_main_menu_view)
         )
 
         self.new_game_button = ttk.Button(
             self._score_and_state_frame, text="NEW GAME",
             style='custom.basic.TButton',
-            command=lambda: self._exit_view(self._view_manager.go_to_new_game_view)
+            command=lambda: self._exit_view(
+                self._view_manager.go_to_new_game_view)
         )
 
         self.quit_game_button = ttk.Button(
@@ -250,8 +258,8 @@ class GameplayView(BaseView):
 
         if new_high_score:
             self.high_score_label = tkinter.Label(
-            self._score_and_state_frame, text='But you set the new high score \o/',
-            font=("Verdana", 20, 'bold'), fg='white', bg='#013369'
+                self._score_and_state_frame, text='But you set the new high score \o/',
+                font=("Verdana", 20, 'bold'), fg='white', bg='#013369'
             )
 
             self.high_score_label.grid(

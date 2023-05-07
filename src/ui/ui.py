@@ -25,7 +25,8 @@ class UI:
         """
 
         self._root = root
-        self._context = context
+        self._question_service = context['question_service']
+        self._score_service = context['score_service']
         self._view_manager = ViewManager(self)
         self._current_view = None
 
@@ -49,7 +50,7 @@ class UI:
 
         self._current_view = IntroView(
             self._root,
-            self._context,
+            self._score_service,
             self._view_manager
         )
 
@@ -78,7 +79,7 @@ class UI:
 
         self._current_view = NewGameView(
             self._root,
-            self._context,
+            self._score_service,
             self._view_manager
         )
 
@@ -93,7 +94,8 @@ class UI:
 
         self._current_view = GameplayView(
             self._root,
-            self._context,
+            self._question_service,
+            self._score_service,
             self._view_manager
         )
 
@@ -108,8 +110,8 @@ class UI:
 
         self._current_view = HighScoreView(
             self._root,
-            self._context,
-            self._view_manager            
+            self._score_service,
+            self._view_manager
         )
 
         self._current_view.pack()

@@ -3,6 +3,7 @@ import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
 from ui.button_styles import ButtonStyles
+from ui.view_manager import ViewManager
 
 
 class MainMenuView(BaseView):
@@ -12,7 +13,7 @@ class MainMenuView(BaseView):
         BaseView: Sovelluksen perusnäkymästä vastaava luokka
     """
 
-    def __init__(self, root, view_manager):
+    def __init__(self, root, view_manager: ViewManager):
         """Luokan konstruktori, joka alustaa päävalikon näkymän.
 
         Args:
@@ -32,7 +33,7 @@ class MainMenuView(BaseView):
 
         self._initialize_labels()
         self._initialize_buttons()
-        self._adjust_elements()
+        self._adjust_grid()
 
     def _initialize_labels(self):
         """Luo näkymään kuuluvat tekstit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
@@ -83,7 +84,7 @@ class MainMenuView(BaseView):
         rules_button.grid(row=4, column=2)
         quit_button.grid(row=4, column=3)
 
-    def _adjust_elements(self):
+    def _adjust_grid(self):
         """Auttaa säätämään muiden elementtien sijainteja.
         (Tätä metodia ei lopulta varmaan tarvita, 
         kunhan luokan muut metodit toteutetaan ensin vähän paremmin.)
