@@ -29,7 +29,7 @@ class HighScoreView(BaseView):
         super().__init__(root)
         self._handle_show_main_menu = main_menu_view
         self._score_service = score_service
-        self._button_style = ButtonStyles()
+        self._button_style = ButtonStyles(self.height)
 
         self._initialize()
 
@@ -37,16 +37,15 @@ class HighScoreView(BaseView):
         self._initialize_labels()
         self._initialize_high_scores_table()
         self._initialize_buttons()
-        self._adjust_grid()
 
     def _initialize_labels(self):
         intro_text = tkinter.Label(
             self._frame,
             text="These are the high scores – so far.",
-            font=("Arial", 30), fg='white', bg="#013369"
+            font=("Arial", round((self.height*0.04))), fg='white', bg="#013369"
         )
 
-        intro_text.grid(row=0, column=1, pady=(100, 50))
+        intro_text.place(relx=0.5, rely=0.2, anchor='center')
 
     def _initialize_high_scores_table(self):
         high_scores = self._score_service.get_high_scores_list()
@@ -60,11 +59,12 @@ class HighScoreView(BaseView):
         i = 1
 
         for score in high_scores:
-            self._table.insert(parent='', index='end', iid=i,
-                               text=i, values=(score[1], score[0]))
+            self._table.insert(
+                parent='', index='end', iid=i,text=i, values=(score[1], score[0])
+                )
             i += 1
 
-        self._table.grid(row=1, column=1)
+        self._table.place(relx=0.5, rely=0.5, anchor='center')
 
     def _initialize_buttons(self):
         self._button_style.configure_basic_style()
@@ -81,15 +81,10 @@ class HighScoreView(BaseView):
             command=self._handle_show_main_menu
         )
 
-        reset_scores_button.grid(row=2, column=1, pady=(50, 25))
-        main_menu_button.grid(row=3, column=1)
-
-    def _adjust_grid(self):
-        self._frame.grid_columnconfigure(0, weight=1)
-        self._frame.grid_columnconfigure(1, weight=1)
-        self._frame.grid_columnconfigure(2, weight=1)
+        reset_scores_button.place(relx=0.4, rely=0.8, anchor='center')
+        main_menu_button.place(relx=0.6, rely=0.8, anchor='center')
 
     def _update_table(self):
-        self._score_service.reset_high_score_list()
+        self._score_service.reset_high_scores_list()
         for i in range(1, 11):
             self._table.item(i, values=('N/A', 0))

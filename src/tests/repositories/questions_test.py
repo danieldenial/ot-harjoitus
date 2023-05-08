@@ -93,3 +93,21 @@ class TestQuestions(unittest.TestCase):
                     self.Qs.question_list[index]['Detail']
                 )
                 index += 1
+
+    def test_is_answer_in_options(self):
+        for i in range(len(self.Qs.question_list)):
+            is_true = False
+            answer = self.Qs.question_list[i]['Answer']
+            options = [
+                self.Qs.question_list[i]['A'],
+                self.Qs.question_list[i]['B'],
+                self.Qs.question_list[i]['C'],
+                self.Qs.question_list[i]['D']
+            ]
+            if self.is_value_in_list(answer, options) == True:
+                is_true = True
+
+            self.assertEqual(is_true, True)
+
+    def is_value_in_list(self, answer, options):
+        return answer in options

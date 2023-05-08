@@ -24,7 +24,7 @@ class QuitView(BaseView):
         super().__init__(root)
         self._quit_game = quit_game
         self._handle_show_main_menu = main_menu_view
-        self._button_style = ButtonStyles()
+        self._button_style = ButtonStyles(self.height)
 
         self._initialize()
 
@@ -35,7 +35,6 @@ class QuitView(BaseView):
 
         self._initialize_texts()
         self._initialize_buttons()
-        self._adjust_grid()
 
     def _initialize_texts(self):
         """Luo näkymään kuuluvat tekstit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
@@ -43,10 +42,10 @@ class QuitView(BaseView):
 
         quit_game_text_1 = tkinter.Label(
             self._frame, text="Quit game?",
-            font=("Arial", 40), fg='white', bg="#013369"
+            font=("Arial", round(self.height*0.05)), fg='white', bg="#013369"
         )
 
-        quit_game_text_1.grid(row=1, column=1)
+        quit_game_text_1.place(relx=0.5, rely=0.4, anchor='center')
 
     def _initialize_buttons(self):
         """Luo näkymään kuuluvat napit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
@@ -57,7 +56,7 @@ class QuitView(BaseView):
         quit_button = ttk.Button(
             self._frame, text="YES",
             padding=10, style='custom.basic.TButton',
-            command=lambda: self._quit_game()
+            command=self._quit_game
         )
 
         back_button = ttk.Button(
@@ -66,19 +65,5 @@ class QuitView(BaseView):
             command=self._handle_show_main_menu
         )
 
-        quit_button.grid(row=3, column=1)
-        back_button.grid(row=5, column=1)
-
-    def _adjust_grid(self):
-        """Auttaa säätämään muiden elementtien sijainteja.
-        (Tätä metodia ei lopulta varmaan tarvita, 
-        kunhan luokan muut metodit toteutetaan ensin vähän paremmin.)
-        """
-
-        self._frame.grid_rowconfigure(0, minsize=200)
-        self._frame.grid_rowconfigure(2, minsize=25)
-        self._frame.grid_rowconfigure(4, minsize=25)
-
-        self._frame.grid_columnconfigure(0, weight=1)
-        self._frame.grid_columnconfigure(1, weight=1)
-        self._frame.grid_columnconfigure(2, weight=1)
+        quit_button.place(relx=0.5, rely=0.5, anchor='center')
+        back_button.place(relx=0.5, rely=0.6, anchor='center')

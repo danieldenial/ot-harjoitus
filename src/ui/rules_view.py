@@ -22,7 +22,7 @@ class RulesView(BaseView):
 
         super().__init__(root)
         self._handle_show_main_menu = main_menu_view
-        self._button_style = ButtonStyles()
+        self._button_style = ButtonStyles(self.height)
 
         self._initialize()
 
@@ -33,7 +33,6 @@ class RulesView(BaseView):
 
         self._initialize_labels()
         self._initialize_buttons()
-        self._adjust_grid()
 
     def _initialize_labels(self):
         """Luo näkymään kuuluvat tekstit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
@@ -42,38 +41,39 @@ class RulesView(BaseView):
         rules_text_1 = tkinter.Label(
             self._frame,
             text="Gridiron Genius is a multiple choice trivia game about the NFL.",
-            font=("Arial", 25), fg='white', bg="#013369"
+            font=("Arial", round(self.height*0.035)), fg='white', bg="#013369"
         )
 
         rules_text_2 = tkinter.Label(
             self._frame,
             text="Once you start the game, you will see a question and four options.",
-            font=("Arial", 25), fg='white', bg="#013369"
+            font=("Arial", round(self.height*0.035)), fg='white', bg="#013369"
         )
 
         rules_text_3 = tkinter.Label(
             self._frame,
             text="Click on A, B, C or D to select the answer you think is correct.",
-            font=("Arial", 25), fg='white', bg="#013369"
+            font=("Arial", round(self.height*0.035)), fg='white', bg="#013369"
         )
 
         rules_text_4 = tkinter.Label(
             self._frame,
             text="You will get 1 point for each right answer.",
-            font=("Arial", 25), fg='white', bg="#013369"
+            font=("Arial", round(self.height*0.035)), fg='white', bg="#013369"
         )
 
         rules_text_5 = tkinter.Label(
             self._frame,
             text="All questions and answers are valid as of May 2023.",
-            font=("Arial", 25), fg='white', bg="#013369"
+            font=("Arial", round(self.height*0.035)), fg='white', bg="#013369"
         )
 
-        rules_text_1.grid(row=0, column=1, sticky="nsew", pady=(100, 20))
-        rules_text_2.grid(row=1, column=1, pady=20)
-        rules_text_3.grid(row=2, column=1, pady=20)
-        rules_text_4.grid(row=3, column=1, pady=20)
-        rules_text_5.grid(row=4, column=1, pady=20)
+        rules_text_1.place(relx=0.5, rely=0.2, anchor='center')
+        rules_text_2.place(relx=0.5, rely=0.3, anchor='center')
+        rules_text_3.place(relx=0.5, rely=0.4, anchor='center')
+        rules_text_4.place(relx=0.5, rely=0.5, anchor='center')
+        rules_text_5.place(relx=0.5, rely=0.6, anchor='center')
+
 
     def _initialize_buttons(self):
         """Luo näkymään kuuluvat napit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
@@ -87,7 +87,7 @@ class RulesView(BaseView):
             command=self._handle_show_main_menu
         )
 
-        back_button.grid(row=6, column=1, padx=30, pady=30)
+        back_button.place(relx=0.5, rely=0.75, anchor='center')
 
     def _adjust_grid(self):
         """Auttaa säätämään muiden elementtien sijainteja.

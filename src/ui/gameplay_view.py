@@ -21,7 +21,7 @@ class GameplayView(BaseView):
         _button_styles: Näkymän painikkeiden tyyleistä vastaava luokkaolio
     """
 
-    def __init__(self, root, 
+    def __init__(self, root,
                 question_service: QuestionService,
                 score_service: ScoreService,
                 views):
@@ -40,7 +40,7 @@ class GameplayView(BaseView):
         self._handle_show_main_menu = views['show_main_menu']
         self._handle_show_new_game_view = views['show_new_game_view']
         self._handle_show_quit_view = views['show_quit_view']
-        self._button_styles = ButtonStyles()
+        self._button_styles = ButtonStyles(self.height)
 
         self._initialize()
 
@@ -100,8 +100,8 @@ class GameplayView(BaseView):
 
         self.question_label = tkinter.Label(
             self._question_frame, text=question_text,
-            font=("Verdana", 25, "bold"), fg='white', bg='#013369',
-            wraplength=1000, anchor=tkinter.W, justify=tkinter.LEFT
+            font=("Verdana", round(self.height*0.035), "bold"), fg='white', bg='#013369',
+            wraplength=(self.width*0.95), anchor=tkinter.W, justify=tkinter.LEFT
         )
 
         option_labels = []
@@ -109,13 +109,13 @@ class GameplayView(BaseView):
         for i in range(4):
             label = tkinter.Label(
                 self._options_frame, text=self.options[i],
-                font=("Verdana", 25), fg='white', bg='#013369'
+                font=("Verdana", round(self.height*0.035)), fg='white', bg='#013369'
             )
             option_labels.append(label)
 
         self.score_label = tkinter.Label(
-            self._score_and_state_frame, text=self._score_service.get_current_score(),
-            font=("Verdana", 16, "bold"), fg='white', bg='#013369'
+            self._score_and_state_frame, text=self._score_service.get_current_score_text(),
+            font=("Verdana", round(self.height*0.025), "bold"), fg='white', bg='#013369'
         )
 
         self.question_label.grid(
@@ -173,12 +173,12 @@ class GameplayView(BaseView):
             self._change_button_green(click)
             self._score_service.increase_score()
             self.score_label.config(
-                text=self._score_service.get_current_score())
+                text=self._score_service.get_current_score_text())
             self._add_right_answer_widgets()
         else:
             self._change_button_red(click)
             new_high_score = (
-                self._score_service._current_score > self._score_service.get_high_score()
+                self._score_service.get_current_score() > self._score_service.get_high_score()
             )
             self._score_service.check_score()
             self._add_wrong_answer_widgets(new_high_score)
@@ -223,19 +223,19 @@ class GameplayView(BaseView):
 
         self.correct_label = tkinter.Label(
             self._score_and_state_frame, text='That is correct!',
-            font=("Verdana", 20, 'bold'), fg='white', bg='#013369'
+            font=("Verdana", round(self.height*0.03), 'bold'), fg='white', bg='#013369'
         )
 
         self.detail_label = tkinter.Label(
             self._score_and_state_frame, text=detail,
-            font=("Verdana", 18), fg='white', bg='#013369',
-            wraplength=1000, anchor=tkinter.W, justify=tkinter.LEFT
+            font=("Verdana", round(self.height*0.0275)), fg='white', bg='#013369',
+            wraplength=(self.width*0.95), anchor=tkinter.W, justify=tkinter.LEFT
         )
 
         self.continue_button = ttk.Button(
             self._score_and_state_frame, text="CONTINUE",
             style='custom.basic.TButton',
-            command=lambda: self._update_view()
+            command=self._update_view
         )
 
         self.correct_label.grid(row=1, column=0, padx=5,
@@ -254,7 +254,7 @@ class GameplayView(BaseView):
 
         self.game_over_label = tkinter.Label(
             self._score_and_state_frame, text='Oops, game over!',
-            font=("Verdana", 20, 'bold'), fg='white', bg='#013369'
+            font=("Verdana", round(self.height*0.03), 'bold'), fg='white', bg='#013369'
         )
 
         self.main_menu_button = ttk.Button(
@@ -287,7 +287,7 @@ class GameplayView(BaseView):
         if new_high_score:
             self.high_score_label = tkinter.Label(
                 self._score_and_state_frame, text='But you set the new high score \o/',
-                font=("Verdana", 20, 'bold'), fg='white', bg='#013369'
+                font=("Verdana", round(self.height*0.03)), fg='white', bg='#013369'
             )
 
             self.high_score_label.grid(

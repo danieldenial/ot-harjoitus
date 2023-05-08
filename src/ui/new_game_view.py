@@ -26,7 +26,7 @@ class NewGameView(BaseView):
         self._score_service = score_service
         self._handle_show_gameplay_view = views['show_gameplay_view']
         self._handle_show_main_menu = views['show_main_menu']
-        self._button_style = ButtonStyles()
+        self._button_style = ButtonStyles(self.height)
 
         self._initialize()
 
@@ -37,7 +37,6 @@ class NewGameView(BaseView):
 
         self._initialize_labels()
         self._initialize_buttons()
-        self._adjust_grid()
 
     def _initialize_labels(self):
         """Luo näkymään kuuluvat tekstit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
@@ -45,21 +44,21 @@ class NewGameView(BaseView):
 
         new_game_text_1 = tkinter.Label(
             self._frame, text="Time for a new game!",
-            font=("Arial", 35), fg='white', bg="#013369"
+            font=("Arial", round(self.height*0.05)), fg='white', bg="#013369"
         )
         new_game_text_2 = tkinter.Label(
             self._frame,
             text=f"The current high score is {self._score_service.get_high_score()}.",
-            font=("Arial", 30), fg='white', bg="#013369"
+            font=("Arial", round(self.height*0.05)), fg='white', bg="#013369"
         )
         new_game_text_3 = tkinter.Label(
             self._frame, text="Can you beat it?",
-            font=("Arial", 30), fg='white', bg="#013369"
+            font=("Arial", round(self.height*0.05)), fg='white', bg="#013369"
         )
 
-        new_game_text_1.grid(row=1, column=1)
-        new_game_text_2.grid(row=3, column=1)
-        new_game_text_3.grid(row=5, column=1)
+        new_game_text_1.place(relx=0.5, rely=0.2, anchor='center')
+        new_game_text_2.place(relx=0.5, rely=0.3, anchor='center')
+        new_game_text_3.place(relx=0.5, rely=0.4, anchor='center')
 
     def _initialize_buttons(self):
         """Luo näkymään kuuluvat napit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
@@ -79,8 +78,8 @@ class NewGameView(BaseView):
             command=self._handle_show_main_menu
         )
 
-        start_button.grid(row=7, column=1)
-        back_button.grid(row=9, column=1)
+        start_button.place(relx=0.5, rely=0.6, anchor='center')
+        back_button.place(relx=0.5, rely=0.7, anchor='center')
 
     def _adjust_grid(self):
         """Auttaa säätämään muiden elementtien sijainteja.

@@ -24,7 +24,7 @@ class MainMenuView(BaseView):
         self._handle_show_high_scores = views['show_high_scores']
         self._handle_show_rules = views['show_rules']
         self._handle_show_quit_view = views['show_quit']
-        self._button_style = ButtonStyles()
+        self._button_style = ButtonStyles(self.height)
 
         self._initialize()
 
@@ -35,7 +35,6 @@ class MainMenuView(BaseView):
 
         self._initialize_labels()
         self._initialize_buttons()
-        self._adjust_grid()
 
     def _initialize_labels(self):
         """Luo näkymään kuuluvat tekstit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
@@ -43,15 +42,15 @@ class MainMenuView(BaseView):
 
         h1_label = tkinter.Label(
             self._frame, text="Gridiron Genius",
-            font=("Verdana", 40, "bold"), fg='white', bg="#013369"
+            font=("Verdana", round(self.height*0.055), "bold"), fg='white', bg="#013369"
         )
         h2_label = tkinter.Label(
             self._frame, text="An NFL Trivia Game",
-            font=("Verdana", 30), fg='white', bg="#013369"
+            font=("Verdana", round(self.height*0.045)), fg='white', bg="#013369"
         )
 
-        h1_label.grid(row=1, column=1, columnspan=2)
-        h2_label.grid(row=2, column=1, columnspan=2)
+        h1_label.place(relx=0.5, rely=0.25, anchor='center')
+        h2_label.place(relx=0.5, rely=0.35, anchor='center')
 
     def _initialize_buttons(self):
         """Luo näkymään kuuluvat napit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
@@ -81,21 +80,7 @@ class MainMenuView(BaseView):
             command=self._handle_show_quit_view
         )
 
-        new_game_button.grid(row=4, column=0)
-        high_scores_button.grid(row=4, column=1)
-        rules_button.grid(row=4, column=2)
-        quit_button.grid(row=4, column=3)
-
-    def _adjust_grid(self):
-        """Auttaa säätämään muiden elementtien sijainteja.
-        (Tätä metodia ei lopulta varmaan tarvita, 
-        kunhan luokan muut metodit toteutetaan ensin vähän paremmin.)
-        """
-
-        self._frame.grid_rowconfigure(0, minsize=100)
-        self._frame.grid_rowconfigure(3, minsize=50)
-
-        self._frame.grid_columnconfigure(0, weight=1)
-        self._frame.grid_columnconfigure(1, weight=1)
-        self._frame.grid_columnconfigure(2, weight=1)
-        self._frame.grid_columnconfigure(3, weight=1)
+        new_game_button.place(relx=0.2, rely=0.6, anchor='center')
+        high_scores_button.place(relx=0.4, rely=0.6, anchor='center')
+        rules_button.place(relx=0.6, rely=0.6, anchor='center')
+        quit_button.place(relx=0.8, rely=0.6, anchor='center')

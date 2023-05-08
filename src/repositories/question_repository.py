@@ -1,8 +1,16 @@
+
 import csv
 from pathlib import Path
 
 
 class QuestionRepository:
+    """Luokka, joka vastaa kysymysdatan talletuksesta.
+
+    Attributes:
+        question_list: Kysymysdataa varten luotava lista
+        _file_path: Kysymysdatan sisältävän tiedoston polku
+    """
+
     def __init__(self):
         self.question_list = []
         self._file_path = Path(__file__).resolve(

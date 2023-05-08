@@ -1,25 +1,37 @@
+
 from repositories.high_score_repository import HighScoreRepository
 
 class ScoreService:
+    """Luokka, jonka avulla hallinnoidaan pisteiden käsittelyä.
+
+    Attributes:
+        _current_score: Nykyinen pistemäärä
+        _selected_team: Valittu joukkue
+        _score_repo: Parhaiden pisteiden talletuksesta vastaava luokkaolio
+    """
+
     def __init__(self, score_repo: HighScoreRepository):
         self._current_score = 0
         self._selected_team = None
         self._score_repo = score_repo
 
     def get_current_score(self):
+        return self._current_score
+
+    def get_current_score_text(self):
         return f"Score: {self._current_score}"
 
     def reset_current_score(self):
         self._current_score = 0
-
-    def reset_high_score_list(self):
-        self._score_repo.reset_high_scores()
 
     def get_high_score(self):
         return self._score_repo.get_high_score()
 
     def get_high_scores_list(self):
         return self._score_repo.get_high_scores_list()
+
+    def reset_high_scores_list(self):
+        self._score_repo.reset_high_scores()
 
     def get_team_names(self):
         return self._score_repo.get_team_name_list()

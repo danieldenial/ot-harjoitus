@@ -4,6 +4,15 @@ import csv
 
 
 class HighScoreRepository:
+    """Luokka, joka vastaa parhaiden pistesuoritusten talletuksesta.
+
+    Attributes:
+        _high_scores: Parhaiden pistesuoritusten lista
+        _team_names: Valittavien joukkueiden lista
+        _score_file_path: Parhaat tulokset sisältävän tiedoston polku
+        _name_file_path: Joukkueiden nimet sisältävän tiedoston polku
+    """
+
     def __init__(self):
         self._high_scores = []
         self._team_names = []
@@ -31,8 +40,7 @@ class HighScoreRepository:
                 for row in reader:
                     self._team_names.append(row[0])
         except (FileNotFoundError, ValueError, StopIteration):
-            self._team_names.append("AFC")
-            self._team_names.append("NFC")
+            self._team_names = ["AFC", "NFC"]
 
     def get_high_score(self):
         return max(self._high_scores)[0]

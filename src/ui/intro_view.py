@@ -30,7 +30,7 @@ class IntroView(BaseView):
         super().__init__(root)
         self._score_service = score_service
         self._handle_show_main_menu = main_menu_view
-        self._button_style = ButtonStyles()
+        self._button_style = ButtonStyles(self.height)
 
         self._initialize()
 
@@ -41,7 +41,6 @@ class IntroView(BaseView):
         self._initialize_labels()
         self._initialize_buttons()
         self._initialize_team_selection_menu()
-        self._adjust_grid()
 
     def _initialize_labels(self):
         """Luo näkymään kuuluvat tekstit ja määrittelee niiden sijainnit.
@@ -49,16 +48,16 @@ class IntroView(BaseView):
 
         welcome_text = tkinter.Label(
             self._frame, text="Welcome to Grididon Genius!",
-            font=("Arial", 35), fg='white', bg="#013369"
+            font=('Arial', round((self.height*0.05))), fg='white', bg="#013369"
         )
 
         team_question_text = tkinter.Label(
             self._frame, text="Which team would you like to represent today?",
-            font=("Arial", 30), fg='white', bg="#013369"
+            font=('Arial', round((self.height*0.04))), fg='white', bg="#013369"
         )
 
-        welcome_text.grid(row=1, column=1)
-        team_question_text.grid(row=3, column=1)
+        welcome_text.place(relx=0.5, rely=0.3, anchor='center')
+        team_question_text.place(relx=0.5, rely=0.4, anchor='center')
 
     def _initialize_buttons(self):
         """Luo näkymään kuuluvat painikkeet ja määrittelee niiden sijainnit.
@@ -72,7 +71,7 @@ class IntroView(BaseView):
             command=self._handle_show_main_menu
         )
 
-        main_menu_button.grid(row=7, column=1)
+        main_menu_button.place(relx=0.5, rely=0.7, anchor='center')
 
     def _initialize_team_selection_menu(self):
         """Luo valikon, josta käyttäjä voi valita mieleisensä joukkueen.
@@ -91,15 +90,6 @@ class IntroView(BaseView):
         dropdown_menu = tkinter.OptionMenu(
             self._frame, selected_team, *team_options)
 
-        dropdown_menu.config(font=('Arial', 20))
+        dropdown_menu.config(font=('Arial', round((self.height*0.03))))
 
-        dropdown_menu.grid(row=5, column=1, padx=0, pady=50)
-
-    def _adjust_grid(self):
-        self._frame.grid_rowconfigure(0, minsize=100)
-        self._frame.grid_rowconfigure(2, minsize=25)
-        self._frame.grid_rowconfigure(4, minsize=25)
-
-        self._frame.grid_columnconfigure(0, weight=1)
-        self._frame.grid_columnconfigure(1, weight=1)
-        self._frame.grid_columnconfigure(2, weight=1)
+        dropdown_menu.place(relx=0.5, rely=0.6, anchor='center')

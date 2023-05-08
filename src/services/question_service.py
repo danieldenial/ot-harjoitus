@@ -1,9 +1,25 @@
 
 from random import shuffle
+from repositories.question_repository import QuestionRepository
 
 
 class QuestionService:
-    def __init__(self, question_repo):
+    """Luokka, jonka avulla hallinnoidaan sovelluksen kysymysdatan käsittelyä.
+
+    Attributes:
+        _question_repo: Kysymysdatan talletuksesta vastaava luokkaolio
+        _question_list: Kysymysdata listana sanakirjoja
+        _index_list: Kysymysdatan sanakirjalistan mahdolliset indeksit
+        _index: Kysymyksen valintaa varten määriteltävä indeksi
+    """
+
+    def __init__(self, question_repo: QuestionRepository):
+        """Luokan konstruktori, joka 
+
+        Args:
+            question_repo: Kysymysdatan talletuksesta vastaava luokkaolio
+        """
+
         self._question_repo = question_repo
         self._question_list = self._question_repo.get_question_list()
         self._index_list = list(range(len(self._question_list)))

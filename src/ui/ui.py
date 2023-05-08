@@ -12,15 +12,18 @@ class UI:
     """Luokka, jonka avulla hallinnoidaan sovelluksen käyttöliittymän eri näkymiä.
 
     Attributes:
-        _root: Luokan juuri-ikkuna
+        _root: Tkinter-pääikkunan viite
+        _question_service: Kysymysdatan käsittelyä hallinnoiva luokkaolio
+        _score_service: Pisteiden käsittelyä hallinnoiva luokkaolio
         _current_view: Sovelluksen ikkunan ja käyttöliittymän senhetkinen näkymä
     """
 
     def __init__(self, root, context):
-        """Luokan konstruktori, joka alustaa uuden käyttöliittymän näkymän.
+        """Luokan konstruktori, joka luo eri näkymiä hallinnoivan luokkaolion.
 
         Args:
-            root: Luokan juuri-ikkuna
+            root: Tkinter-pääikkunan viite
+            context: Sanakirja, joka sisältää viitteet services-luokan olioihin 
         """
 
         self._root = root

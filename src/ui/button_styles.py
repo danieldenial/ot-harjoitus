@@ -9,25 +9,28 @@ class ButtonStyles:
         _style: ttk-moduulin objekti, jota konfiguroidaan
     """
 
-    def __init__(self):
+    def __init__(self, height):
         """Luo konfiguroitavan ttk-moduulin objektin ja asettaa sille oletusteeman.
         """
 
         self._style = ttk.Style()
         self._style.theme_use('default')
+        self._height = height
 
     def configure_basic_style(self):
         """Konfiguroi sovelluksen peruspainikkeiden tyylin.
         """
 
         self._style.configure(
-            'custom.basic.TButton', font=('Verdana', 20),
+            'custom.basic.TButton', 
+            font=('Verdana', round((self._height*0.03))),
             padding=(10, 10), background='#8a9095', foreground='black'
         )
 
     def configure_option_style(self):
         self._style.configure(
-            'custom.option.TButton', font=('Verdana', 20),
+            'custom.option.TButton', 
+            font=('Verdana', round((self._height*0.03))),
             background='#8a9095', foreground='black',
             height=10, width=3
         )
@@ -36,7 +39,8 @@ class ButtonStyles:
         """Konfiguroi oikein menneen vastauksen painikkeen tyylin (väri vihreäksi).
         """
         self._style.configure(
-            'custom.green.TButton', font=('Verdana', 20),
+            'custom.green.TButton', 
+            font=('Verdana', round((self._height*0.03))),
             background='#3B9B00', foreground='black',
             height=10, width=3
         )
@@ -48,7 +52,8 @@ class ButtonStyles:
         """
 
         self._style.configure(
-            'custom.red.TButton', font=('Verdana', 20),
+            'custom.red.TButton', 
+            font=('Verdana', round((self._height*0.03))),
             background='#d50a0a', foreground='black',
             height=10, width=3
         )
