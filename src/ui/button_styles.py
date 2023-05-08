@@ -24,7 +24,7 @@ class ButtonStyles:
         self._style.configure(
             'custom.basic.TButton', 
             font=('Verdana', round((self._height*0.03))),
-            padding=(10, 10), background='#8a9095', foreground='black'
+            background='#8a9095', foreground='black'
         )
 
     def configure_option_style(self):
@@ -32,7 +32,7 @@ class ButtonStyles:
             'custom.option.TButton', 
             font=('Verdana', round((self._height*0.03))),
             background='#8a9095', foreground='black',
-            height=10, width=3
+            height=round(self._height*0.02), width=round(self._height*0.005)
         )
 
     def configure_right_answer_style(self):
@@ -42,7 +42,7 @@ class ButtonStyles:
             'custom.green.TButton', 
             font=('Verdana', round((self._height*0.03))),
             background='#3B9B00', foreground='black',
-            height=10, width=3
+            height=round(self._height*0.02), width=round(self._height*0.005)
         )
 
         self._map_right_answer_style()
@@ -55,7 +55,7 @@ class ButtonStyles:
             'custom.red.TButton', 
             font=('Verdana', round((self._height*0.03))),
             background='#d50a0a', foreground='black',
-            height=10, width=3
+            height=round(self._height*0.02), width=round(self._height*0.005)
         )
 
         self._map_wrong_answer_style()

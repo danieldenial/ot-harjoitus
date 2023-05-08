@@ -40,7 +40,7 @@ class GameplayView(BaseView):
         self._handle_show_main_menu = views['show_main_menu']
         self._handle_show_new_game_view = views['show_new_game_view']
         self._handle_show_quit_view = views['show_quit_view']
-        self._button_styles = ButtonStyles(self.height)
+        self._button_styles = ButtonStyles(self.screen_height)
 
         self._initialize()
 
@@ -100,8 +100,8 @@ class GameplayView(BaseView):
 
         self.question_label = tkinter.Label(
             self._question_frame, text=question_text,
-            font=("Verdana", round(self.height*0.035), "bold"), fg='white', bg='#013369',
-            wraplength=(self.width*0.95), anchor=tkinter.W, justify=tkinter.LEFT
+            font=("Verdana", round(self.screen_height*0.035), "bold"), fg='white', bg='#013369',
+            wraplength=(self.screen_width*0.95), anchor=tkinter.W, justify=tkinter.LEFT
         )
 
         option_labels = []
@@ -109,13 +109,13 @@ class GameplayView(BaseView):
         for i in range(4):
             label = tkinter.Label(
                 self._options_frame, text=self.options[i],
-                font=("Verdana", round(self.height*0.035)), fg='white', bg='#013369'
+                font=("Verdana", round(self.screen_height*0.035)), fg='white', bg='#013369'
             )
             option_labels.append(label)
 
         self.score_label = tkinter.Label(
             self._score_and_state_frame, text=self._score_service.get_current_score_text(),
-            font=("Verdana", round(self.height*0.025), "bold"), fg='white', bg='#013369'
+            font=("Verdana", round(self.screen_height*0.025), "bold"), fg='white', bg='#013369'
         )
 
         self.question_label.grid(
@@ -140,10 +140,10 @@ class GameplayView(BaseView):
 
         self._button_styles.configure_option_style()
 
-        opt = ['A', 'B', 'C', 'D']
+        option_list = ['A', 'B', 'C', 'D']
         self.buttons = []
 
-        for i, letter in enumerate(opt):
+        for i, letter in enumerate(option_list):
             button = ttk.Button(
                 self._options_frame, text=letter,
                 style='custom.option.TButton',
@@ -223,18 +223,19 @@ class GameplayView(BaseView):
 
         self.correct_label = tkinter.Label(
             self._score_and_state_frame, text='That is correct!',
-            font=("Verdana", round(self.height*0.03), 'bold'), fg='white', bg='#013369'
+            font=("Verdana", round(self.screen_height*0.03), 'bold'), fg='white', bg='#013369'
         )
 
         self.detail_label = tkinter.Label(
             self._score_and_state_frame, text=detail,
-            font=("Verdana", round(self.height*0.0275)), fg='white', bg='#013369',
-            wraplength=(self.width*0.95), anchor=tkinter.W, justify=tkinter.LEFT
+            font=("Verdana", round(self.screen_height*0.0275)), fg='white', bg='#013369',
+            wraplength=(self.screen_width*0.95), anchor=tkinter.W, justify=tkinter.LEFT
         )
 
         self.continue_button = ttk.Button(
             self._score_and_state_frame, text="CONTINUE",
             style='custom.basic.TButton',
+            padding=round(self.screen_height*0.015),
             command=self._update_view
         )
 
@@ -254,24 +255,27 @@ class GameplayView(BaseView):
 
         self.game_over_label = tkinter.Label(
             self._score_and_state_frame, text='Oops, game over!',
-            font=("Verdana", round(self.height*0.03), 'bold'), fg='white', bg='#013369'
+            font=("Verdana", round(self.screen_height*0.03), 'bold'), fg='white', bg='#013369'
         )
 
         self.main_menu_button = ttk.Button(
             self._score_and_state_frame, text="MAIN MENU",
             style='custom.basic.TButton',
+            padding=round(self.screen_height*0.015),
             command=lambda: self._exit_view(self._handle_show_main_menu)
         )
 
         self.new_game_button = ttk.Button(
             self._score_and_state_frame, text="NEW GAME",
             style='custom.basic.TButton',
+            padding=round(self.screen_height*0.015),
             command=lambda: self._exit_view(self._handle_show_new_game_view)
         )
 
         self.quit_game_button = ttk.Button(
             self._score_and_state_frame, text="QUIT",
             style='custom.basic.TButton',
+            padding=round(self.screen_height*0.015),
             command=lambda: self._exit_view(self._handle_show_quit_view)
         )
 
@@ -287,7 +291,7 @@ class GameplayView(BaseView):
         if new_high_score:
             self.high_score_label = tkinter.Label(
                 self._score_and_state_frame, text='But you set the new high score \o/',
-                font=("Verdana", round(self.height*0.03)), fg='white', bg='#013369'
+                font=("Verdana", round(self.screen_height*0.03)), fg='white', bg='#013369'
             )
 
             self.high_score_label.grid(

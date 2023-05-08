@@ -30,7 +30,7 @@ class IntroView(BaseView):
         super().__init__(root)
         self._score_service = score_service
         self._handle_show_main_menu = main_menu_view
-        self._button_style = ButtonStyles(self.height)
+        self._button_style = ButtonStyles(self.screen_height)
 
         self._initialize()
 
@@ -48,16 +48,16 @@ class IntroView(BaseView):
 
         welcome_text = tkinter.Label(
             self._frame, text="Welcome to Grididon Genius!",
-            font=('Arial', round((self.height*0.05))), fg='white', bg="#013369"
+            font=('Arial', round((self.screen_height*0.055))), fg='white', bg="#013369"
         )
 
         team_question_text = tkinter.Label(
             self._frame, text="Which team would you like to represent today?",
-            font=('Arial', round((self.height*0.04))), fg='white', bg="#013369"
+            font=('Arial', round((self.screen_height*0.045))), fg='white', bg="#013369"
         )
 
-        welcome_text.place(relx=0.5, rely=0.3, anchor='center')
-        team_question_text.place(relx=0.5, rely=0.4, anchor='center')
+        welcome_text.place(relx=0.5, rely=0.35, anchor='center')
+        team_question_text.place(relx=0.5, rely=0.45, anchor='center')
 
     def _initialize_buttons(self):
         """Luo näkymään kuuluvat painikkeet ja määrittelee niiden sijainnit.
@@ -67,7 +67,8 @@ class IntroView(BaseView):
 
         main_menu_button = ttk.Button(
             self._frame, text="SELECT",
-            padding=10, style='custom.basic.TButton',
+            style='custom.basic.TButton',
+            padding=round(self.screen_height*0.015),
             command=self._handle_show_main_menu
         )
 
@@ -90,6 +91,6 @@ class IntroView(BaseView):
         dropdown_menu = tkinter.OptionMenu(
             self._frame, selected_team, *team_options)
 
-        dropdown_menu.config(font=('Arial', round((self.height*0.03))))
+        dropdown_menu.config(font=('Arial', round((self.screen_height*0.03))))
 
         dropdown_menu.place(relx=0.5, rely=0.6, anchor='center')

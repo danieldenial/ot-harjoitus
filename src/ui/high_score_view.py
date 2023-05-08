@@ -29,7 +29,7 @@ class HighScoreView(BaseView):
         super().__init__(root)
         self._handle_show_main_menu = main_menu_view
         self._score_service = score_service
-        self._button_style = ButtonStyles(self.height)
+        self._button_style = ButtonStyles(self.screen_height)
 
         self._initialize()
 
@@ -42,7 +42,7 @@ class HighScoreView(BaseView):
         intro_text = tkinter.Label(
             self._frame,
             text="These are the high scores – so far.",
-            font=("Arial", round((self.height*0.04))), fg='white', bg="#013369"
+            font=("Arial", round((self.screen_height*0.04))), fg='white', bg="#013369"
         )
 
         intro_text.place(relx=0.5, rely=0.2, anchor='center')
@@ -63,7 +63,7 @@ class HighScoreView(BaseView):
                 parent='', index='end', iid=i,text=i, values=(score[1], score[0])
                 )
             i += 1
-
+        
         self._table.place(relx=0.5, rely=0.5, anchor='center')
 
     def _initialize_buttons(self):
@@ -72,12 +72,14 @@ class HighScoreView(BaseView):
         reset_scores_button = ttk.Button(
             self._frame, text="RESET SCORES",
             style='custom.basic.TButton',
+            padding=round(self.screen_height*0.015),
             command=self._update_table
         )
 
         main_menu_button = ttk.Button(
             self._frame, text="MAIN MENU",
             style='custom.basic.TButton',
+            padding=round(self.screen_height*0.015),
             command=self._handle_show_main_menu
         )
 

@@ -16,7 +16,6 @@ def main():
     screen_width = round(window.winfo_screenwidth() * 0.7)
     screen_height = round(window.winfo_screenheight() * 0.7)
     window.geometry(f'{screen_width}x{screen_height}')
-    window.eval('tk::PlaceWindow . center')
     window.configure(background=BACKGROUND_COLOR)
 
     question_repo = QuestionRepository()

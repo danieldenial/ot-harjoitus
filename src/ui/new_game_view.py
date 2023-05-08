@@ -26,7 +26,7 @@ class NewGameView(BaseView):
         self._score_service = score_service
         self._handle_show_gameplay_view = views['show_gameplay_view']
         self._handle_show_main_menu = views['show_main_menu']
-        self._button_style = ButtonStyles(self.height)
+        self._button_style = ButtonStyles(self.screen_height)
 
         self._initialize()
 
@@ -44,16 +44,16 @@ class NewGameView(BaseView):
 
         new_game_text_1 = tkinter.Label(
             self._frame, text="Time for a new game!",
-            font=("Arial", round(self.height*0.05)), fg='white', bg="#013369"
+            font=("Arial", round(self.screen_height*0.05)), fg='white', bg="#013369"
         )
         new_game_text_2 = tkinter.Label(
             self._frame,
             text=f"The current high score is {self._score_service.get_high_score()}.",
-            font=("Arial", round(self.height*0.05)), fg='white', bg="#013369"
+            font=("Arial", round(self.screen_height*0.05)), fg='white', bg="#013369"
         )
         new_game_text_3 = tkinter.Label(
             self._frame, text="Can you beat it?",
-            font=("Arial", round(self.height*0.05)), fg='white', bg="#013369"
+            font=("Arial", round(self.screen_height*0.05)), fg='white', bg="#013369"
         )
 
         new_game_text_1.place(relx=0.5, rely=0.2, anchor='center')
@@ -68,13 +68,15 @@ class NewGameView(BaseView):
 
         start_button = ttk.Button(
             self._frame, text="START GAME",
-            padding=10, style='custom.basic.TButton',
+            style='custom.basic.TButton',
+            padding=round(self.screen_height*0.015),
             command=self._handle_show_gameplay_view
         )
 
         back_button = ttk.Button(
             self._frame, text="BACK",
-            padding=5, style='custom.basic.TButton',
+            style='custom.basic.TButton',
+            padding=round(self.screen_height*0.01),
             command=self._handle_show_main_menu
         )
 

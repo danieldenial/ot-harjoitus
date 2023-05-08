@@ -24,7 +24,7 @@ class QuitView(BaseView):
         super().__init__(root)
         self._quit_game = quit_game
         self._handle_show_main_menu = main_menu_view
-        self._button_style = ButtonStyles(self.height)
+        self._button_style = ButtonStyles(self.screen_height)
 
         self._initialize()
 
@@ -42,7 +42,7 @@ class QuitView(BaseView):
 
         quit_game_text_1 = tkinter.Label(
             self._frame, text="Quit game?",
-            font=("Arial", round(self.height*0.05)), fg='white', bg="#013369"
+            font=("Arial", round(self.screen_height*0.05)), fg='white', bg="#013369"
         )
 
         quit_game_text_1.place(relx=0.5, rely=0.4, anchor='center')
@@ -55,13 +55,15 @@ class QuitView(BaseView):
 
         quit_button = ttk.Button(
             self._frame, text="YES",
-            padding=10, style='custom.basic.TButton',
+            style='custom.basic.TButton',
+            padding=round(self.screen_height*0.015),
             command=self._quit_game
         )
 
         back_button = ttk.Button(
             self._frame, text="NO",
-            padding=10, style='custom.basic.TButton',
+            style='custom.basic.TButton',
+            padding=round(self.screen_height*0.01),
             command=self._handle_show_main_menu
         )
 
