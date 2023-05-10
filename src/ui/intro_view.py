@@ -3,6 +3,7 @@ import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
 from ui.button_styles import ButtonStyles
+from ui.widget_creator import WidgetCreator
 from services.score_service import ScoreService
 
 
@@ -31,6 +32,7 @@ class IntroView(BaseView):
         self._score_service = score_service
         self._handle_show_main_menu = main_menu_view
         self._button_style = ButtonStyles(self.window_height)
+        self._widget_creator = WidgetCreator(root)
 
         self._initialize()
 
@@ -46,15 +48,13 @@ class IntroView(BaseView):
         """Luo näkymään kuuluvat tekstit ja määrittelee niiden sijainnit.
         """
 
-        welcome_text = tkinter.Label(
-            self._frame, text="Welcome to Grididon Genius!",
-            font=('Arial', round((self.window_height*0.055))), fg='white', bg="#013369"
-        )
+        welcome_text = self._widget_creator.create_basic_label(
+            self._frame, "Welcome to Grididon Genius!", 0.055
+            )
 
-        team_question_text = tkinter.Label(
-            self._frame, text="Which team would you like to represent today?",
-            font=('Arial', round((self.window_height*0.045))), fg='white', bg="#013369"
-        )
+        team_question_text = self._widget_creator.create_basic_label(
+            self._frame, "Which team would you like to represent today?", 0.045
+            )
 
         welcome_text.place(relx=0.5, rely=0.35, anchor='center')
         team_question_text.place(relx=0.5, rely=0.45, anchor='center')
@@ -88,8 +88,9 @@ class IntroView(BaseView):
         selected_team.trace(
             "w", lambda *args: self._score_service.change_selected_team(selected_team.get()))
 
-        dropdown_menu = tkinter.OptionMenu(
-            self._frame, selected_team, *team_options)
+        dropdown_menu = self._widget_creator.create_option_menu(
+            self._frame, selected_team, *team_options
+        )
 
         dropdown_menu.config(font=('Arial', round((self.window_height*0.03))))
 

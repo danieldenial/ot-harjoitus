@@ -2,6 +2,7 @@
 import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
+from ui.widget_creator import WidgetCreator
 from ui.button_styles import ButtonStyles
 
 
@@ -32,6 +33,7 @@ class MainMenuView(BaseView):
         self._handle_show_high_scores = views['show_high_scores']
         self._handle_show_rules = views['show_rules']
         self._handle_show_quit_view = views['show_quit']
+        self._widget_creator = WidgetCreator(root)
         self._button_style = ButtonStyles(self.window_height)
 
         self._initialize()
@@ -48,14 +50,13 @@ class MainMenuView(BaseView):
         """Luo näkymään kuuluvat tekstit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
         """
 
-        h1_label = tkinter.Label(
-            self._frame, text="Gridiron Genius",
-            font=("Verdana", round(self.window_height*0.06), "bold"), fg='white', bg="#013369"
+        h1_label = self._widget_creator.create_basic_label(
+            self._frame, "Gridiron Genius", 0.06
         )
-        h2_label = tkinter.Label(
-            self._frame, text="An NFL Trivia Game",
-            font=("Verdana", round(self.window_height*0.05)), fg='white', bg="#013369"
-        )
+        
+        h2_label = self._widget_creator.create_basic_label(
+            self._frame, "An NFL Trivia Game", 0.05
+            )
 
         h1_label.place(relx=0.5, rely=0.25, anchor='center')
         h2_label.place(relx=0.5, rely=0.35, anchor='center')

@@ -123,7 +123,7 @@ sequenceDiagram
     GameplayView->>ScoreService: get_current_score_text()
     ScoreService->>GameplayView: f"Score: {current_score}"
     GameplayView->>GameplayView: add_right_answer_widgets()
-    Gameplayview->>QuestionService: get_detail_text()
+    GameplayView->>QuestionService: get_detail_text()
     QuestionService->>GameplayView: detail_text
     User->>GameplayView: click "CONTINUE"
     GameplayView->>GameplayView: update_view()

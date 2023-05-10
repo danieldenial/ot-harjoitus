@@ -2,6 +2,7 @@
 import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
+from ui.widget_creator import WidgetCreator
 from ui.button_styles import ButtonStyles
 
 
@@ -26,6 +27,7 @@ class RulesView(BaseView):
 
         super().__init__(root)
         self._handle_show_main_menu = main_menu_view
+        self._widget_creator = WidgetCreator(root)
         self._button_style = ButtonStyles(self.window_height)
 
         self._initialize()
@@ -42,35 +44,34 @@ class RulesView(BaseView):
         """Luo näkymään kuuluvat tekstit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
         """
 
-        rules_text_1 = tkinter.Label(
-            self._frame,
-            text="Gridiron Genius is a multiple choice trivia game about the NFL.",
-            font=("Arial", round(self.window_height*0.035)), fg='white', bg="#013369"
-        )
+        font_size = 0.035
 
-        rules_text_2 = tkinter.Label(
-            self._frame,
-            text="Once you start the game, you will see a question and four options.",
-            font=("Arial", round(self.window_height*0.035)), fg='white', bg="#013369"
-        )
+        rules_text_1 = self._widget_creator.create_basic_label(
+            self._frame, 
+            "Gridiron Genius is a multiple choice trivia game about the NFL.",
+            font_size
+            )
 
-        rules_text_3 = tkinter.Label(
+        rules_text_2 = self._widget_creator.create_basic_label(
             self._frame,
-            text="Click on A, B, C or D to select the answer you think is correct.",
-            font=("Arial", round(self.window_height*0.035)), fg='white', bg="#013369"
-        )
+            "Once you start the game, you will see a question and four options.",
+            font_size
+            )
 
-        rules_text_4 = tkinter.Label(
+        rules_text_3 = self._widget_creator.create_basic_label(
             self._frame,
-            text="You will get 1 point for each right answer.",
-            font=("Arial", round(self.window_height*0.035)), fg='white', bg="#013369"
-        )
+            "Click on A, B, C or D to select the answer you think is correct.",
+            font_size
+            )
 
-        rules_text_5 = tkinter.Label(
-            self._frame,
-            text="All questions and answers are valid as of May 2023.",
-            font=("Arial", round(self.window_height*0.035)), fg='white', bg="#013369"
-        )
+        rules_text_4 = self._widget_creator.create_basic_label(
+            self._frame, "You will get 1 point for each right answer.", font_size
+            )
+
+        rules_text_5 = self._widget_creator.create_basic_label(
+            self._frame, 
+            "All questions and answers are valid as of May 2023.", font_size
+            )
 
         rules_text_1.place(relx=0.5, rely=0.2, anchor='center')
         rules_text_2.place(relx=0.5, rely=0.3, anchor='center')
@@ -93,18 +94,3 @@ class RulesView(BaseView):
         )
 
         back_button.place(relx=0.5, rely=0.75, anchor='center')
-
-    def _adjust_grid(self):
-        """Auttaa säätämään muiden elementtien sijainteja.
-        """
-
-        self._frame.grid_rowconfigure(0, weight=1)
-        self._frame.grid_rowconfigure(1, weight=1)
-        self._frame.grid_rowconfigure(2, weight=1)
-        self._frame.grid_rowconfigure(3, weight=1)
-        self._frame.grid_rowconfigure(4, weight=1)
-        self._frame.grid_rowconfigure(5, weight=2)
-
-        self._frame.grid_columnconfigure(0, weight=1)
-        self._frame.grid_columnconfigure(1, weight=1)
-        self._frame.grid_columnconfigure(2, weight=1)

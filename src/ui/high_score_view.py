@@ -2,6 +2,7 @@
 import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
+from ui.widget_creator import WidgetCreator
 from ui.button_styles import ButtonStyles
 from services.score_service import ScoreService
 
@@ -30,6 +31,7 @@ class HighScoreView(BaseView):
         super().__init__(root)
         self._score_service = score_service
         self._handle_show_main_menu = main_menu_view
+        self._widget_creator = WidgetCreator(root)
         self._button_style = ButtonStyles(self.window_height)
 
         self._initialize()
@@ -40,10 +42,8 @@ class HighScoreView(BaseView):
         self._initialize_buttons()
 
     def _initialize_labels(self):
-        intro_text = tkinter.Label(
-            self._frame,
-            text="These are the high scores – so far.",
-            font=("Arial", round((self.window_height*0.04))), fg='white', bg="#013369"
+        intro_text = self._widget_creator.create_basic_label(
+            self._frame, "These are the high scores – so far.", 0.04
         )
 
         intro_text.place(relx=0.5, rely=0.2, anchor='center')

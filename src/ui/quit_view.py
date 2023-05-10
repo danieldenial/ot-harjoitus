@@ -2,6 +2,7 @@
 import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
+from ui.widget_creator import WidgetCreator
 from ui.button_styles import ButtonStyles
 
 
@@ -29,6 +30,7 @@ class QuitView(BaseView):
         super().__init__(root)
         self._handle_show_main_menu = main_menu_view
         self._quit_game = quit_game
+        self._widget_creator = WidgetCreator(root)
         self._button_style = ButtonStyles(self.window_height)
 
         self._initialize()
@@ -45,10 +47,9 @@ class QuitView(BaseView):
         """Luo näkymään kuuluvat tekstit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
         """
 
-        quit_game_text_1 = tkinter.Label(
-            self._frame, text="Quit game?",
-            font=("Arial", round(self.window_height*0.05)), fg='white', bg="#013369"
-        )
+        quit_game_text_1 = self._widget_creator.create_basic_label(
+            self._frame, "Quit game?", 0.05
+            )
 
         quit_game_text_1.place(relx=0.5, rely=0.4, anchor='center')
 

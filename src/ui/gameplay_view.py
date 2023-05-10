@@ -2,6 +2,7 @@
 import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
+from ui.widget_creator import WidgetCreator
 from ui.button_styles import ButtonStyles
 from services.question_service import QuestionService
 from services.score_service import ScoreService
@@ -39,6 +40,7 @@ class GameplayView(BaseView):
         self._handle_show_main_menu = views['show_main_menu']
         self._handle_show_new_game_view = views['show_new_game_view']
         self._handle_show_quit_view = views['show_quit_view']
+        self._widget_creator = WidgetCreator(root)
         self._button_styles = ButtonStyles(self.window_height)
 
         self._initialize()
@@ -96,26 +98,26 @@ class GameplayView(BaseView):
 
         question_text = self._question_service.get_question()
         self.options = self._question_service.get_options()
+        current_score_text = self._score_service.get_current_score_text()
 
-        self.question_label = tkinter.Label(
-            self._question_frame, text=question_text,
-            font=("Verdana", round(self.window_height*0.035), "bold"), fg='white', bg='#013369',
-            wraplength=(self.window_width*0.95), anchor=tkinter.W, justify=tkinter.LEFT
-        )
+        self.question_label = self._widget_creator.create_special_label(
+            self._question_frame, question_text, 0.035
+            )
+
 
         option_labels = []
 
         for i in range(4):
-            label = tkinter.Label(
-                self._options_frame, text=self.options[i],
-                font=("Verdana", round(self.window_height*0.035)), fg='white', bg='#013369'
-            )
+            label = self._widget_creator.create_basic_label(
+                self._options_frame, self.options[i], 0.035
+                )
+            
             option_labels.append(label)
 
-        self.score_label = tkinter.Label(
-            self._score_and_state_frame, text=self._score_service.get_current_score_text(),
-            font=("Verdana", round(self.window_height*0.025), "bold"), fg='white', bg='#013369'
-        )
+        self.score_label = self._widget_creator.create_basic_label(
+            self._score_and_state_frame, current_score_text, 0.025
+            )
+        
 
         self.question_label.grid(
             row=0, column=0, columnspan=2,
@@ -226,16 +228,14 @@ class GameplayView(BaseView):
 
         detail = self._question_service.get_detail_text()
 
-        self.correct_label = tkinter.Label(
-            self._score_and_state_frame, text='That is correct!',
-            font=("Verdana", round(self.window_height*0.03), 'bold'), fg='white', bg='#013369'
-        )
+        self.correct_label = self._widget_creator.create_basic_label(
+            self._score_and_state_frame, 'That is correct!', 0.03
+            )
+        
 
-        self.detail_label = tkinter.Label(
-            self._score_and_state_frame, text=detail,
-            font=("Verdana", round(self.window_height*0.0275)), fg='white', bg='#013369',
-            wraplength=(self.window_width*0.95), anchor=tkinter.W, justify=tkinter.LEFT
-        )
+        self.detail_label = self._widget_creator.create_special_label(
+            self._score_and_state_frame, detail, 0.0275
+            )
 
         self.continue_button = ttk.Button(
             self._score_and_state_frame, text="CONTINUE",
@@ -258,10 +258,8 @@ class GameplayView(BaseView):
             new_high_score: Totuusarvo, joka kertoo syntyikö uusi kärkitulos
         """
 
-        self.game_over_label = tkinter.Label(
-            self._score_and_state_frame, text='Oops, game over!',
-            font=("Verdana", round(self.window_height*0.03), 'bold'),
-            fg='white', bg='#013369'
+        self.game_over_label = self._widget_creator.create_basic_label(
+            self._score_and_state_frame, 'Oops, game over!', 0.03
         )
 
         self.main_menu_button = ttk.Button(
@@ -295,10 +293,9 @@ class GameplayView(BaseView):
         self.quit_game_button.grid(row=3, column=2, padx=10, pady=10)
 
         if new_high_score:
-            self.high_score_label = tkinter.Label(
-                self._score_and_state_frame, text='But you set the new high score \o/',
-                font=("Verdana", round(self.window_height*0.03)), fg='white', bg='#013369'
-            )
+            self.high_score_label = self._widget_creator.create_basic_label(
+                self._score_and_state_frame, 'But you set the new high score \o/', 0.03
+                )
 
             self.high_score_label.grid(
                 row=2, column=0, padx=5, pady=10,

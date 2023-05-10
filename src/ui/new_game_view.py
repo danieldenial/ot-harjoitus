@@ -2,6 +2,7 @@
 import tkinter
 from tkinter import ttk
 from ui.base_view import BaseView
+from ui.widget_creator import WidgetCreator
 from ui.button_styles import ButtonStyles
 from services.score_service import ScoreService
 
@@ -32,6 +33,7 @@ class NewGameView(BaseView):
         self._score_service = score_service
         self._handle_show_gameplay_view = views['show_gameplay_view']
         self._handle_show_main_menu = views['show_main_menu']
+        self._widget_creator = WidgetCreator(root)
         self._button_style = ButtonStyles(self.window_height)
 
         self._initialize()
@@ -48,20 +50,20 @@ class NewGameView(BaseView):
         """Luo näkymään kuuluvat tekstit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
         """
 
-        new_game_text_1 = tkinter.Label(
-            self._frame, text="Time for a new game!",
-            font=("Arial", round(self.window_height*0.05)), fg='white', bg="#013369"
-        )
-        new_game_text_2 = tkinter.Label(
+        new_game_text_1 = self._widget_creator.create_basic_label(
+            self._frame, "Time for a new game!", 0.05
+            )
+        
+        new_game_text_2 = self._widget_creator.create_basic_label(
             self._frame,
-            text=f"The current high score is {self._score_service.get_high_score()}.",
-            font=("Arial", round(self.window_height*0.05)), fg='white', bg="#013369"
-        )
-        new_game_text_3 = tkinter.Label(
-            self._frame, text="Can you beat it?",
-            font=("Arial", round(self.window_height*0.05)), fg='white', bg="#013369"
-        )
-
+            f"The current high score is {self._score_service.get_high_score()}.",
+            0.05
+            )
+        
+        new_game_text_3 = self._widget_creator.create_basic_label(
+            self._frame, "Can you beat it?", 0.05
+            )
+        
         new_game_text_1.place(relx=0.5, rely=0.2, anchor='center')
         new_game_text_2.place(relx=0.5, rely=0.3, anchor='center')
         new_game_text_3.place(relx=0.5, rely=0.4, anchor='center')
