@@ -1,6 +1,6 @@
 
 import tkinter
-from tkinter import ttk
+from random import choice
 from ui.base_view import BaseView
 from ui.button_styles import ButtonStyles
 from ui.widget_creator import WidgetCreator
@@ -31,7 +31,7 @@ class IntroView(BaseView):
         super().__init__(root)
         self._score_service = score_service
         self._handle_show_main_menu = main_menu_view
-        self._button_style = ButtonStyles(self.window_height)
+        self._button_style = ButtonStyles(root)
         self._widget_creator = WidgetCreator(root)
 
         self._initialize()
@@ -65,12 +65,9 @@ class IntroView(BaseView):
 
         self._button_style.configure_basic_style()
 
-        main_menu_button = ttk.Button(
-            self._frame, text="SELECT",
-            style='custom.basic.TButton',
-            padding=round(self.window_height*0.015),
-            command=self._handle_show_main_menu
-        )
+        main_menu_button = self._widget_creator.create_basic_button(
+            self._frame, "SELECT", self._handle_show_main_menu
+            )
 
         main_menu_button.place(relx=0.5, rely=0.7, anchor='center')
 
@@ -81,17 +78,17 @@ class IntroView(BaseView):
         team_options = self._score_service.get_team_names()
 
         selected_team = tkinter.StringVar(self._frame)
-        selected_team.set(team_options[0])
 
-        self._score_service.change_selected_team(team_options[0])
+        default = choice(team_options)
+        
+        selected_team.set(default)
+        self._score_service.change_selected_team(default)
 
         selected_team.trace(
             "w", lambda *args: self._score_service.change_selected_team(selected_team.get()))
 
-        dropdown_menu = self._widget_creator.create_option_menu(
+        dropdown_menu = self._widget_creator.create_dropdown_menu(
             self._frame, selected_team, *team_options
         )
-
-        dropdown_menu.config(font=('Arial', round((self.window_height*0.03))))
 
         dropdown_menu.place(relx=0.5, rely=0.6, anchor='center')

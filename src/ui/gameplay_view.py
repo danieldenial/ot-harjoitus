@@ -1,6 +1,5 @@
 
 import tkinter
-from tkinter import ttk
 from ui.base_view import BaseView
 from ui.widget_creator import WidgetCreator
 from ui.button_styles import ButtonStyles
@@ -41,7 +40,7 @@ class GameplayView(BaseView):
         self._handle_show_new_game_view = views['show_new_game_view']
         self._handle_show_quit_view = views['show_quit_view']
         self._widget_creator = WidgetCreator(root)
-        self._button_styles = ButtonStyles(self.window_height)
+        self._button_styles = ButtonStyles(root)
 
         self._initialize()
 
@@ -67,13 +66,12 @@ class GameplayView(BaseView):
         """Luo ja sijoittaa alikehyksiä näkymän selkeyttämistä varten.
         """
 
-        self._question_frame = tkinter.Frame(self._root, bg='#013369')
+        self._question_frame = self._widget_creator.create_subframe(self._frame)
+        self._options_frame = self._widget_creator.create_subframe(self._frame)
+        self._score_and_state_frame = self._widget_creator.create_subframe(self._frame)
+
         self._question_frame.pack(padx=10, pady=10, anchor=tkinter.W)
-
-        self._options_frame = tkinter.Frame(self._root, bg='#013369')
         self._options_frame.pack(padx=10, pady=10, anchor=tkinter.W)
-
-        self._score_and_state_frame = tkinter.Frame(self._root, bg='#013369')
         self._score_and_state_frame.pack(padx=10, pady=10, anchor=tkinter.W)
 
     def _initialize_question_view(self):
@@ -100,10 +98,9 @@ class GameplayView(BaseView):
         self.options = self._question_service.get_options()
         current_score_text = self._score_service.get_current_score_text()
 
-        self.question_label = self._widget_creator.create_special_label(
+        self.question_label = self._widget_creator.create_longer_label(
             self._question_frame, question_text, 0.035
             )
-
 
         option_labels = []
 
@@ -117,7 +114,6 @@ class GameplayView(BaseView):
         self.score_label = self._widget_creator.create_basic_label(
             self._score_and_state_frame, current_score_text, 0.025
             )
-        
 
         self.question_label.grid(
             row=0, column=0, columnspan=2,
@@ -139,18 +135,18 @@ class GameplayView(BaseView):
         """Luo näkymään kuuluvat painikkeet ja määrittelee niiden sijainnit.
         """
 
-        self._button_styles.configure_option_style()
-
         option_list = ['A', 'B', 'C', 'D']
         self.buttons = []
 
+        self._button_styles.configure_option_style()
+
         for i, letter in enumerate(option_list):
-            button = ttk.Button(
-                self._options_frame, text=letter,
-                style='custom.option.TButton',
-                command=lambda letter=letter, i=i: self._handle_user_answer(
-                    i, self.options[i])
-            )
+            command = lambda letter=letter, i=i: self._handle_user_answer(
+                i, self.options[i])
+
+            button = self._widget_creator.create_option_button(
+                self._options_frame, letter, command
+                )
 
             self.buttons.append(button)
 
@@ -231,18 +227,14 @@ class GameplayView(BaseView):
         self.correct_label = self._widget_creator.create_basic_label(
             self._score_and_state_frame, 'That is correct!', 0.03
             )
-        
 
-        self.detail_label = self._widget_creator.create_special_label(
+        self.detail_label = self._widget_creator.create_longer_label(
             self._score_and_state_frame, detail, 0.0275
             )
 
-        self.continue_button = ttk.Button(
-            self._score_and_state_frame, text="CONTINUE",
-            style='custom.basic.TButton',
-            padding=round(self.window_height*0.015),
-            command=self._update_view
-        )
+        self.continue_button = self._widget_creator.create_basic_button(
+            self._score_and_state_frame, "CONTINUE", self._update_view
+            )
 
         self.correct_label.grid(row=1, column=0, padx=5,
                                 pady=10, sticky=tkinter.W)
@@ -262,25 +254,19 @@ class GameplayView(BaseView):
             self._score_and_state_frame, 'Oops, game over!', 0.03
         )
 
-        self.main_menu_button = ttk.Button(
-            self._score_and_state_frame, text="MAIN MENU",
-            style='custom.basic.TButton',
-            padding=round(self.window_height*0.015),
-            command=lambda: self._exit_view(self._handle_show_main_menu)
+        self.main_menu_button = self._widget_creator.create_basic_button(
+            self._score_and_state_frame, "MAIN MENU",
+            lambda: self._exit_view(self._handle_show_main_menu)
         )
 
-        self.new_game_button = ttk.Button(
-            self._score_and_state_frame, text="NEW GAME",
-            style='custom.basic.TButton',
-            padding=round(self.window_height*0.015),
-            command=lambda: self._exit_view(self._handle_show_new_game_view)
+        self.new_game_button = self._widget_creator.create_basic_button(
+            self._score_and_state_frame, "NEW GAME",
+            lambda: self._exit_view(self._handle_show_new_game_view)
         )
 
-        self.quit_game_button = ttk.Button(
-            self._score_and_state_frame, text="QUIT",
-            style='custom.basic.TButton',
-            padding=round(self.window_height*0.015),
-            command=lambda: self._exit_view(self._handle_show_quit_view)
+        self.quit_game_button = self._widget_creator.create_basic_button(
+            self._score_and_state_frame, "QUIT",
+            lambda: self._exit_view(self._handle_show_quit_view)
         )
 
         self.game_over_label.grid(

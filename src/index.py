@@ -24,12 +24,12 @@ def main():
     question_service = QuestionService(question_repo)
     score_service = ScoreService(score_repo)
 
-    context = {
+    service_instances = {
         'question_service': question_service,
         'score_service': score_service
     }
 
-    view = UI(window, context)
+    view = UI(window, service_instances)
     view.start()
 
     window.mainloop()

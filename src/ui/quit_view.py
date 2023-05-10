@@ -1,6 +1,4 @@
 
-import tkinter
-from tkinter import ttk
 from ui.base_view import BaseView
 from ui.widget_creator import WidgetCreator
 from ui.button_styles import ButtonStyles
@@ -31,7 +29,7 @@ class QuitView(BaseView):
         self._handle_show_main_menu = main_menu_view
         self._quit_game = quit_game
         self._widget_creator = WidgetCreator(root)
-        self._button_style = ButtonStyles(self.window_height)
+        self._button_style = ButtonStyles(root)
 
         self._initialize()
 
@@ -59,19 +57,13 @@ class QuitView(BaseView):
 
         self._button_style.configure_basic_style()
 
-        quit_button = ttk.Button(
-            self._frame, text="YES",
-            style='custom.basic.TButton',
-            padding=round(self.window_height*0.015),
-            command=self._quit_game
-        )
+        quit_button = self._widget_creator.create_basic_button(
+            self._frame, "YES", self._quit_game
+            )
 
-        back_button = ttk.Button(
-            self._frame, text="NO",
-            style='custom.basic.TButton',
-            padding=round(self.window_height*0.01),
-            command=self._handle_show_main_menu
-        )
+        back_button = self._widget_creator.create_basic_button(
+            self._frame, "NO", self._handle_show_main_menu
+            )
 
         quit_button.place(relx=0.5, rely=0.5, anchor='center')
         back_button.place(relx=0.5, rely=0.6, anchor='center')

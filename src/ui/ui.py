@@ -1,4 +1,5 @@
 
+from ui.base_view import BaseView
 from ui.intro_view import IntroView
 from ui.main_menu_view import MainMenuView
 from ui.new_game_view import NewGameView
@@ -18,7 +19,7 @@ class UI:
         _current_view: Sovelluksen ikkunan ja käyttöliittymän senhetkinen näkymä
     """
 
-    def __init__(self, root, context):
+    def __init__(self, root, service_instances):
         """Luokan konstruktori, joka luo eri näkymiä hallinnoivan luokkaolion.
 
         Args:
@@ -27,8 +28,9 @@ class UI:
         """
 
         self._root = root
-        self._question_service = context['question_service']
-        self._score_service = context['score_service']
+        self._question_service = service_instances['question_service']
+        self._score_service = service_instances['score_service']
+        self._pack_and_destroy = BaseView(self._root)
         self._current_view = None
 
     def start(self):

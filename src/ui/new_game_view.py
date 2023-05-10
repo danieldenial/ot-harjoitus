@@ -1,6 +1,4 @@
 
-import tkinter
-from tkinter import ttk
 from ui.base_view import BaseView
 from ui.widget_creator import WidgetCreator
 from ui.button_styles import ButtonStyles
@@ -34,7 +32,7 @@ class NewGameView(BaseView):
         self._handle_show_gameplay_view = views['show_gameplay_view']
         self._handle_show_main_menu = views['show_main_menu']
         self._widget_creator = WidgetCreator(root)
-        self._button_style = ButtonStyles(self.window_height)
+        self._button_style = ButtonStyles(root)
 
         self._initialize()
 
@@ -74,35 +72,13 @@ class NewGameView(BaseView):
 
         self._button_style.configure_basic_style()
 
-        start_button = ttk.Button(
-            self._frame, text="START GAME",
-            style='custom.basic.TButton',
-            padding=round(self.window_height*0.015),
-            command=self._handle_show_gameplay_view
-        )
+        start_button = self._widget_creator.create_basic_button(
+            self._frame, "START", self._handle_show_gameplay_view
+            )
 
-        back_button = ttk.Button(
-            self._frame, text="BACK",
-            style='custom.basic.TButton',
-            padding=round(self.window_height*0.01),
-            command=self._handle_show_main_menu
-        )
+        back_button = self._widget_creator.create_basic_button(
+            self._frame, "BACK", self._handle_show_main_menu
+            )
 
         start_button.place(relx=0.5, rely=0.6, anchor='center')
         back_button.place(relx=0.5, rely=0.7, anchor='center')
-
-    def _adjust_grid(self):
-        """Auttaa säätämään muiden elementtien sijainteja.
-        (Tätä metodia ei lopulta varmaan tarvita,
-        kunhan luokan muut metodit toteutetaan ensin vähän paremmin.)
-        """
-
-        self._frame.grid_rowconfigure(0, minsize=100)
-        self._frame.grid_rowconfigure(2, minsize=25)
-        self._frame.grid_rowconfigure(4, minsize=25)
-        self._frame.grid_rowconfigure(6, minsize=50)
-        self._frame.grid_rowconfigure(8, minsize=25)
-
-        self._frame.grid_columnconfigure(0, weight=1)
-        self._frame.grid_columnconfigure(1, weight=1)
-        self._frame.grid_columnconfigure(2, weight=1)

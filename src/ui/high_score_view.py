@@ -1,6 +1,4 @@
 
-import tkinter
-from tkinter import ttk
 from ui.base_view import BaseView
 from ui.widget_creator import WidgetCreator
 from ui.button_styles import ButtonStyles
@@ -32,7 +30,7 @@ class HighScoreView(BaseView):
         self._score_service = score_service
         self._handle_show_main_menu = main_menu_view
         self._widget_creator = WidgetCreator(root)
-        self._button_style = ButtonStyles(self.window_height)
+        self._button_style = ButtonStyles(root)
 
         self._initialize()
 
@@ -51,38 +49,31 @@ class HighScoreView(BaseView):
     def _initialize_high_scores_table(self):
         high_scores = self._score_service.get_high_scores_list()
 
-        self._table = ttk.Treeview(self._frame, columns=('Team', 'Score'))
+        columns = ['Team', 'Score']
+        headings = ['Team', 'Score']
 
-        self._table.heading('#0', text='Pos')
-        self._table.heading('Team', text='Team')
-        self._table.heading('Score', text='Score')
+        self._table = self._widget_creator.create_table(
+            self._frame, columns, headings, "Position"
+            )
 
-        i = 1
-
-        for score in high_scores:
+        for i, score in enumerate(high_scores):
+            i += 1
             self._table.insert(
                 parent='', index='end', iid=i,text=i, values=(score[1], score[0])
                 )
-            i += 1
         
         self._table.place(relx=0.5, rely=0.5, anchor='center')
 
     def _initialize_buttons(self):
         self._button_style.configure_basic_style()
 
-        reset_scores_button = ttk.Button(
-            self._frame, text="RESET SCORES",
-            style='custom.basic.TButton',
-            padding=round(self.window_height*0.015),
-            command=self._update_table
-        )
+        reset_scores_button = self._widget_creator.create_basic_button(
+            self._frame, "RESET", self._update_table
+            )
 
-        main_menu_button = ttk.Button(
-            self._frame, text="MAIN MENU",
-            style='custom.basic.TButton',
-            padding=round(self.window_height*0.015),
-            command=self._handle_show_main_menu
-        )
+        main_menu_button = self._widget_creator.create_basic_button(
+            self._frame, "MAIN MENU", self._handle_show_main_menu
+            )
 
         reset_scores_button.place(relx=0.4, rely=0.8, anchor='center')
         main_menu_button.place(relx=0.6, rely=0.8, anchor='center')
