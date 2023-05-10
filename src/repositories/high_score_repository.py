@@ -47,6 +47,9 @@ class HighScoreRepository:
 
     def get_high_scores_list(self):
         return self._high_scores
+    
+    def get_lowest_high_score_on_list(self):
+        return min(self._high_scores)[0]
 
     def get_team_name_list(self):
         return self._team_names

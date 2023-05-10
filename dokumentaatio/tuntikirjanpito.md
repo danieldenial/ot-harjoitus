@@ -28,5 +28,6 @@
 |  5.5  |  5   | Käyttöliittymän toiminnallisuuksiin tehty isoja muutoksia.               |
 |  6.5. |  5   | Joukkuevalinnan ja parhaiden tulosten talletuksen/taulukon luomista.     |
 |  7.5. |  2   | Käyttöliittymän muokkausta ja dokumentaation edistämistä.                |
-|  8.5. |  5   | Dokumentaatiota ja ikkunan/näkymän reponsiivisuuden työstämistä.         |
-| Yht.  |  79  |                                                                          |
+|  8.5. |  7   | Dokumentaatiota ja ikkunan/näkymän reponsiivisuuden työstämistä.         |
+|  9.5. |  3   | Dokumentointia (docstring ja arkkitehtuurikuvaus).                       |
+| Yht.  |  84  |                                                                          |

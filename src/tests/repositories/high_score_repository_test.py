@@ -1,5 +1,6 @@
 
 import unittest
+from pathlib import Path
 import os
 from repositories.high_score_repository import HighScoreRepository
 
@@ -46,8 +47,8 @@ class TestHighScores(unittest.TestCase):
             if i not in self._HS._high_scores:
                 add_to_list = i
                 break
-        self._HS.add_new_score_to_list(add_to_list, "Rob Lowe")
-        is_in_list = self.score_is_in_list((add_to_list, "Rob Lowe"))
+        self._HS.add_new_score_to_list(add_to_list, "Arizona Cardinals")
+        is_in_list = self.score_is_in_list((add_to_list, "Arizona Cardinals"))
         self.assertEqual(is_in_list, True)
     
     def score_is_in_list(self, score):

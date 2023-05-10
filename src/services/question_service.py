@@ -46,7 +46,7 @@ class QuestionService:
     def get_detail_text(self):
         return self._question_list[self._index]['Detail']
 
-    def check_answer(self, user_answer):
+    def evaluate_user_answer(self, user_answer):
         return self._question_list[self._index]['Answer'] == user_answer
 
     def set_next_question_index(self):

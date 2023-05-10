@@ -9,20 +9,24 @@ class RulesView(BaseView):
     """Luokka, jonka avulla luodaan pelin säännöt näyttävä näkymä.
 
     Args:
-        BaseView: Sovelluksen perusnäkymästä vastaava luokka
+        BaseView: RulesView-luokan perimä pohjakehyksen näkymälle luova luokka
+
+    Attributes:
+        _handle_show_main_menu: UI-luokan metodi päävalikon näkymän luomiseen
+        _button_style: Näkymän painikkeiden tyyleistä vastaava luokkaolio
     """
 
     def __init__(self, root, main_menu_view):
         """Luokan konstruktori, joka alustaa pelin säännöt näyttävän näkymän.
 
         Args:
-            root: Luokan juuri-ikkuna
-            main_menu_view: Metodi, jolla siirrytään päävalikon näkymään
+            root: Tkinter-pääikkunan viite
+            main_menu_view: UI-luokan metodi päävalikon näkymän luomiseen
         """
 
         super().__init__(root)
         self._handle_show_main_menu = main_menu_view
-        self._button_style = ButtonStyles(self.screen_height)
+        self._button_style = ButtonStyles(self.window_height)
 
         self._initialize()
 
@@ -41,31 +45,31 @@ class RulesView(BaseView):
         rules_text_1 = tkinter.Label(
             self._frame,
             text="Gridiron Genius is a multiple choice trivia game about the NFL.",
-            font=("Arial", round(self.screen_height*0.035)), fg='white', bg="#013369"
+            font=("Arial", round(self.window_height*0.035)), fg='white', bg="#013369"
         )
 
         rules_text_2 = tkinter.Label(
             self._frame,
             text="Once you start the game, you will see a question and four options.",
-            font=("Arial", round(self.screen_height*0.035)), fg='white', bg="#013369"
+            font=("Arial", round(self.window_height*0.035)), fg='white', bg="#013369"
         )
 
         rules_text_3 = tkinter.Label(
             self._frame,
             text="Click on A, B, C or D to select the answer you think is correct.",
-            font=("Arial", round(self.screen_height*0.035)), fg='white', bg="#013369"
+            font=("Arial", round(self.window_height*0.035)), fg='white', bg="#013369"
         )
 
         rules_text_4 = tkinter.Label(
             self._frame,
             text="You will get 1 point for each right answer.",
-            font=("Arial", round(self.screen_height*0.035)), fg='white', bg="#013369"
+            font=("Arial", round(self.window_height*0.035)), fg='white', bg="#013369"
         )
 
         rules_text_5 = tkinter.Label(
             self._frame,
             text="All questions and answers are valid as of May 2023.",
-            font=("Arial", round(self.screen_height*0.035)), fg='white', bg="#013369"
+            font=("Arial", round(self.window_height*0.035)), fg='white', bg="#013369"
         )
 
         rules_text_1.place(relx=0.5, rely=0.2, anchor='center')
@@ -84,7 +88,7 @@ class RulesView(BaseView):
         back_button = ttk.Button(
             self._frame, text="BACK",
             style='custom.basic.TButton',
-            padding=round(self.screen_height*0.01),
+            padding=round(self.window_height*0.01),
             command=self._handle_show_main_menu
         )
 

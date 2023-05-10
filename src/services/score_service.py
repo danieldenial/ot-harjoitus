@@ -7,7 +7,7 @@ class ScoreService:
     Attributes:
         _current_score: Nykyinen pistemäärä
         _selected_team: Valittu joukkue
-        _score_repo: Parhaiden pisteiden talletuksesta vastaava luokkaolio
+        _score_repo: Pistesuoritusten talletuksesta vastaava luokkaolio
     """
 
     def __init__(self, score_repo: HighScoreRepository):
@@ -16,6 +16,12 @@ class ScoreService:
         self._score_repo = score_repo
 
     def get_current_score(self):
+        """Palauttaa senhetkisen pistemäärän.
+
+        Returns:
+            _current_score: Pistemäärä sillä hetkellä
+        """
+
         return self._current_score
 
     def get_current_score_text(self):
@@ -39,14 +45,14 @@ class ScoreService:
     def get_selected_team(self):
         return self._selected_team
 
-    def change_selected_team(self, team):
-        self._selected_team = team
+    def change_selected_team(self, new_team):
+        self._selected_team = new_team
 
     def increase_score(self):
         self._current_score += 1
 
-    def check_score(self):
-        if self._current_score > min(self._score_repo.get_high_scores_list())[0]:
+    def evaluate_score(self):
+        if self._current_score > self._score_repo.get_lowest_high_score_on_list():
             self._score_repo.add_new_score_to_list(
                 self._current_score, self._selected_team)
 

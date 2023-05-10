@@ -44,7 +44,7 @@ class TestQuestionService(unittest.TestCase):
     def test_check_answer(self):
         self.Qs.set_next_question_index()
         answer = self.Qs._question_list[self.Qs._index]['Answer']
-        self.assertEqual(self.Qs.check_answer(answer), True)
+        self.assertEqual(self.Qs.evaluate_user_answer(answer), True)
 
     def test_question_changes(self):
         self.Qs.set_next_question_index()

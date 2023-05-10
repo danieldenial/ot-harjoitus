@@ -49,7 +49,7 @@ class TestHighScoreService(unittest.TestCase):
     def test_check_score(self):
         self.HS._selected_team = "Rob Lowe"
         self.HS._current_score = max(self._score_data._high_scores)[0]+1
-        self.HS.check_score()
+        self.HS.evaluate_score()
         is_true = self.is_value_in_list((self.HS._current_score, "Rob Lowe"))
         self.assertEqual(is_true, True)
 

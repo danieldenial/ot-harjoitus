@@ -9,7 +9,7 @@ from ui.quit_view import QuitView
 
 
 class UI:
-    """Luokka, jonka avulla hallinnoidaan sovelluksen käyttöliittymän eri näkymiä.
+    """Luokka, jonka avulla siirrytään sovelluksen eri näkymien välillä.
 
     Attributes:
         _root: Tkinter-pääikkunan viite
@@ -23,7 +23,7 @@ class UI:
 
         Args:
             root: Tkinter-pääikkunan viite
-            context: Sanakirja, joka sisältää viitteet services-luokan olioihin 
+            context: Sanakirja, joka sisältää viitteet services-pakkauksen olioihin 
         """
 
         self._root = root
@@ -32,7 +32,7 @@ class UI:
         self._current_view = None
 
     def start(self):
-        """Käynnistää sovelluksen kutsumalla sen luomisesta vastaavaa metodia.
+        """Käynnistää sovelluksen kutsumalla avausnäkymän luomisesta vastaavaa metodia.
         """
 
         self.show_intro_view()
@@ -47,6 +47,9 @@ class UI:
         self._current_view = None
 
     def show_intro_view(self):
+        """Luo sovelluksen avausnäkymästä vastaavan luokkaolion.
+        """
+
         self._hide_current_view()
 
         self._current_view = IntroView(
@@ -58,8 +61,7 @@ class UI:
         self._current_view.pack()
 
     def show_main_menu_view(self):
-        """Kutsuu nykyisen näkymän piilottamisesta vastaavaa metodia 
-        ja luo sitten päävalikon näkymän.
+        """Luo päävalikon näkymästä vastaavan luokkaolion.
         """
 
         self._hide_current_view()
@@ -79,8 +81,7 @@ class UI:
         self._current_view.pack()
 
     def show_new_game_view(self):
-        """Kutsuu nykyisen näkymän piilottamisesta vastaavaa metodia 
-        ja luo sitten uutta peliä edeltävän näkymän.
+        """Luo uutta peliä edeltävästä näkymästä vastaavan luokkaolion.
         """
 
         self._hide_current_view()
@@ -99,8 +100,7 @@ class UI:
         self._current_view.pack()
 
     def show_gameplay_view(self):
-        """Kutsuu nykyisen näkymän piilottamisesta vastaavaa metodia 
-        ja luo sitten varsinaisesta pelinkulusta vastaavan näkymän.
+        """Luo varsinaisesta pelinkulun näkymästä vastaavan luokkaolion.
         """
 
         self._hide_current_view()
@@ -121,8 +121,7 @@ class UI:
         self._current_view.pack()
 
     def show_high_score_view(self):
-        """Kutsuu nykyisen näkymän piilottamisesta vastaavaa metodia
-        ja luo sitten parhaiden tulosten listan näyttävän näkymän.
+        """Luo parhaiden tulosten näkymästä vastaavan luokkaolion.
         """
 
         self._hide_current_view()
@@ -136,8 +135,7 @@ class UI:
         self._current_view.pack()
 
     def show_rules_view(self):
-        """Kutsuu nykyisen näkymän piilottamisesta vastaavaa metodia 
-        ja luo sitten pelin säännöt sisältävän näkymän.
+        """Luo pelin säännöt näyttävästä näkymästä vastaavan luokkaolion.
         """
 
         self._hide_current_view()
@@ -150,8 +148,7 @@ class UI:
         self._current_view.pack()
 
     def show_quit_view(self):
-        """Kutsuu nykyisen näkymän piilottamisesta vastaavaa metodia 
-        ja luo sitten sovelluksen sulkemista edeltävän näkymän. 
+        """Luo sovelluksen sulkemista edeltävästä näkymästä vastaavan luokkaolion.
         """
 
         self._hide_current_view()

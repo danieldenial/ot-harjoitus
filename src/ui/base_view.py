@@ -18,11 +18,11 @@ class BaseView:
         """
 
         self._root = root
-        self.screen_width = round(root.winfo_screenwidth() * 0.7)
-        self.screen_height = round(root.winfo_screenheight() * 0.7)
+        self.window_width = round(root.winfo_screenwidth() * 0.7)
+        self.window_height = round(root.winfo_screenheight() * 0.7)
         self._frame = tkinter.Frame(
             self._root, bg=self.BACKGROUND_COLOR,
-            width=self.screen_width, height=self.screen_height
+            width=self.window_width, height=self.window_height
         )
 
     def pack(self):

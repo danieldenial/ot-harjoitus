@@ -7,29 +7,30 @@ from services.score_service import ScoreService
 
 
 class HighScoreView(BaseView):
-    """Luokka, jonka avulla luodaan parhaat tulokset näyttävä näkymä.
+    """Luokka, jonka avulla luodaan parhaat pistesuoritukset näyttävä näkymä.
 
     Args:
-        BaseView: Sovelluksen perusnäkymästä vastaava luokka, jonka HighScoreView perii.
+        BaseView: HighScoreView-luokan perimä pohjakehyksen näkymälle luova luokka.
 
     Attributes:
-        _view_manager: Eri näkymien vaihtelusta vastaava luokkaolio
         _score_service: Näkymän painikkeiden tyyleistä vastaava luokkaolio
+        _handle_show_main_menu: UI-luokan metodi päävalikon näkymän luomiseen
         _button_style: Pisteytykseen liittyvästä sovelluslogiikasta vastaava luokkaolio
     """
 
     def __init__(self, root, score_service: ScoreService, main_menu_view):
-        """Luokan konstruktori, joka alustaa sovelluksen avausnäkymän.
+        """Luokan konstruktori, joka alustaa parhaiden pistesuoritusten näkymän.
 
         Args:
-            root (_type_): _description_
-            score_service (ScoreService): _description_
-            view_manager (ViewManager): _description_
+            root: Tkinter-pääikkunan viite
+            score_service: Pisteytykseen liittyvästä sovelluslogiikasta vastaava luokkaolio
+            main_menu_view: UI-luokan metodi päävalikon näkymän luomiseen
         """
+
         super().__init__(root)
-        self._handle_show_main_menu = main_menu_view
         self._score_service = score_service
-        self._button_style = ButtonStyles(self.screen_height)
+        self._handle_show_main_menu = main_menu_view
+        self._button_style = ButtonStyles(self.window_height)
 
         self._initialize()
 
@@ -42,7 +43,7 @@ class HighScoreView(BaseView):
         intro_text = tkinter.Label(
             self._frame,
             text="These are the high scores – so far.",
-            font=("Arial", round((self.screen_height*0.04))), fg='white', bg="#013369"
+            font=("Arial", round((self.window_height*0.04))), fg='white', bg="#013369"
         )
 
         intro_text.place(relx=0.5, rely=0.2, anchor='center')
@@ -72,14 +73,14 @@ class HighScoreView(BaseView):
         reset_scores_button = ttk.Button(
             self._frame, text="RESET SCORES",
             style='custom.basic.TButton',
-            padding=round(self.screen_height*0.015),
+            padding=round(self.window_height*0.015),
             command=self._update_table
         )
 
         main_menu_button = ttk.Button(
             self._frame, text="MAIN MENU",
             style='custom.basic.TButton',
-            padding=round(self.screen_height*0.015),
+            padding=round(self.window_height*0.015),
             command=self._handle_show_main_menu
         )
 

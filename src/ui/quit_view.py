@@ -9,7 +9,12 @@ class QuitView(BaseView):
     """Luokka, jonka avulla luodaan sovelluksen sulkemista edeltävä näkymä.
 
     Args:
-        BaseView: Sovelluksen perusnäkymästä vastaava luokka
+        BaseView: QuitView-luokan perimä pohjakehyksen näkymälle luova luokka
+
+    Attributes:
+        _handle_show_main_menu: UI-luokan metodi päävalikon näkymän luomiseen
+        _quit_game: UI-luokan metodi sovelluksen sulkemiseen
+        _button_style: Näkymän painikkeiden tyyleistä vastaava luokkaolio
     """
 
     def __init__(self, root, main_menu_view, quit_game):
@@ -22,9 +27,9 @@ class QuitView(BaseView):
         """
 
         super().__init__(root)
-        self._quit_game = quit_game
         self._handle_show_main_menu = main_menu_view
-        self._button_style = ButtonStyles(self.screen_height)
+        self._quit_game = quit_game
+        self._button_style = ButtonStyles(self.window_height)
 
         self._initialize()
 
@@ -42,7 +47,7 @@ class QuitView(BaseView):
 
         quit_game_text_1 = tkinter.Label(
             self._frame, text="Quit game?",
-            font=("Arial", round(self.screen_height*0.05)), fg='white', bg="#013369"
+            font=("Arial", round(self.window_height*0.05)), fg='white', bg="#013369"
         )
 
         quit_game_text_1.place(relx=0.5, rely=0.4, anchor='center')
@@ -56,14 +61,14 @@ class QuitView(BaseView):
         quit_button = ttk.Button(
             self._frame, text="YES",
             style='custom.basic.TButton',
-            padding=round(self.screen_height*0.015),
+            padding=round(self.window_height*0.015),
             command=self._quit_game
         )
 
         back_button = ttk.Button(
             self._frame, text="NO",
             style='custom.basic.TButton',
-            padding=round(self.screen_height*0.01),
+            padding=round(self.window_height*0.01),
             command=self._handle_show_main_menu
         )
 
