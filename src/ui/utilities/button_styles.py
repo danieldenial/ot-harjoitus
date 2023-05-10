@@ -1,6 +1,6 @@
 
 from tkinter import ttk
-from ui.widget_creator import WidgetCreator
+from ui.utilities.widget_creator import WidgetCreator
 
 
 class ButtonStyles(WidgetCreator):

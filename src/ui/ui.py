@@ -1,12 +1,12 @@
 
-from ui.base_view import BaseView
-from ui.intro_view import IntroView
-from ui.main_menu_view import MainMenuView
-from ui.new_game_view import NewGameView
-from ui.gameplay_view import GameplayView
-from ui.high_score_view import HighScoreView
-from ui.rules_view import RulesView
-from ui.quit_view import QuitView
+from ui.utilities.base_frame import BaseFrame
+from ui.views.intro_view import IntroView
+from ui.views.main_menu_view import MainMenuView
+from ui.views.new_game_view import NewGameView
+from ui.views.gameplay_view import GameplayView
+from ui.views.high_score_view import HighScoreView
+from ui.views.rules_view import RulesView
+from ui.views.quit_view import QuitView
 
 
 class UI:
@@ -30,7 +30,7 @@ class UI:
         self._root = root
         self._question_service = service_instances['question_service']
         self._score_service = service_instances['score_service']
-        self._pack_and_destroy = BaseView(self._root)
+        self._pack_and_destroy = BaseFrame(self._root)
         self._current_view = None
 
     def start(self):

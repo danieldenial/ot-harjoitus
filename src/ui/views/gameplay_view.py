@@ -1,13 +1,13 @@
 
 import tkinter
-from ui.base_view import BaseView
-from ui.widget_creator import WidgetCreator
-from ui.button_styles import ButtonStyles
+from ui.utilities.base_frame import BaseFrame
+from ui.utilities.widget_creator import WidgetCreator
+from ui.utilities.button_styles import ButtonStyles
 from services.question_service import QuestionService
 from services.score_service import ScoreService
 
 
-class GameplayView(BaseView):
+class GameplayView(BaseFrame):
     """Luokka, jonka avulla luodaan pelinkulkua kuvaavia näkymiä.
 
     Args:

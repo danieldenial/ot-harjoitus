@@ -1,11 +1,11 @@
 
-from ui.base_view import BaseView
-from ui.widget_creator import WidgetCreator
-from ui.button_styles import ButtonStyles
+from ui.utilities.base_frame import BaseFrame
+from ui.utilities.widget_creator import WidgetCreator
+from ui.utilities.button_styles import ButtonStyles
 from services.score_service import ScoreService
 
 
-class HighScoreView(BaseView):
+class HighScoreView(BaseFrame):
     """Luokka, jonka avulla luodaan parhaat pistesuoritukset näyttävä näkymä.
 
     Args:

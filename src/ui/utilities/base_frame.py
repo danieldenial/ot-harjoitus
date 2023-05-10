@@ -1,11 +1,10 @@
 
-import tkinter
 from tkinter import Tk
 from tkinter import constants
-from ui.widget_creator import WidgetCreator
+from ui.utilities.widget_creator import WidgetCreator
 
 
-class BaseView:
+class BaseFrame:
     """Luokka, jonka avulla luodaan pohjakehys sovelluksen muita näkymiä varten.
     """
 

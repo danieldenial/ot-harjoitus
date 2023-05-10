@@ -1,13 +1,13 @@
 
 import tkinter
 from random import choice
-from ui.base_view import BaseView
-from ui.button_styles import ButtonStyles
-from ui.widget_creator import WidgetCreator
+from ui.utilities.base_frame import BaseFrame
+from ui.utilities.button_styles import ButtonStyles
+from ui.utilities.widget_creator import WidgetCreator
 from services.score_service import ScoreService
 
 
-class IntroView(BaseView):
+class IntroView(BaseFrame):
     """Luokka, jonka avulla luodaan sovelluksen avausnäkymä.
 
     Args:
