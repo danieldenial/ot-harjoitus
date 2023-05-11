@@ -13,9 +13,9 @@ BACKGROUND_COLOR = '#013369'
 def main():
     window = Tk()
     window.title("Gridiron Genius: An NFL Trivia Game")
-    screen_width = round(window.winfo_screenwidth() * 0.7)
-    screen_height = round(window.winfo_screenheight() * 0.7)
-    window.geometry(f'{screen_width}x{screen_height}')
+    width = round(window.winfo_screenwidth() * 0.7)
+    height = round(window.winfo_screenheight() * 0.7)
+    window.geometry(f'{width}x{height}')
     window.configure(background=BACKGROUND_COLOR)
 
     question_repo = QuestionRepository()
@@ -31,6 +31,8 @@ def main():
 
     view = UI(window, service_instances)
     view.start()
+    
+    #window.bind('Configure', on_resize)
 
     window.mainloop()
 

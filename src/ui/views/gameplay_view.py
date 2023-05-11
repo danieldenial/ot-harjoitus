@@ -99,20 +99,20 @@ class GameplayView(BaseFrame):
         current_score_text = self._score_service.get_current_score_text()
 
         self.question_label = self._widget_creator.create_longer_label(
-            self._question_frame, question_text, 25
+            self._question_frame, question_text, 35
             )
 
         option_labels = []
 
         for i in range(4):
             label = self._widget_creator.create_basic_label(
-                self._options_frame, self.options[i], 30
+                self._options_frame, self.options[i], 40
                 )
             
             option_labels.append(label)
 
         self.score_label = self._widget_creator.create_basic_label(
-            self._score_and_state_frame, current_score_text, 40
+            self._score_and_state_frame, current_score_text, 50
             )
 
         self.question_label.grid(
@@ -225,11 +225,11 @@ class GameplayView(BaseFrame):
         detail = self._question_service.get_detail_text()
 
         self.correct_label = self._widget_creator.create_basic_label(
-            self._score_and_state_frame, 'That is correct!', 30
+            self._score_and_state_frame, 'That is correct!', 40
             )
 
         self.detail_label = self._widget_creator.create_longer_label(
-            self._score_and_state_frame, detail, 35
+            self._score_and_state_frame, detail, 50
             )
 
         self.continue_button = self._widget_creator.create_basic_button(
@@ -251,7 +251,7 @@ class GameplayView(BaseFrame):
         """
 
         self.game_over_label = self._widget_creator.create_basic_label(
-            self._score_and_state_frame, 'Oops, game over!', 30
+            self._score_and_state_frame, 'Oops, game over!', 40
         )
 
         self.main_menu_button = self._widget_creator.create_basic_button(
@@ -280,7 +280,7 @@ class GameplayView(BaseFrame):
 
         if new_high_score:
             self.high_score_label = self._widget_creator.create_basic_label(
-                self._score_and_state_frame, 'But you set the new high score \o/', 35
+                self._score_and_state_frame, 'But you set the new high score \o/', 50
                 )
 
             self.high_score_label.grid(

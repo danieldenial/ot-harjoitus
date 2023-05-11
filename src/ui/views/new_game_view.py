@@ -48,18 +48,20 @@ class NewGameView(BaseFrame):
         """Luo näkymään kuuluvat tekstit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
         """
 
+        font_scaler = 40
+
         new_game_text_1 = self._widget_creator.create_basic_label(
-            self._frame, "Time for a new game!", 30
+            self._frame, "Time for a new game!", font_scaler
             )
         
         new_game_text_2 = self._widget_creator.create_basic_label(
             self._frame,
             f"The current high score is {self._score_service.get_high_score()}.",
-            30
+            font_scaler
             )
         
         new_game_text_3 = self._widget_creator.create_basic_label(
-            self._frame, "Can you beat it?", 30
+            self._frame, "Can you beat it?", font_scaler
             )
         
         new_game_text_1.place(relx=0.5, rely=0.2, anchor='center')

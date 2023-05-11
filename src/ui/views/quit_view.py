@@ -46,7 +46,7 @@ class QuitView(BaseFrame):
         """
 
         quit_game_text_1 = self._widget_creator.create_basic_label(
-            self._frame, "Quit game?", 25
+            self._frame, "Quit game?", 30
             )
 
         quit_game_text_1.place(relx=0.5, rely=0.4, anchor='center')

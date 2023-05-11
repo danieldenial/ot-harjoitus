@@ -49,11 +49,11 @@ class IntroView(BaseFrame):
         """
 
         welcome_text = self._widget_creator.create_basic_label(
-            self._frame, "Welcome to Grididon Genius!", 18
+            self._frame, "Welcome to Grididon Genius!", 25
             )
 
         team_question_text = self._widget_creator.create_basic_label(
-            self._frame, "Which team would you like to represent today?", 22
+            self._frame, "Which team would you like to represent today?", 30
             )
 
         welcome_text.place(relx=0.5, rely=0.35, anchor='center')
