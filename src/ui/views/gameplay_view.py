@@ -177,7 +177,7 @@ class GameplayView(BaseFrame):
         self.score_label.config(
             text=self._score_service.get_current_score_text())
         self._add_right_answer_widgets()
-        
+
     def _handle_wrong_answer(self, clicked_button):
         self._change_button_red(clicked_button)
         new_high_score_boolean = (

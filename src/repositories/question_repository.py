@@ -14,7 +14,7 @@ class QuestionRepository:
     def __init__(self):
         self.question_list = []
         self._file_path = Path(__file__).resolve(
-        ).parent.parent.parent / "files" / "questions.csv"
+        ).parent.parent.parent / "data" / "questions.csv"
 
         self._load_questions()
 

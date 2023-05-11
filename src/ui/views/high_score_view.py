@@ -42,7 +42,7 @@ class HighScoreView(BaseFrame):
     def _initialize_labels(self):
         intro_text = self._widget_creator.create_basic_label(
             self._frame, "These are the high scores – so far.", 0.04
-        )
+            )
 
         intro_text.place(relx=0.5, rely=0.2, anchor='center')
 

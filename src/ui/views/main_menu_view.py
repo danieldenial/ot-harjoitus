@@ -50,7 +50,7 @@ class MainMenuView(BaseFrame):
 
         h1_label = self._widget_creator.create_basic_label(
             self._frame, "Gridiron Genius", 0.06
-        )
+            )
         
         h2_label = self._widget_creator.create_basic_label(
             self._frame, "An NFL Trivia Game", 0.05

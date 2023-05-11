@@ -17,9 +17,9 @@ class HighScoreRepository:
         self._high_scores = []
         self._team_names = []
         self._score_file_path = Path(__file__).resolve(
-        ).parent.parent.parent / "files" / "high_scores.csv"
+        ).parent.parent.parent / "data" / "high_scores.csv"
         self._name_file_path = Path(__file__).resolve(
-        ).parent.parent.parent / "files" / "team_names.csv"
+        ).parent.parent.parent / "data" / "team_names.csv"
 
         self._load_high_score_list()
         self._load_team_name_list()

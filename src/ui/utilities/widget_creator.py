@@ -27,7 +27,7 @@ class WidgetCreator:
     def create_basic_label(self, frame, label_txt, font_size):
         label = tkinter.Label(
             frame, text=label_txt, fg=self.fg_color, bg=self.bg_color,
-            font=("Arial", round((self.window_height*font_size))),
+            font=("Arial", round((self.window_height*font_size)))
             )
 
         return label
@@ -37,7 +37,7 @@ class WidgetCreator:
             frame, text=label_txt, fg=self.fg_color, bg=self.bg_color,
             font=("Arial", round((self.window_height*font_size))),
             wraplength=(self.window_width*0.95), anchor=tkinter.W, justify=tkinter.LEFT
-        )
+            )
 
         return label
 
@@ -46,7 +46,7 @@ class WidgetCreator:
             _frame, text=_text, style='custom.basic.TButton',
             padding=round(self.window_height*0.015),
             command=_command
-        )
+            )
 
         return button
 
@@ -55,14 +55,14 @@ class WidgetCreator:
             frame, text=_text, style='custom.option.TButton',
             padding=round(self.window_height*0.015),
             command=_command
-        )
+            )
 
         return button
 
     def create_dropdown_menu(self, frame, selected_team, *team_options):
         dropdown_menu = tkinter.OptionMenu(
             frame, selected_team, *team_options
-        )
+            )
 
         dropdown_menu.config(font=('Arial', round((self.window_height*0.03))))
 
