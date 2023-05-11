@@ -47,7 +47,7 @@ pelin, palata päävalikkoon tai lopettaa sovelluksen käytön. | TEHTY
 
 ## Jatkokehitysideoita
 
-- Taulukko parhaista suorituksista pistemäärän mukaan (high scores)
+- Taulukko parhaista suorituksista pistemäärän mukaan (high scores) | TEHTY
 	- Ehkä jopa verkkoon, jotta käyttäjä voi kilpailla myös muilla 
 tietokoneilla pelaavia vastaan?
 - Käyttäjätunnuksen luominen omien suoritusten tallentamiseksi (joko 

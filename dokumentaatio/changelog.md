@@ -45,10 +45,12 @@ mahdollista vielä parannella sekä siirtyä myös jatkokehitysideoiden toteutuk
 
 ## Viikko 7
 
-- Koodia on tiivistetty merkittävästi etenkin pelinkulun näkymästä 
-vastaavan GameplayView-luokan osalta.
-- Käyttäjä voi nyt valita joukkueen, jota hän ikään kuin edustaa pelissä, ja jonka nimiin hänen 
-saavuttamat pisteet laitetaan.
+- Koodia on tiivistetty merkittävästi etenkin pelinkulun näkymästä vastaavan GameplayView-luokan osalta.
+- Käyttäjä voi nyt valita NFL-joukkueen, jota hän ikään kuin edustaa pelissä, ja jonka nimiin hänen 
+saavuttamat pisteet laitetaan. 
 - Käyttäjä pystyy tarkastelemaan parhaiden tulosten taulukkoa (high scores) ja halutessaan myös 
 nollaamaan sen.
-- Kysymysten määrä on yli kolminkertaistettu.
+- Kysymysten määrä on nelinkertaistettu, kysymyksiä on nyt 100.
+- Sovellus hakee nyt käynnistymisen yhteydessä pelin kysymysaineiston automaattisesti verkosta 
+(Google Sheets), mikäli paikallista kysymystiedostoa ei vielä ole, tai verkosta löytyvän 
+tiedosto on uudempi. Näin käyttäjä saa aina ajantasaisimmat kysymykset pelissä.

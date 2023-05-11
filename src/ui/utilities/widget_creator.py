@@ -89,7 +89,7 @@ class WidgetCreator:
             table.heading(col, text=head)
 
         return table
-    
+
     def set_relative_size(self, font_scaler):
         dpi = self._root.winfo_fpixels('1i')
         dpi_scaling = dpi / 96

@@ -5,10 +5,10 @@ from services.question_service import QuestionService
 from services.score_service import ScoreService
 from repositories.question_repository import QuestionRepository
 from repositories.high_score_repository import HighScoreRepository
+from config import QUESTION_FILE_ID, SCORE_FILE_NAME, TEAM_FILE_NAME, BACKGROUND_COLOR
 
 
 BACKGROUND_COLOR = '#013369'
-
 
 def main():
     window = Tk()
@@ -18,8 +18,8 @@ def main():
     window.geometry(f'{width}x{height}')
     window.configure(background=BACKGROUND_COLOR)
 
-    question_repo = QuestionRepository()
-    score_repo = HighScoreRepository()
+    question_repo = QuestionRepository(QUESTION_FILE_ID)
+    score_repo = HighScoreRepository(SCORE_FILE_NAME, TEAM_FILE_NAME)
 
     question_service = QuestionService(question_repo)
     score_service = ScoreService(score_repo)
@@ -31,8 +31,6 @@ def main():
 
     view = UI(window, service_instances)
     view.start()
-    
-    #window.bind('Configure', on_resize)
 
     window.mainloop()
 

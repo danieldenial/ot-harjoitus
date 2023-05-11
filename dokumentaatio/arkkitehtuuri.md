@@ -28,7 +28,7 @@ Näistä näkymistä pelinkulku on dynaaminen näkymä, jonka sisältö vaihtuu 
 
 Kaikki näkymät on toteutettu omana luokkanaan ja niistä vain yksi näkyy kerrallaan. Ulkoasun 
 yhtenäistämiseksi ja koodin toiston välttämiseksi kaikki yllä olevat näkymäluokat perivat 
-luokan _BaseView_, jonka luoman pohjakehyksen päälle näkymät rakentuvat. Näkymien 
+luokan _BaseFrame_, jonka luoman pohjakehyksen päälle näkymät rakentuvat. Näkymien 
 näyttämisestä ja hallinnoinnista vastaa luokka _UI_. Käyttöliittymä on pyritty eristämään 
 sovelluslogiikasta, josta vastaa puolestaan sovelluksen _services_-luokat.
 
@@ -70,7 +70,8 @@ tallentamisesta vastaa kuitenkin pakkauksen _repositories_ luokka _HighScoreRepo
 ## Tietojen hallinnointi ja tallennus
 
 Pakkauksen _repositories_ luokat _QuestionRepository_ ja _HighScoreRepository_ 
-vastaavat kysymysaineiston tuomisesta peliin sekä tulosten tallettamisesta. 
+vastaavat kysymysaineiston tuomisesta sovellukseen/peliin sekä tulosten tallettamisesta 
+paikallisesti. 
 
 _QuestionRepository_-luokka lataa sovelluksen käynnistyessä pelin kysymysaineiston (eli 
 kysymykset, vastausvaihtoehdot, oikeat vastaukset ja kysymyksiin liittyvät lisätiedot) sovellukseen 
