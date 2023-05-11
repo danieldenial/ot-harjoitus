@@ -1,7 +1,7 @@
 
 from ui.utilities.base_frame import BaseFrame
 from ui.utilities.widget_creator import WidgetCreator
-from ui.utilities.button_styles import ButtonStyles
+from ui.utilities.widget_styles import WidgetStyles
 from services.score_service import ScoreService
 
 
@@ -32,7 +32,7 @@ class NewGameView(BaseFrame):
         self._handle_show_gameplay_view = views['show_gameplay_view']
         self._handle_show_main_menu = views['show_main_menu']
         self._widget_creator = WidgetCreator(root)
-        self._button_style = ButtonStyles(root)
+        self._widget_styles = WidgetStyles(root)
 
         self._initialize()
 
@@ -49,17 +49,17 @@ class NewGameView(BaseFrame):
         """
 
         new_game_text_1 = self._widget_creator.create_basic_label(
-            self._frame, "Time for a new game!", 0.05
+            self._frame, "Time for a new game!", 30
             )
         
         new_game_text_2 = self._widget_creator.create_basic_label(
             self._frame,
             f"The current high score is {self._score_service.get_high_score()}.",
-            0.05
+            30
             )
         
         new_game_text_3 = self._widget_creator.create_basic_label(
-            self._frame, "Can you beat it?", 0.05
+            self._frame, "Can you beat it?", 30
             )
         
         new_game_text_1.place(relx=0.5, rely=0.2, anchor='center')
@@ -70,7 +70,7 @@ class NewGameView(BaseFrame):
         """Luo näkymään kuuluvat napit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
         """
 
-        self._button_style.configure_basic_style()
+        self._widget_styles.config_basic_button()
 
         start_button = self._widget_creator.create_basic_button(
             self._frame, "START", self._handle_show_gameplay_view

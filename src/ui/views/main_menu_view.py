@@ -1,7 +1,7 @@
 
 from ui.utilities.base_frame import BaseFrame
 from ui.utilities.widget_creator import WidgetCreator
-from ui.utilities.button_styles import ButtonStyles
+from ui.utilities.widget_styles import WidgetStyles
 
 
 class MainMenuView(BaseFrame):
@@ -32,7 +32,7 @@ class MainMenuView(BaseFrame):
         self._handle_show_rules = views['show_rules']
         self._handle_show_quit_view = views['show_quit']
         self._widget_creator = WidgetCreator(root)
-        self._button_style = ButtonStyles(root)
+        self._widget_styles = WidgetStyles(root)
 
         self._initialize()
 
@@ -49,11 +49,11 @@ class MainMenuView(BaseFrame):
         """
 
         h1_label = self._widget_creator.create_basic_label(
-            self._frame, "Gridiron Genius", 0.06
+            self._frame, "Gridiron Genius", 16
             )
         
         h2_label = self._widget_creator.create_basic_label(
-            self._frame, "An NFL Trivia Game", 0.05
+            self._frame, "An NFL Trivia Game", 20
             )
 
         h1_label.place(relx=0.5, rely=0.25, anchor='center')
@@ -63,7 +63,7 @@ class MainMenuView(BaseFrame):
         """Luo näkymään kuuluvat napit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
         """
         
-        self._button_style.configure_basic_style()
+        self._widget_styles.config_basic_button()
 
         new_game_button = self._widget_creator.create_basic_button(
             self._frame, "NEW GAME", self._handle_show_new_game_view

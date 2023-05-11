@@ -1,7 +1,7 @@
 
 from ui.utilities.base_frame import BaseFrame
 from ui.utilities.widget_creator import WidgetCreator
-from ui.utilities.button_styles import ButtonStyles
+from ui.utilities.widget_styles import WidgetStyles
 from services.score_service import ScoreService
 
 
@@ -30,7 +30,7 @@ class HighScoreView(BaseFrame):
         self._score_service = score_service
         self._handle_show_main_menu = main_menu_view
         self._widget_creator = WidgetCreator(root)
-        self._button_style = ButtonStyles(root)
+        self._widget_styles = WidgetStyles(root)
 
         self._initialize()
 
@@ -41,12 +41,13 @@ class HighScoreView(BaseFrame):
 
     def _initialize_labels(self):
         intro_text = self._widget_creator.create_basic_label(
-            self._frame, "These are the high scores – so far.", 0.04
+            self._frame, "These are the high scores – so far.", 30
             )
 
         intro_text.place(relx=0.5, rely=0.2, anchor='center')
 
     def _initialize_high_scores_table(self):
+        self._widget_styles.config_treeview()
         high_scores = self._score_service.get_high_scores_list()
 
         columns = ['Team', 'Score']
@@ -65,7 +66,7 @@ class HighScoreView(BaseFrame):
         self._table.place(relx=0.5, rely=0.5, anchor='center')
 
     def _initialize_buttons(self):
-        self._button_style.configure_basic_style()
+        self._widget_styles.config_basic_button()
 
         reset_scores_button = self._widget_creator.create_basic_button(
             self._frame, "RESET", self._update_table

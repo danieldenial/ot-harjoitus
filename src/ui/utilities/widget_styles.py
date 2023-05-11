@@ -3,7 +3,7 @@ from tkinter import ttk
 from ui.utilities.widget_creator import WidgetCreator
 
 
-class ButtonStyles(WidgetCreator):
+class WidgetStyles(WidgetCreator):
     """Luokka, jonka avulla konfiguroidaan sovelluksen painikkeille eri tyylejä.
 
     Attributes:
@@ -18,7 +18,7 @@ class ButtonStyles(WidgetCreator):
         self._style = ttk.Style()
         self._style.theme_use('default')
 
-    def configure_basic_style(self):
+    def config_basic_button(self):
         """Konfiguroi sovelluksen peruspainikkeiden tyylin.
         """
 
@@ -28,7 +28,7 @@ class ButtonStyles(WidgetCreator):
             background='#8a9095', foreground='black'
         )
 
-    def configure_option_style(self):
+    def config_option_button(self):
         self._style.configure(
             'custom.option.TButton', 
             font=('Verdana', round((self.window_height*0.03))),
@@ -36,7 +36,7 @@ class ButtonStyles(WidgetCreator):
             height=round(self.window_height*0.02), width=round(self.window_height*0.005)
         )
 
-    def configure_right_answer_style(self):
+    def config_right_answer_button(self):
         """Konfiguroi oikein menneen vastauksen painikkeen tyylin (väri vihreäksi).
         """
         self._style.configure(
@@ -46,9 +46,9 @@ class ButtonStyles(WidgetCreator):
             height=round(self.window_height*0.02), width=round(self.window_height*0.005)
         )
 
-        self._map_right_answer_style()
+        self._map_right_answer_button()
 
-    def configure_wrong_answer_style(self):
+    def configure_wrong_answer_button(self):
         """Konfiguroi väärin menneen vastauksen painikkeen tyylin (väri punaiseksi).
         """
 
@@ -59,9 +59,9 @@ class ButtonStyles(WidgetCreator):
             height=round(self.window_height*0.02), width=round(self.window_height*0.005)
         )
 
-        self._map_wrong_answer_style()
+        self._map_wrong_answer_button()
 
-    def _map_right_answer_style(self):
+    def _map_right_answer_button(self):
         """Muuttaa jo painetun (nyt vihreän) napin asetuksia,
         jotta se ei enää reagoi käyttäjän uusiin painalluksiin tai hiiren liikkeeseen.
         """
@@ -70,7 +70,7 @@ class ButtonStyles(WidgetCreator):
             background=[('pressed', '#3B9B00')]
         )
 
-    def _map_wrong_answer_style(self):
+    def _map_wrong_answer_button(self):
         """Muuttaa jo painetun (nyt punaisen) napin asetuksia,
         jotta se ei enää reagoi käyttäjän uusiin painalluksiin tai hiiren liikkeeseen.
         """
@@ -79,3 +79,7 @@ class ButtonStyles(WidgetCreator):
             'custom.red.TButton',
             background=[('pressed', '#d50a0a')]
         )
+
+    def config_treeview(self):
+        font_size = self.set_relative_size(50)
+        self._style.configure('Treeview', font=font_size)

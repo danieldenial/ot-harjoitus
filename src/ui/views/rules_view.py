@@ -1,7 +1,7 @@
 
 from ui.utilities.base_frame import BaseFrame
 from ui.utilities.widget_creator import WidgetCreator
-from ui.utilities.button_styles import ButtonStyles
+from ui.utilities.widget_styles import WidgetStyles
 
 
 class RulesView(BaseFrame):
@@ -26,7 +26,7 @@ class RulesView(BaseFrame):
         super().__init__(root)
         self._handle_show_main_menu = main_menu_view
         self._widget_creator = WidgetCreator(root)
-        self._button_style = ButtonStyles(root)
+        self._widget_styles = WidgetStyles(root)
 
         self._initialize()
 
@@ -42,33 +42,33 @@ class RulesView(BaseFrame):
         """Luo näkymään kuuluvat tekstit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
         """
 
-        font_size = 0.035
+        font_size_factor = 30
 
         rules_text_1 = self._widget_creator.create_basic_label(
             self._frame, 
             "Gridiron Genius is a multiple choice trivia game about the NFL.",
-            font_size
+            font_size_factor
             )
 
         rules_text_2 = self._widget_creator.create_basic_label(
             self._frame,
             "Once you start the game, you will see a question and four options.",
-            font_size
+            font_size_factor
             )
 
         rules_text_3 = self._widget_creator.create_basic_label(
             self._frame,
             "Click on A, B, C or D to select the answer you think is correct.",
-            font_size
+            font_size_factor
             )
 
         rules_text_4 = self._widget_creator.create_basic_label(
-            self._frame, "You will get 1 point for each right answer.", font_size
+            self._frame, "You will get 1 point for each right answer.", font_size_factor
             )
 
         rules_text_5 = self._widget_creator.create_basic_label(
             self._frame, 
-            "All questions and answers are valid as of May 2023.", font_size
+            "All questions and answers are valid as of May 2023.", font_size_factor
             )
 
         rules_text_1.place(relx=0.5, rely=0.2, anchor='center')
@@ -82,7 +82,7 @@ class RulesView(BaseFrame):
         """Luo näkymään kuuluvat napit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
         """
 
-        self._button_style.configure_basic_style()
+        self._widget_styles.config_basic_button()
 
         back_button = self._widget_creator.create_basic_button(
             self._frame, "BACK", self._handle_show_main_menu

@@ -24,47 +24,57 @@ class WidgetCreator:
 
         return subframe
 
-    def create_basic_label(self, frame, label_txt, font_size):
+    def create_basic_label(self, frame, label_txt, font_scaler):
+        font_size = self.set_relative_size(font_scaler)
+
         label = tkinter.Label(
             frame, text=label_txt, fg=self.fg_color, bg=self.bg_color,
-            font=("Arial", round((self.window_height*font_size)))
+            font=("Arial", font_size)
             )
 
         return label
 
-    def create_longer_label(self, frame, label_txt, font_size):
+    def create_longer_label(self, frame, label_txt, font_scaler):
+        font_size = self.set_relative_size(font_scaler)
+
         label = tkinter.Label(
             frame, text=label_txt, fg=self.fg_color, bg=self.bg_color,
-            font=("Arial", round((self.window_height*font_size))),
+            font=("Arial", font_size),
             wraplength=(self.window_width*0.95), anchor=tkinter.W, justify=tkinter.LEFT
             )
 
         return label
 
     def create_basic_button(self, _frame, _text, _command):
+        padding_size = self.set_relative_size(60)
+
         button = ttk.Button(
-            _frame, text=_text, style='custom.basic.TButton',
-            padding=round(self.window_height*0.015),
+            _frame, text=_text, 
+            style='custom.basic.TButton',
+            padding=padding_size,
             command=_command
             )
 
         return button
 
     def create_option_button(self, frame, _text, _command):
+        padding_size = self.set_relative_size(60)
         button = ttk.Button(
             frame, text=_text, style='custom.option.TButton',
-            padding=round(self.window_height*0.015),
+            padding=padding_size,
             command=_command
             )
 
         return button
 
     def create_dropdown_menu(self, frame, selected_team, *team_options):
+        font_size = self.set_relative_size(50)
+
         dropdown_menu = tkinter.OptionMenu(
             frame, selected_team, *team_options
             )
 
-        dropdown_menu.config(font=('Arial', round((self.window_height*0.03))))
+        dropdown_menu.config(font=('Arial', font_size))
 
         return dropdown_menu
 
@@ -77,3 +87,6 @@ class WidgetCreator:
             table.heading(col, text=head)
 
         return table
+    
+    def set_relative_size(self, scaler):
+        return round(self.window_height/scaler)

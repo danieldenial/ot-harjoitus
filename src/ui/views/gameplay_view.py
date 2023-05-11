@@ -2,7 +2,7 @@
 import tkinter
 from ui.utilities.base_frame import BaseFrame
 from ui.utilities.widget_creator import WidgetCreator
-from ui.utilities.button_styles import ButtonStyles
+from ui.utilities.widget_styles import WidgetStyles
 from services.question_service import QuestionService
 from services.score_service import ScoreService
 
@@ -40,7 +40,7 @@ class GameplayView(BaseFrame):
         self._handle_show_new_game_view = views['show_new_game_view']
         self._handle_show_quit_view = views['show_quit_view']
         self._widget_creator = WidgetCreator(root)
-        self._button_styles = ButtonStyles(root)
+        self._widget_styles = WidgetStyles(root)
 
         self._initialize()
 
@@ -99,20 +99,20 @@ class GameplayView(BaseFrame):
         current_score_text = self._score_service.get_current_score_text()
 
         self.question_label = self._widget_creator.create_longer_label(
-            self._question_frame, question_text, 0.035
+            self._question_frame, question_text, 25
             )
 
         option_labels = []
 
         for i in range(4):
             label = self._widget_creator.create_basic_label(
-                self._options_frame, self.options[i], 0.035
+                self._options_frame, self.options[i], 30
                 )
             
             option_labels.append(label)
 
         self.score_label = self._widget_creator.create_basic_label(
-            self._score_and_state_frame, current_score_text, 0.025
+            self._score_and_state_frame, current_score_text, 40
             )
 
         self.question_label.grid(
@@ -138,7 +138,7 @@ class GameplayView(BaseFrame):
         option_list = ['A', 'B', 'C', 'D']
         self.buttons = []
 
-        self._button_styles.configure_option_style()
+        self._widget_styles.config_option_button()
 
         for i, letter in enumerate(option_list):
             command = lambda letter=letter, i=i: self._handle_user_answer(
@@ -193,7 +193,7 @@ class GameplayView(BaseFrame):
             click: Käyttäjän painama nappi ('A', 'B', 'C' tai 'D')
         """
 
-        self._button_styles.configure_right_answer_style()
+        self._widget_styles.config_right_answer_button()
 
         self.buttons[click].configure(style='custom.green.TButton')
 
@@ -204,7 +204,7 @@ class GameplayView(BaseFrame):
             click: Käyttäjän painama nappi ('A', 'B', 'C' tai 'D')
         """
 
-        self._button_styles.configure_wrong_answer_style()
+        self._widget_styles.configure_wrong_answer_button()
 
         self.buttons[click].configure(style='custom.red.TButton')
 
@@ -225,11 +225,11 @@ class GameplayView(BaseFrame):
         detail = self._question_service.get_detail_text()
 
         self.correct_label = self._widget_creator.create_basic_label(
-            self._score_and_state_frame, 'That is correct!', 0.03
+            self._score_and_state_frame, 'That is correct!', 30
             )
 
         self.detail_label = self._widget_creator.create_longer_label(
-            self._score_and_state_frame, detail, 0.0275
+            self._score_and_state_frame, detail, 35
             )
 
         self.continue_button = self._widget_creator.create_basic_button(
@@ -251,7 +251,7 @@ class GameplayView(BaseFrame):
         """
 
         self.game_over_label = self._widget_creator.create_basic_label(
-            self._score_and_state_frame, 'Oops, game over!', 0.03
+            self._score_and_state_frame, 'Oops, game over!', 30
         )
 
         self.main_menu_button = self._widget_creator.create_basic_button(
@@ -280,7 +280,7 @@ class GameplayView(BaseFrame):
 
         if new_high_score:
             self.high_score_label = self._widget_creator.create_basic_label(
-                self._score_and_state_frame, 'But you set the new high score \o/', 0.03
+                self._score_and_state_frame, 'But you set the new high score \o/', 35
                 )
 
             self.high_score_label.grid(

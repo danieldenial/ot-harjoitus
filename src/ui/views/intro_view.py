@@ -2,7 +2,7 @@
 import tkinter
 from random import choice
 from ui.utilities.base_frame import BaseFrame
-from ui.utilities.button_styles import ButtonStyles
+from ui.utilities.widget_styles import WidgetStyles
 from ui.utilities.widget_creator import WidgetCreator
 from services.score_service import ScoreService
 
@@ -31,7 +31,7 @@ class IntroView(BaseFrame):
         super().__init__(root)
         self._score_service = score_service
         self._handle_show_main_menu = main_menu_view
-        self._button_style = ButtonStyles(root)
+        self._widget_styles = WidgetStyles(root)
         self._widget_creator = WidgetCreator(root)
 
         self._initialize()
@@ -49,11 +49,11 @@ class IntroView(BaseFrame):
         """
 
         welcome_text = self._widget_creator.create_basic_label(
-            self._frame, "Welcome to Grididon Genius!", 0.055
+            self._frame, "Welcome to Grididon Genius!", 18
             )
 
         team_question_text = self._widget_creator.create_basic_label(
-            self._frame, "Which team would you like to represent today?", 0.045
+            self._frame, "Which team would you like to represent today?", 22
             )
 
         welcome_text.place(relx=0.5, rely=0.35, anchor='center')
@@ -63,7 +63,7 @@ class IntroView(BaseFrame):
         """Luo näkymään kuuluvat painikkeet ja määrittelee niiden sijainnit.
         """
 
-        self._button_style.configure_basic_style()
+        self._widget_styles.config_basic_button()
 
         main_menu_button = self._widget_creator.create_basic_button(
             self._frame, "SELECT", self._handle_show_main_menu
