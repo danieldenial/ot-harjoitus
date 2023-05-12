@@ -40,10 +40,10 @@ class HighScoreRepository:
             with open(self._name_file_path, mode="r", encoding='utf-8') as file:
                 reader = csv.reader(file)
                 for row in reader:
-                    print(row)
-                    self._team_names.append(row)
+                    self._team_names.append(row[0])
+            print(self._team_names)
         except FileNotFoundError:
-            self._team_names = ["AFC", "NFC"]
+            self._team_names = ['AFC', 'NFC']
             self.create_team_name_file()
 
     def get_high_score(self):
@@ -67,7 +67,7 @@ class HighScoreRepository:
         with open(self._name_file_path, mode="w", encoding="utf-8") as file:
             writer = csv.writer(file)
             for team in self._team_names:
-                writer.writerow([team])
+                writer.writerow(team)
 
     def write_high_scores_to_file(self):
         self._high_scores.sort(reverse=True)

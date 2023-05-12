@@ -37,7 +37,7 @@ class TestHighScores(unittest.TestCase):
 
     def test_high_score_is_not_None(self):
         self.assertIsNotNone(self._HS.get_high_score())
-    
+
     def test_high_score_list_length_is_10(self):
         self.assertEqual(len(self._HS._high_scores), 10)
 
