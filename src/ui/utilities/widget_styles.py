@@ -80,6 +80,6 @@ class WidgetStyles(WidgetCreator):
             background=[('pressed', '#d50a0a')]
         )
 
-    def config_treeview(self):
+    def config_table(self):
         font_size = self.set_relative_size(50)
-        self._style.configure('Treeview', font=font_size)
+        self._style.configure('Treeview', font=('Verdana', font_size))

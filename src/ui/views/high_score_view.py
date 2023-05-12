@@ -47,13 +47,13 @@ class HighScoreView(BaseFrame):
         intro_text.place(relx=0.5, rely=0.2, anchor='center')
 
     def _initialize_high_scores_table(self):
-        self._widget_styles.config_treeview()
+        self._widget_styles.config_table()
         high_scores = self._score_service.get_high_scores_list()
 
         columns = ['Team', 'Score']
         headings = ['Team', 'Score']
 
-        self._table = self._widget_creator.create_table(
+        self._table = self._widget_creator.create_high_score_table(
             self._frame, columns, headings, "Position"
             )
 

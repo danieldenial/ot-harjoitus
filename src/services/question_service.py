@@ -26,6 +26,9 @@ class QuestionService:
         shuffle(self._index_list)
         self._index = None
 
+    def check_question_data_exists(self):
+        return len(self._question_list) > 0
+
     def get_question_list(self):
         return self._question_list
 

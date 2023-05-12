@@ -1,5 +1,7 @@
 
+from random import choice
 from repositories.high_score_repository import HighScoreRepository
+
 
 class ScoreService:
     """Luokka, jonka avulla hallinnoidaan pisteiden käsittelyä.
@@ -12,8 +14,8 @@ class ScoreService:
 
     def __init__(self, score_repo: HighScoreRepository):
         self._current_score = 0
-        self._selected_team = None
         self._score_repo = score_repo
+        self._selected_team = choice(self._score_repo.get_team_name_list())
 
     def get_current_score(self):
         """Palauttaa senhetkisen pistemäärän.

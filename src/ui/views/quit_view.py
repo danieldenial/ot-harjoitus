@@ -16,7 +16,7 @@ class QuitView(BaseFrame):
         _button_style: Näkymän painikkeiden tyyleistä vastaava luokkaolio
     """
 
-    def __init__(self, root, main_menu_view, quit_game):
+    def __init__(self, root, main_menu_view, quit_view_callback):
         """Luokan konstruktori, joka alustaa sovelluksen sulkemista edeltävän näkymän.
 
         Args:
@@ -27,7 +27,7 @@ class QuitView(BaseFrame):
 
         super().__init__(root)
         self._handle_show_main_menu = main_menu_view
-        self._quit_game = quit_game
+        self._quit_application = quit_view_callback
         self._widget_creator = WidgetCreator(root)
         self._widget_styles = WidgetStyles(root)
 
@@ -58,7 +58,7 @@ class QuitView(BaseFrame):
         self._widget_styles.config_basic_button()
 
         quit_button = self._widget_creator.create_basic_button(
-            self._frame, "YES", self._quit_game
+            self._frame, "YES", self._quit_application
             )
 
         back_button = self._widget_creator.create_basic_button(

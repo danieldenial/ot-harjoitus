@@ -39,6 +39,7 @@ class GameplayView(BaseFrame):
         self._handle_show_main_menu = views['show_main_menu']
         self._handle_show_new_game_view = views['show_new_game_view']
         self._handle_show_quit_view = views['show_quit_view']
+        self._handle_show_error_view = views['show_error_view']
         self._widget_creator = WidgetCreator(root)
         self._widget_styles = WidgetStyles(root)
 
@@ -48,9 +49,12 @@ class GameplayView(BaseFrame):
         """Luo uuden pelin aloittavan näkymän.
         """
 
-        self._set_up_new_game()
-        self._initialize_subframes()
-        self._initialize_question_view()
+        if not self._question_service.check_question_data_exists():
+            self._handle_show_error_view()
+        else:
+            self._set_up_new_game()
+            self._initialize_subframes()
+            self._initialize_question_view()
 
     def _set_up_new_game(self):
         """Alustaa uuden pelin pisteet ja kysymykset.

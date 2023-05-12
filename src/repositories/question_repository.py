@@ -2,8 +2,9 @@
 from datetime import datetime
 from pathlib import Path
 import os
+import requests
 import pandas as pd
-from config import QUESTION_FILE_NAME, QUESTION_FILE_TIMESTAMP_ID
+from config import DATA_FOLDER, QUESTION_FILE_NAME, QUESTION_FILE_TIMESTAMP_ID
 
 
 class QuestionRepository:
@@ -16,44 +17,59 @@ class QuestionRepository:
 
     def __init__(self, question_file_id):
         self.question_list = []
+        
         self._file_storage_path = Path(__file__).resolve(
-        ).parents[2] / "data" / QUESTION_FILE_NAME
-        self._question_file_url = (
-            'https://docs.google.com/spreadsheets/d/' +
-            f'{question_file_id}/export?format=tsv'
-            )
-        self._question_file_timestamp = (
-            'https://docs.google.com/spreadsheets/d/' +
-            f'{question_file_id}/export?format=tsv' +
+        ).parents[2] / DATA_FOLDER / QUESTION_FILE_NAME
+        
+        self._question_file_url = question_file_id
+        
+        self._qfile_timestamp_url = (
+            self._question_file_url +
             f'&gid={QUESTION_FILE_TIMESTAMP_ID}'
             )
 
         self._initialize()
 
     def _initialize(self):
-        self._is_question_file_stored()
+        if self._is_question_file_stored():
+            if self._is_url_reachable(self._question_file_url):
+                self._check_for_updates(self._file_storage_path)
+            else:
+                self._import_question_data()
+        else:
+            if self._is_url_reachable(self._question_file_url):
+                self._import_question_data()
+            else:
+                pass
 
     def _is_question_file_stored(self):
-        if os.path.exists(self._file_storage_path):
-            self._check_for_updates(self._file_storage_path)
-        else:
-            self._import_question_data()
+        return os.path.exists(self._file_storage_path)
+
+    def _is_url_reachable(self, url):
+        try:
+            response = requests.get(url, timeout=5.0, stream=True)
+            return response.status_code == 200
+        except requests.exceptions.RequestException:
+            return False
 
     def _check_for_updates(self, file_path):
-        storage_file_modified = self._file_creation_time_format(file_path)
+        storage_file_modified = self._get_formatted_last_modified_date(file_path)
 
-        timestamp_df = pd.read_csv(self._question_file_timestamp, header=None, nrows=1)
-        online_file_updated = timestamp_df.iloc[0, 0]
+        online_file_last_updated = self._get_question_file_timestamp()
 
-        if online_file_updated > storage_file_modified:
+        if online_file_last_updated > storage_file_modified:
             self._import_question_data()
         else:
-            self._load_question_data_from_storage()
+            self._load_question_data_from_storage_file()
 
-    def _file_creation_time_format(self, file_path):
+    def _get_formatted_last_modified_date(self, file_path):
         storage_file_created = os.path.getmtime(file_path)
         creation_datetime = datetime.fromtimestamp(storage_file_created)
         return creation_datetime.strftime("%d/%m/%Y %H:%M")
+    
+    def _get_question_file_timestamp(self):
+        timestamp_df = pd.read_csv(self._qfile_timestamp_url, header=None, nrows=1)
+        return timestamp_df.iloc[0, 0]
 
     def _import_question_data(self):
         question_data = pd.read_csv(self._question_file_url, delimiter='\t')
@@ -65,7 +81,7 @@ class QuestionRepository:
     def _create_local_question_file(self, dataframe):
         dataframe.to_csv(self._file_storage_path, sep="\t", index=False)
 
-    def _load_question_data_from_storage(self):
+    def _load_question_data_from_storage_file(self):
         dataframe = pd.read_csv(self._file_storage_path, delimiter="\t")
         self.question_list = dataframe.to_dict("records")
 

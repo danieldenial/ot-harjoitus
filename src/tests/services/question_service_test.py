@@ -1,54 +1,66 @@
 
 import unittest
+from pathlib import Path
+import os
+import shutil
 from services.question_service import QuestionService
 from repositories.question_repository import QuestionRepository
+from config import QUESTION_FILE_URL, DATA_FOLDER
 
 
 class TestQuestionService(unittest.TestCase):
 
     def setUp(self):
-        question_data = QuestionRepository()
-        self.Qs = QuestionService(question_data)
+        self.test_dir_path = Path(__file__).resolve(
+        ).parents[3] / DATA_FOLDER
+
+        os.makedirs(self.test_dir_path, exist_ok=True)
+
+        question_repo = QuestionRepository(QUESTION_FILE_URL)
+        self.test_service = QuestionService(question_repo)
+
+    def tearDown(self):
+        shutil.rmtree(self.test_dir_path)
 
     def test_questions_dictionary_not_empty(self):
-        self.assertGreater(len(self.Qs._question_list), 0)
+        self.assertGreater(len(self.test_service._question_list), 0)
 
     def test_key_list_and_number_of_keys_are_equal(self):
-        self.assertEqual(len(self.Qs._question_list),
-                         len(self.Qs._index_list))
+        self.assertEqual(len(self.test_service._question_list),
+                         len(self.test_service._index_list))
 
     def test_key_list_is_shuffled(self):
-        comparison = [x for x in range(1, len(self.Qs._index_list)+1)]
-        self.assertNotEqual(self.Qs._index_list, comparison)
+        comparison = [x for x in range(1, len(self.test_service._index_list)+1)]
+        self.assertNotEqual(self.test_service._index_list, comparison)
 
     def test_get_question(self):
-        self.Qs.set_next_question_index()
+        self.test_service.set_next_question_index()
         self.assertEqual(
-            self.Qs.get_question(),
-            self.Qs._question_list[self.Qs._index]['Question']
+            self.test_service.get_question(),
+            self.test_service._question_list[self.test_service._index]['Question']
         )
 
     def test_get_options(self):
-        self.Qs.set_next_question_index()
-        options1 = self.Qs.get_options()
+        self.test_service.set_next_question_index()
+        options1 = self.test_service.get_options()
         options2 = [
-            self.Qs._question_list[self.Qs._index]['A'],
-            self.Qs._question_list[self.Qs._index]['B'],
-            self.Qs._question_list[self.Qs._index]['C'],
-            self.Qs._question_list[self.Qs._index]['D'],
+            self.test_service._question_list[self.test_service._index]['A'],
+            self.test_service._question_list[self.test_service._index]['B'],
+            self.test_service._question_list[self.test_service._index]['C'],
+            self.test_service._question_list[self.test_service._index]['D'],
         ]
         options1.sort()
         options2.sort()
         self.assertEqual(options1, options2)
 
     def test_check_answer(self):
-        self.Qs.set_next_question_index()
-        answer = self.Qs._question_list[self.Qs._index]['Answer']
-        self.assertEqual(self.Qs.evaluate_user_answer(answer), True)
+        self.test_service.set_next_question_index()
+        answer = self.test_service._question_list[self.test_service._index]['Answer']
+        self.assertEqual(self.test_service.evaluate_user_answer(answer), True)
 
     def test_question_changes(self):
-        self.Qs.set_next_question_index()
-        question1 = self.Qs._question_list[self.Qs._index]['Question']
-        self.Qs.set_next_question_index()
-        question2 = self.Qs._question_list[self.Qs._index]['Question']
+        self.test_service.set_next_question_index()
+        question1 = self.test_service._question_list[self.test_service._index]['Question']
+        self.test_service.set_next_question_index()
+        question2 = self.test_service._question_list[self.test_service._index]['Question']
         self.assertNotEqual(question1, question2)

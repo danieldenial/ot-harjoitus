@@ -2,6 +2,8 @@
 import tkinter
 from tkinter import Tk
 from tkinter import ttk
+from services.score_service import ScoreService
+from config import BACKGROUND_COLOR
 
 
 class WidgetCreator:
@@ -11,7 +13,7 @@ class WidgetCreator:
         self.window_width = round(root.winfo_screenwidth() * 0.7)
         self.window_height = round(root.winfo_screenheight() * 0.7)
         self.fg_color = 'white'
-        self.bg_color = '#013369'
+        self.bg_color = BACKGROUND_COLOR
 
     def create_view_frame(self, _master):
         frame = tkinter.Frame(_master, bg=self.bg_color,
@@ -69,18 +71,23 @@ class WidgetCreator:
 
         return button
 
-    def create_dropdown_menu(self, frame, selected_team, *team_options):
-        font_size = self.set_relative_size(70)
+    def create_team_selection_menu(self, frame, selection, score_service: ScoreService):
+        team_options = score_service.get_team_names()
+
+        selected_team = tkinter.StringVar(frame)
+
+        selected_team.set(selection)
+
+        selected_team.trace(
+            "w", lambda *args: score_service.change_selected_team(selected_team.get()))
 
         dropdown_menu = tkinter.OptionMenu(
             frame, selected_team, *team_options
             )
 
-        dropdown_menu.config(font=('Arial', font_size))
-
         return dropdown_menu
 
-    def create_table(self, _frame, _columns, _headings, first_header):
+    def create_high_score_table(self, _frame, _columns, _headings, first_header):
         table = ttk.Treeview(_frame, columns=_columns)
 
         table.heading('#0', text=first_header)

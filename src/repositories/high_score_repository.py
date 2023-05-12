@@ -1,6 +1,7 @@
 
 from pathlib import Path
 import csv
+from config import DATA_FOLDER
 
 
 class HighScoreRepository:
@@ -17,12 +18,12 @@ class HighScoreRepository:
         self._high_scores = []
         self._team_names = []
         self._score_file_path = Path(__file__).resolve(
-        ).parent.parent.parent / "data" / score_file_name
+        ).parents[2] / DATA_FOLDER / score_file_name
         self._name_file_path = Path(__file__).resolve(
-        ).parent.parent.parent / "data" / team_file_name
+        ).parents[2] / DATA_FOLDER / team_file_name
 
-        self._load_high_score_list()
         self._load_team_name_list()
+        self._load_high_score_list()
 
     def _load_high_score_list(self):
         try:
@@ -31,16 +32,19 @@ class HighScoreRepository:
                 for row in reader:
                     self._high_scores.append((int(row[0]), row[1]))
         except (FileNotFoundError, ValueError, StopIteration):
-            self._high_scores = [(0, "N/A") for x in range(10)]
+            self._high_scores = [(0, "N/A") for _ in range(10)]
+            self.write_high_scores_to_file()
 
     def _load_team_name_list(self):
         try:
             with open(self._name_file_path, mode="r", encoding='utf-8') as file:
                 reader = csv.reader(file)
                 for row in reader:
-                    self._team_names.append(row[0])
-        except (FileNotFoundError, ValueError, StopIteration):
+                    print(row)
+                    self._team_names.append(row)
+        except FileNotFoundError:
             self._team_names = ["AFC", "NFC"]
+            self.create_team_name_file()
 
     def get_high_score(self):
         return max(self._high_scores)[0]
@@ -59,6 +63,12 @@ class HighScoreRepository:
         self._high_scores.pop()
         self._high_scores.append((new_score, selected_team))
 
+    def create_team_name_file(self):
+        with open(self._name_file_path, mode="w", encoding="utf-8") as file:
+            writer = csv.writer(file)
+            for team in self._team_names:
+                writer.writerow([team])
+
     def write_high_scores_to_file(self):
         self._high_scores.sort(reverse=True)
         with open(self._score_file_path, mode="w", encoding="utf-8") as file:
@@ -67,5 +77,5 @@ class HighScoreRepository:
                 writer.writerow([score[0], score[1]])
 
     def reset_high_scores(self):
-        self._high_scores = [(0, "N/A") for x in range(10)]
+        self._high_scores = [(0, "N/A") for _ in range(10)]
         self.write_high_scores_to_file()

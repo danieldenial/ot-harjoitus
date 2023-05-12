@@ -1,11 +1,11 @@
 
 from ui.utilities.base_frame import BaseFrame
-from ui.views.intro_view import IntroView
 from ui.views.main_menu_view import MainMenuView
 from ui.views.new_game_view import NewGameView
 from ui.views.gameplay_view import GameplayView
 from ui.views.high_score_view import HighScoreView
 from ui.views.rules_view import RulesView
+from ui.views.error_view import ErrorView
 from ui.views.quit_view import QuitView
 
 
@@ -37,7 +37,7 @@ class UI:
         """Käynnistää sovelluksen kutsumalla avausnäkymän luomisesta vastaavaa metodia.
         """
 
-        self.show_intro_view()
+        self.show_main_menu_view()
 
     def _hide_current_view(self):
         """Piilottaa nykyisen näkymän, jotta sovellus voi luoda uuden näkymän.
@@ -47,20 +47,6 @@ class UI:
             self._current_view.destroy()
 
         self._current_view = None
-
-    def show_intro_view(self):
-        """Luo sovelluksen avausnäkymästä vastaavan luokkaolion.
-        """
-
-        self._hide_current_view()
-
-        self._current_view = IntroView(
-            self._root,
-            self._score_service,
-            self.show_main_menu_view
-        )
-
-        self._current_view.pack()
 
     def show_main_menu_view(self):
         """Luo päävalikon näkymästä vastaavan luokkaolion.
@@ -110,7 +96,8 @@ class UI:
         views = {
             'show_main_menu': self.show_main_menu_view,
             'show_new_game_view': self.show_new_game_view,
-            'show_quit_view': self.show_quit_view
+            'show_quit_view': self.show_quit_view,
+            'show_error_view': self.show_error_view
         }
 
         self._current_view = GameplayView(
@@ -145,6 +132,19 @@ class UI:
         self._current_view = RulesView(
             self._root,
             self.show_main_menu_view
+        )
+
+        self._current_view.pack()
+
+    def show_error_view(self):
+        """Luo sovelluksen avausnäkymästä vastaavan luokkaolion.
+        """
+
+        self._hide_current_view()
+
+        self._current_view = ErrorView(
+            self._root,
+            self._quit_view_callback
         )
 
         self._current_view.pack()

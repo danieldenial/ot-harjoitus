@@ -2,13 +2,30 @@
 import unittest
 from pathlib import Path
 import os
+import shutil
 from repositories.high_score_repository import HighScoreRepository
+from config import SCORE_FILE_NAME, TEAM_FILE_NAME, DATA_FOLDER
 
 
 class TestHighScores(unittest.TestCase):
 
     def setUp(self):
-        self._HS = HighScoreRepository()
+        self.test_dir_path = Path(__file__).resolve(
+        ).parents[3] / DATA_FOLDER
+        os.makedirs(self.test_dir_path, exist_ok=True)
+        self._HS = HighScoreRepository(SCORE_FILE_NAME, TEAM_FILE_NAME)
+
+    def tearDown(self):
+        score_file_path = self._HS._score_file_path
+        team_file_path = self._HS._name_file_path
+
+        if os.path.isfile(score_file_path):
+            os.remove(score_file_path)
+
+        if os.path.isfile(team_file_path):
+            os.remove(team_file_path)
+
+        shutil.rmtree(self.test_dir_path)
 
     def test_high_score_file_exists(self):
         path = os.path.isfile(self._HS._score_file_path)
@@ -62,6 +79,7 @@ class TestHighScores(unittest.TestCase):
 
     def test_load_team_name_exceptions_work(self):
         self._HS._name_file_path = 'NoFile.csv'
+        self._HS._team_names = []
         self._HS._load_team_name_list()
         should_be_names = ["AFC", "NFC"]
         self.assertEqual(self._HS._team_names, should_be_names)

@@ -43,30 +43,28 @@ class NewGameView(BaseFrame):
 
         self._initialize_labels()
         self._initialize_buttons()
+        self._initialize_team_selection_menu()
 
     def _initialize_labels(self):
         """Luo näkymään kuuluvat tekstit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
         """
 
-        font_scaler = 40
-
-        new_game_text_1 = self._widget_creator.create_basic_label(
-            self._frame, "Time for a new game!", font_scaler
-            )
+        font_scaler = 30
         
+        new_game_text_1 = self._widget_creator.create_basic_label(
+            self._frame,
+            "It's game time! Which team will you represent?",
+            font_scaler
+            )
+
         new_game_text_2 = self._widget_creator.create_basic_label(
             self._frame,
-            f"The current high score is {self._score_service.get_high_score()}.",
+            f"The current score to beat is {self._score_service.get_high_score()}.",
             font_scaler
             )
         
-        new_game_text_3 = self._widget_creator.create_basic_label(
-            self._frame, "Can you beat it?", font_scaler
-            )
-        
-        new_game_text_1.place(relx=0.5, rely=0.2, anchor='center')
-        new_game_text_2.place(relx=0.5, rely=0.3, anchor='center')
-        new_game_text_3.place(relx=0.5, rely=0.4, anchor='center')
+        new_game_text_1.place(relx=0.5, rely=0.3, anchor='center')
+        new_game_text_2.place(relx=0.5, rely=0.5, anchor='center')
 
     def _initialize_buttons(self):
         """Luo näkymään kuuluvat napit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
@@ -84,3 +82,19 @@ class NewGameView(BaseFrame):
 
         start_button.place(relx=0.5, rely=0.6, anchor='center')
         back_button.place(relx=0.5, rely=0.7, anchor='center')
+
+    def _initialize_team_selection_menu(self):
+        """Luo valikon, josta käyttäjä voi valita mieleisensä joukkueen.
+        """
+
+        selected_team = self._score_service.get_selected_team()
+
+        dropdown_menu = self._widget_creator.create_team_selection_menu(
+            self._frame, selected_team, self._score_service
+        )
+
+        font_size = self._widget_creator.set_relative_size(50)
+
+        dropdown_menu.config(font=('Arial', font_size))
+
+        dropdown_menu.place(relx=0.5, rely=0.4, anchor='center')
