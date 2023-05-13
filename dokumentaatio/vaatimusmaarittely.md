@@ -3,61 +3,100 @@
 ## Sovelluksen tarkoitus
 
 Sovellus on eräänlainen tietovisapeli, jonka teemana on amerikkalaisen 
-jalkapallon ammattilaissarja NFL. Pelaaminen tulee etenemään seuraavalla 
-tavalla: Käyttäjä aloittaa pelin ja vastaa yksitellen kysymyksiin. 
-Jokaiselle kysymykselle annetaan neljä eri vastausvaihtoehtoa, joista 
-yksi on oikein. Pelaaminen jatkuu niin kauan kuin käyttäjä vastaa 
-kysymyksiin oikein tai läpäisee pelin. Peli päättyy puolestaan väärään 
-vastaukseen.
+jalkapallon ammattilaissarja NFL. Pelaaminen etenee seuraavalla tavalla: 
+Käyttäjä aloittaa pelin ja vastaa yksitellen kysymyksiin. Jokaiselle 
+kysymykselle annetaan neljä eri vastausvaihtoehtoa, joista yksi on oikein. 
+Pelaaminen jatkuu niin kauan kuin käyttäjä vastaa kysymyksiin oikein tai 
+kysymykset loppuvat kesken. Jälkimmäinen ei ole todennäköistä, sillä jo 
+ensimmäisessä versiossa kysymyksiä on 100. Yksittäinen peli päättyy 
+väärään vastaukseen.
 
 ## Käyttäjät
 
-Lähtökohtaisesti sovelluksen ainoa käyttäjärooli on pelaaja eli 
-_normaali käyttäjä_. Mikäli suurempia käyttöoikeuksia hyödyntävä 
-_pääkäyttäjä_ alkaa vaikuttaa jossain vaiheessa hyödylliseltä roolilta, 
-lisätään sellainen  mukaan sovellukseen.
+Tällä erää sovelluksen ainoa käyttäjärooli on pelaaja eli 
+_normaali käyttäjä_. Mikäli laajempia käyttöoikeuksia hyödyntävä 
+_pääkäyttäjä_ alkaa vaikuttaa jossain vaiheessa tarpeelliselta roolilta, 
+on se mahdollista lisätä myöhemmin mukaan sovellukseen.
 
-## Perusversion suunnitellut toiminnallisuudet
+## Sovelluksen toiminnallisuudet
 
 ### Päävalikko
 
-- Käyttäjä voi aloittaa uuden pelin. | TEHTY
-- Käyttäjä voi katsoa pelin ohjeita. | TEHTY
-- Käyttäjä voi sulkea sovelluksen. | TEHTY
-- Käyttäjä näkee ruudulta parhaan siihenastisen tuloksen. | TEHTY
+- Käyttäjä voi siirtyä aloittamaan uuden pelin
+- Käyttäjä voi siirtyä tarkastelemaan parhaita tuloksia
+- Käyttäjä voi siirtyää katsomaan pelin ohjeita
+- Käyttäjä voi sulkea sovelluksen
+
+### Ennen pelin alkua
+
+- Käyttäjä voi valita listalta joukkueen, jonka nimissä peliä pelaa
+- Käyttäjä näkee ruudulla pelin parhaan talletetun tuloksen
+- Käyttäjä voi käynnistää pelin
+- Käyttäjä voi siirtyä takaisin päävalikkoon
 
 ### Varsinainen peli
 
-- Ruudulle tulee kysymyksiä yksi kerrallaan ja satunnaisessa 
-järjestyksessä. | TEHTY
+- Ruudulla näkyy kysymyksiä yksi kerrallaan
+	- Kysymykset esitetään satunnaisessa järjestyksessä
 	- Yksikään kysymyksistä ei toistu saman yksittäisen pelikerran 
-aikana (kysymykset saattavat kuitenkin toistua, jos käyttäjä pelaa monta 
-peräkkäistä peliä). | TEHTY
-- Jokaisella kysymyksellä on 4 vastausvaihtoehtoa, joista käyttäjä 
-valitsee yhden. | TEHTY
-	- Sovellus kertoo tai näyttää menikö vastaus oikein vai väärin. | TEHTY 
-- Oikean vastauksen jälkeen peli jatkuu seuraavaan kysymykseen. | TEHTY
-- Oikeasta vastauksesta tulee käyttäjälle piste lisää (tai pisteitä, 
-riippuen lopullisesta toteutustavasta). | TEHTY
-- Peli päättyy joko väärään vastaukseen tai viimeistään siinä vaiheessa, 
-kun käyttäjä on vastannut kaikkiin pelin kysymyksiin oikein sillä 
-pelikerralla. | TEHTY
-	- Pelin päättymisen jälkeen käyttäjä voi aloittaa suoraan uuden 
-pelin, palata päävalikkoon tai lopettaa sovelluksen käytön. | TEHTY
+aikana, (peräkkäisissä peleissä toistoa voi alkaa jo esiintyä)
+- Ruudulla näkyy aina neljä kysymykseen liittyvää 
+vastausvaihtoehtoa
+	- Kunkin kysymyksen vaihtoehdot esitetään aina satunnaisessa järjestyksessä
+	- Käyttäjä voi valita oikeaksi uskomansa vastausvaihtoehdon 
+painikkeesta 'A', 'B', 'C' tai 'D'
+- Vastauksen jälkeen sovellus näyttää ja kertoo menikö vastaus oikein vai 
+väärin
+	- Oikean vastauksen jälkeen valittu painike muuttuu vihreäksi ja 
+väärän vastauksen jälkeen punaiseksi
+	- Oikean vastauksen jälkeen ruudulle ilmestyy teksti, joka kertoo 
+vastauksen menneen oikein sekä lyhyt kysymykseen ja/tai vastaukseen 
+liittyvä lisätieto
+	- Väärän vastauksen jälkeen ruudulle ilmestyy teksti, joka kertoo 
+vastauksen menneen väärin (mikäli käyttäjä teki uuden ennätyksen, ilmestyy 
+ruudulle myös tästä kertova lyhyt teksti)
+- Käyttäjä saa oikeasta vastauksesta pisteen ja pystyy jatkamaan 
+seuraavaan kysymykseen "CONTINUE"-painikkeesta
+- Peli päättyy väärään vastaukseen
+	- Pelin päättymisen jälkeen käyttäjä valita uuden 
+pelin, palata päävalikkoon tai sulkea sovelluksen
+
+### Parhaiden tulosten tarkastelu
+
+- Käyttäjä näkee ruudun taulukosta 10 parasta saavutettua tulosta ja 
+joukkueet, joiden nimissä ne saavutettiin
+- Käyttäjä voi halutessaan nollata tulostaulukon
+
+## Sovelluksen muut keskeiset ominaisuudet
+
+### Tiedostot
+
+- Sovelluksen uusin versio sisältää tsv-tiedoston, johon on talletettu pelin kysymysaineisto version 
+julkaisuhetkellä
+- Sovellus tarkastaa käynnistyessään, että tiedosto löytyy määritellystä paikallisesta kansiosta
+	- Mikäli tiedosto jostain syystä puuttuu, lataa sovellus sen automaattisesti verkosta määritellystä 
+osoitteesta (Google Sheets) ja tallentaa tämän version paikallisesti sille tarkoitettuun kansioon
+	- Mikäli tiedosto löytyy jo paikallisesta kansiosta, tarkastaa sovellus automaattisesti, ettei 
+saatavilla ole uudempaa versiota kysymystiedostosta
+	- Mikäli verkko-osoitteesta löytyvä tiedosto on uudempi, lataa ja tallettaa sovellus sen
 
 ## Jatkokehitysideoita
 
-- Taulukko parhaista suorituksista pistemäärän mukaan (high scores) | TEHTY
-	- Ehkä jopa verkkoon, jotta käyttäjä voi kilpailla myös muilla 
-tietokoneilla pelaavia vastaan?
-- Käyttäjätunnuksen luominen omien suoritusten tallentamiseksi (joko 
-paikallisesti tai verkkoon)
-- Vaikeustason valinta
+Sovellusta on tarkoitus täydentää ainakin vielä joillain seuraavista 
+toiminnallisuuksista.
+
+- Taulukko parhaista suorituksista verkkoon, jotta käyttäjät voivat 
+kilpailla myös muilla tietokoneilla pelaavia vastaan
+- Mahdollisuus pelata joukkueen nimien lisäksi omalla nimellä tai 
+nimimerkillä
+	- Myös mahdollisuus luoda käyttäjätili ja tallentaa omia 
+suorituksia
+	- Periaatteessa jokainen voi jo tässä vaiheessa pelata myös omalla 
+nimellään lisäämällä sen csv-tiedostoon, josta sovellus nimet lukee 
+käynnistymisen yhteydessä
+- Mahdollisuus valita eri vaikeustasoja
 - Aikaraja kysymyksiin vastaamisessa
 	- Mahdollisesti myös oikean vastauksen pisteiden määräytyminen 
 vastauksen nopeuden mukaan
-- Jonkun kiinnostavan ja kysymykseen liittyvän tarkentavan tiedon 
-antaminen pelaajalle oikean vastauksen jälkeen (esimerkiksi jos kysytään 
-eniten maaleja kerännyttä pelaajaa, niin oikean vastauksen jälkeen 
-kerrotaan tarkka maalimäärä). | TEHTY
-- Lisää kysymyksiä | TEHTY
+- Paljon, todella paljon lisää kysymyksiä, sillä ne ovat lopulta tämän 
+sovelluksen sydän

@@ -8,77 +8,95 @@ Ohjelman koodin pakkausrakenne on seuraavanlainen:
 
 Käyttöliittymästä vastaava koodi sijaitsee pakkauksessa _ui_.
 
+Sovelluksen eri näkymistä vastaava koodi sijaitsee pakkauksen _ui_ alapakkaukseen _views_.
+
+Käyttöliittymän tukitoiminnoista vastaava koodi sijaitsee puolestaan pakkauksen _ui_ alapakkauksessa 
+_utilities_.
+
 Sovelluslogiikasta vastaava koodi sijaitsee pakkauksessa _services_.
 
 Tietojen pysyväistalletuksesta vastaava koodi sijaitsee pakkauksessa _repositories_.
 
 ## Käyttöliittymä
 
-Käyttöliittymä sisältää seitsemän erilaista näkymää:
+Käyttöliittymä sisältää kahdeksan erilaista näkymää:
 
-- Aloitus
 - Päävalikko
-- Uusi peli
-- Pelinkulku
+- Uuden pelin valikko
+- Pelinkulun näkymä
 - Parhaat tulokset
 - Säännöt
+- Pelin läpäisy
+- Virhetilanne
 - Lopetus
 
 Näistä näkymistä pelinkulku on dynaaminen näkymä, jonka sisältö vaihtuu kysymysten mukana.
 
 Kaikki näkymät on toteutettu omana luokkanaan ja niistä vain yksi näkyy kerrallaan. Ulkoasun 
-yhtenäistämiseksi ja koodin toiston välttämiseksi kaikki yllä olevat näkymäluokat perivat 
+yhtenäistämiseksi ja koodin toiston välttämiseksi kaikki yllä olevat näkymäluokat perivät
 luokan _BaseFrame_, jonka luoman pohjakehyksen päälle näkymät rakentuvat. Näkymien 
-näyttämisestä ja hallinnoinnista vastaa luokka _UI_. Käyttöliittymä on pyritty eristämään 
-sovelluslogiikasta, josta vastaa puolestaan sovelluksen _services_-luokat.
+komponenttien luomisesta vastaa luokka _WidgetCreator_ ja komponenttien tyylien 
+konfiguroimisesta luokka _WidgetStyles_. Näkymien näyttämisestä ja hallinnoinnista vastaa 
+luokka _UI_. Käyttöliittymä on pyritty eristämään sovelluslogiikasta, josta vastaa 
+puolestaan sovelluksen _services_-luokat.
 
 ## Sovelluslogiikka
 
 Sovelluslogiikasta vastaavat luokat _QuestionService_ ja _ScoreService_.
 
-_QuestionService_-luokka tarjoaa käyttöliittymän pelinkulkunäkymästä vastaavalle 
-_GameplayView_-luokalle erinäisiä pelin kysymysaineistoon liittyviä metodeja, joita ovat 
-esimerkiksi:
+_QuestionService_-luokka tarjoaa käyttöliittymän luokille (ennen kaikkea pelinkulkunäkymästä 
+vastaavalle _GameplayView_-luokalle) erinäisiä pelin kysymysaineistoon liittyviä metodeja, 
+joita ovat esimerkiksi:
 
-- `set_next_question_index`
 - `get_question()`
 - `get_options()`
 - `get_detail_text()`
 - `evaluate_user_answer(user_answer)`
+- `confirm_there_are_questions_left()`
+- `set_next_question_index()`
+- `reset_index_list()`
 
-Näitä metodeja hyödyntämällä käyttöliittymän luokka saa tarvittavat pelin kysymyksiin 
-liittyvät tiedot esitettäviksi, voi tarkistaa käyttäjän antaman vastauksen 
+Näitä metodeja hyödyntämällä käyttöliittymän GameplayView-luokka saa tarvittavat pelin 
+kysymyksiin liittyvät tiedot esitettäviksi, voi tarkistaa käyttäjän antaman vastauksen 
 oikeellisuuden, ja pystyy siirtymään seuraavaan kysymykseen.
 
 _ScoreService_ on toinen sovelluslogiikasta vastaavista luokista. Se tarjoaa käyttöliittymän eri 
 luokille muun muassa seuraavia metodeja:
 
 - `get_current_score()`
+- `get_current_score_text()`
 - `reset_current_score()`
 - `get_high_score()`
 - `get_high_scores_list()`
+- `reset_high_scores_list()`
+- `get_team_names()`
 - `get_selected_team()`
 - `change_selected_team(new_team)`
 - `increase_score()`
-- `check_score()`
+- `evaluate_score()`
 - `store_high_scores()`
 
 Metodit tarjoavat käyttöliittymälle tietoa sekä sillä hetkellä käynnissä olevan pelin tuloksesta 
-että parhaasta kokonaisuutena siihen asti saavutetusta tuloksesta. Parhaan tuloksen varsinaisesta
-tallentamisesta vastaa kuitenkin pakkauksen _repositories_ luokka _HighScoreRepository_.
+että parhaista talletetuista tuloksista. Vastuu parhaiden tulosten varsinaisesta
+tallettamisesta kuuluu kuitenkin pakkauksen _repositories_ luokalle _HighScoreRepository_.
 
 ## Tietojen hallinnointi ja tallennus
 
-Pakkauksen _repositories_ luokat _QuestionRepository_ ja _HighScoreRepository_ 
-vastaavat kysymysaineiston tuomisesta sovellukseen/peliin sekä tulosten tallettamisesta 
-paikallisesti. 
+Sovelluksen _repositories_-pakkauksen luokat _QuestionRepository_ ja _HighScoreRepository_ 
+vastaavat pelin kysymysaineistoon ja pisteytykseen liittyvän tiedon lukemisesta ja 
+talletuksesta ja muusta käsittelystä.
 
-_QuestionRepository_-luokka lataa sovelluksen käynnistyessä pelin kysymysaineiston (eli 
-kysymykset, vastausvaihtoehdot, oikeat vastaukset ja kysymyksiin liittyvät lisätiedot) sovellukseen 
-lukemalla csv-tiedostoa. Kysymysaineisto talletetaan sovelluksessa listana sanakirjoja.
+_QuestionRepository_-luokka tarkastaa sovelluksen käynnistyessä onko pelin kysymysaineiston 
+(eli kysymykset, vastausvaihtoehdot, oikeat vastaukset ja vastauksiin liittyvät lisätiedot) 
+sisältävä (tsv)-tiedosto talletettu paikallisesti. Mikäli tiedostoa ei ole, tai verkossa on 
+tarjolla uudempi versio kyseisestä tiedostosta, lataa sovellus sen määritellystä 
+verkko-osoitteesta ja tallettaa tiedoston paikallisesti. Itse sovelluksessa tapahtuvaa 
+käsittelyä varten _QuestionRepository_-luokka muuntaa kysymysaineiston listaksi sanakirjoja.
 
-_HighScoreRepository_-luokka tallettaa 10 parasta pelistä saavutettua tulosta csv-tiedostoon. Mikäli 
-tiedostoa ei löydy, luo luokka sen automaattisesti sovelluksen käynnistymisen yhteydessä.
+_HighScoreRepository_-luokka tallettaa 10 parasta pelistä saavutettua tulosta 
+csv-tiedostoon. Mikäli tiedostoa ei ole, luo luokka sen automaattisesti sovelluksen 
+käynnistymisen yhteydessä. Luokka tekee samoin joukkueiden nimet sisältävälle 
+csv-tiedostolle.
 
 ## Päätoiminnallisuudet
 

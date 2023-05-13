@@ -5,24 +5,23 @@ from ui.utilities.widget_styles import WidgetStyles
 
 
 class QuitView(BaseFrame):
-    """Luokka, jonka avulla luodaan sovelluksen sulkemista edeltävä näkymä.
+    """Sovelluksen sulkemista edeltävästä näkymästä vastaava luokka.
 
     Args:
-        BaseView: QuitView-luokan perimä pohjakehyksen näkymälle luova luokka
-
-    Attributes:
-        _handle_show_main_menu: UI-luokan metodi päävalikon näkymän luomiseen
-        _quit_game: UI-luokan metodi sovelluksen sulkemiseen
-        _button_style: Näkymän painikkeiden tyyleistä vastaava luokkaolio
+        BaseView:
+            Luokka, joka luo kaikille näkymille pohjakehyksen.
     """
 
     def __init__(self, root, main_menu_view, quit_view_callback):
-        """Luokan konstruktori, joka alustaa sovelluksen sulkemista edeltävän näkymän.
+        """Luokan konstruktori. Luo uuden sovelluksen sulkemista edeltävän näkymän.
 
         Args:
-            root: Luokan juuri-ikkuna
-            quit_game: Metodi, jolla siirrytään sovelluksen sulkemista edeltävään näkymään
-            main_menu_view: Metodi, jolla siirrytään päävalikon näkymään
+            root:
+                Tkinter-pääikkuna, jonka sisään näkymä luodaan.
+            main_menu_view:
+                Kutsuttava arvo päävalikkoon siirtymiseksi.
+            quit_view_callback: 
+                Kutsuttava arvo sovelluksen sulkemiseksi.
         """
 
         super().__init__(root)
@@ -38,18 +37,18 @@ class QuitView(BaseFrame):
         ikkunaan eri elementtejä sijoittavia metodeja.
         """
 
-        self._initialize_texts()
+        self._initialize_labels()
         self._initialize_buttons()
 
-    def _initialize_texts(self):
+    def _initialize_labels(self):
         """Luo näkymään kuuluvat tekstit ja sijoittaa ne haluttuihin kohtiin ikkunaa.
         """
 
-        quit_game_text_1 = self._widget_creator.create_basic_label(
+        quit_game_label_1 = self._widget_creator.create_basic_label(
             self._frame, "Quit game?", 30
             )
 
-        quit_game_text_1.place(relx=0.5, rely=0.4, anchor='center')
+        quit_game_label_1.place(relx=0.5, rely=0.4, anchor='center')
 
     def _initialize_buttons(self):
         """Luo näkymään kuuluvat napit ja sijoittaa ne haluttuihin kohtiin ikkunaa.

@@ -4,14 +4,14 @@ from ui.utilities.widget_creator import WidgetCreator
 
 
 class WidgetStyles(WidgetCreator):
-    """Luokka, jonka avulla konfiguroidaan sovelluksen painikkeille eri tyylejä.
+    """Näkymien komponenttien tyylien konfiguroimisesta vastaava luokka.
 
-    Attributes:
-        _style: ttk-moduulin objekti, jota konfiguroidaan
+    Args:
+        WidgetCreator: Näkymien komponenttien luomisesta vastaava luokkaolio.
     """
 
     def __init__(self, root):
-        """Luo konfiguroitavan ttk-moduulin objektin ja asettaa sille oletusteeman.
+        """Luokan konstruktori. Luo uuden tyyliolion ja asettaa sille oletusteeman.
         """
 
         super().__init__(root)
@@ -29,6 +29,9 @@ class WidgetStyles(WidgetCreator):
         )
 
     def config_option_button(self):
+        """Konfiguroi pelin vastausvaihtoehtopainikkeiden tyylin.
+        """
+
         self._style.configure(
             'custom.option.TButton', 
             font=('Verdana', round((self.window_height*0.03))),
@@ -39,47 +42,44 @@ class WidgetStyles(WidgetCreator):
     def config_right_answer_button(self):
         """Konfiguroi oikein menneen vastauksen painikkeen tyylin (väri vihreäksi).
         """
+
+        style = 'custom.green.TButton'
+        bg_color = '#3B9B00'
+
         self._style.configure(
-            'custom.green.TButton', 
-            font=('Verdana', round((self.window_height*0.03))),
-            background='#3B9B00', foreground='black',
-            height=round(self.window_height*0.02), width=round(self.window_height*0.005)
+            style, font=('Verdana', round((self.window_height*0.03))),
+            background=bg_color, foreground='black',
+            height=round(self.window_height*0.02),
+            width=round(self.window_height*0.005)
         )
 
-        self._map_right_answer_button()
+        self._map_answer_button(style, bg_color)
 
     def configure_wrong_answer_button(self):
         """Konfiguroi väärin menneen vastauksen painikkeen tyylin (väri punaiseksi).
         """
 
+        style = 'custom.red.TButton'
+        bg_color = '#d50a0a'
+
         self._style.configure(
-            'custom.red.TButton', 
-            font=('Verdana', round((self.window_height*0.03))),
-            background='#d50a0a', foreground='black',
-            height=round(self.window_height*0.02), width=round(self.window_height*0.005)
+            style, font=('Verdana', round((self.window_height*0.03))),
+            background=bg_color, foreground='black',
+            height=round(self.window_height*0.02), 
+            width=round(self.window_height*0.005)
         )
 
-        self._map_wrong_answer_button()
+        self._map_answer_button(style, bg_color)
 
-    def _map_right_answer_button(self):
-        """Muuttaa jo painetun (nyt vihreän) napin asetuksia,
-        jotta se ei enää reagoi käyttäjän uusiin painalluksiin tai hiiren liikkeeseen.
-        """
+    def _map_answer_button(self, selected_style, bg_color):
         self._style.map(
-            'custom.green.TButton',
-            background=[('pressed', '#3B9B00')]
-        )
-
-    def _map_wrong_answer_button(self):
-        """Muuttaa jo painetun (nyt punaisen) napin asetuksia,
-        jotta se ei enää reagoi käyttäjän uusiin painalluksiin tai hiiren liikkeeseen.
-        """
-
-        self._style.map(
-            'custom.red.TButton',
-            background=[('pressed', '#d50a0a')]
+            selected_style,
+            background=[('pressed', bg_color)]
         )
 
     def config_table(self):
+        """Konfiguroi Treeview-taulukon fontin tyyliä.
+        """
+
         font_size = self.set_relative_size(50)
         self._style.configure('Treeview', font=('Verdana', font_size))

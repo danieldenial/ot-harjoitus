@@ -5,22 +5,21 @@ from ui.utilities.widget_styles import WidgetStyles
 
 
 class RulesView(BaseFrame):
-    """Luokka, jonka avulla luodaan pelin säännöt näyttävä näkymä.
+    """Pelin sääntöjen näyttämisestä vastaava näkymä.
 
     Args:
-        BaseView: RulesView-luokan perimä pohjakehyksen näkymälle luova luokka
-
-    Attributes:
-        _handle_show_main_menu: UI-luokan metodi päävalikon näkymän luomiseen
-        _button_style: Näkymän painikkeiden tyyleistä vastaava luokkaolio
+        BaseView: 
+            Luokka, joka luo kaikille näkymille pohjakehyksen.
     """
 
     def __init__(self, root, main_menu_view):
-        """Luokan konstruktori, joka alustaa pelin säännöt näyttävän näkymän.
+        """Luokan konstruktori. Luo uuden sääntönäkymän.
 
         Args:
-            root: Tkinter-pääikkunan viite
-            main_menu_view: UI-luokan metodi päävalikon näkymän luomiseen
+            root:
+                Tkinter-pääikkuna, jonka sisään näkymä luodaan.
+            main_menu_view: 
+                Kutsuttava arvo päävalikkoon siirtymiseksi.
         """
 
         super().__init__(root)

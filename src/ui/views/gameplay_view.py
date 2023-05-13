@@ -8,29 +8,28 @@ from services.score_service import ScoreService
 
 
 class GameplayView(BaseFrame):
-    """Luokka, jonka avulla luodaan pelinkulkua kuvaavia näkymiä.
+    """Pelinkulusta vastaava näkymä.
 
     Args:
-        BaseView: GameplayView-luokan perimä pohjakehyksen näkymälle luova luokka
-
-    Attributes:
-        _question_service: Pelin kysymysten sovelluslogiikasta vastaava luokkaolio
-        _score_service: Pisteytykseen liittyvästä sovelluslogiikasta vastaava luokkaolio
-        _view_manager: Eri näkymien vaihtelusta vastaava luokkaolio
-        _button_styles: Näkymän painikkeiden tyyleistä vastaava luokkaolio
+        BaseView: 
+            Luokka, joka luo kaikille näkymille pohjakehyksen.
     """
 
     def __init__(self, root,
                 question_service: QuestionService,
                 score_service: ScoreService,
                 views):
-        """Luokan konstruktori, joka alustaa pelinkulkua kuvaavan näkymän.
+        """Luokan konstruktori. Luo uuden pelinkulkua kuvaavan näkymän.
 
         Args:
-            root: Tkinter-pääikkunan viite
-            question_service: Kysymyksiin liittyvästä sovelluslogiikasta vastaava luokkaolio
-            score_service: Pisteytykseen liittyvästä sovelluslogiikasta vastaava luokkaolio
-            view_manager: Eri näkymien vaihtelusta vastaava luokkaolio
+            root:
+                Tkinter-pääikkuna, jonka sisään näkymä luodaan
+            question_service:
+                Kysymyksiin liittyvästä sovelluslogiikasta vastaava luokkaolio
+            score_service:
+                Pisteytykseen liittyvästä sovelluslogiikasta vastaava luokkaolio
+            views:
+                Sanakirja kutsuttavia arvoja, joilla siirrytään eri näkymiin
         """
 
         super().__init__(root)
@@ -40,6 +39,7 @@ class GameplayView(BaseFrame):
         self._handle_show_new_game_view = views['show_new_game_view']
         self._handle_show_quit_view = views['show_quit_view']
         self._handle_show_error_view = views['show_error_view']
+        self._handle_show_genius_view = views['show_genius_view']
         self._widget_creator = WidgetCreator(root)
         self._widget_styles = WidgetStyles(root)
 
@@ -102,7 +102,7 @@ class GameplayView(BaseFrame):
         self.options = self._question_service.get_options()
         current_score_text = self._score_service.get_current_score_text()
 
-        self.question_label = self._widget_creator.create_longer_label(
+        self.question_label = self._widget_creator.create_extended_label(
             self._question_frame, question_text, 35
             )
 
@@ -232,12 +232,17 @@ class GameplayView(BaseFrame):
             self._score_and_state_frame, 'That is correct!', 40
             )
 
-        self.detail_label = self._widget_creator.create_longer_label(
+        self.detail_label = self._widget_creator.create_extended_label(
             self._score_and_state_frame, detail, 50
             )
+        
+        if self._question_service.confirm_there_are_questions_left():
+            command = self._update_view
+        else:
+            command = self._handle_show_genius_view
 
         self.continue_button = self._widget_creator.create_basic_button(
-            self._score_and_state_frame, "CONTINUE", self._update_view
+            self._score_and_state_frame, "CONTINUE", command
             )
 
         self.correct_label.grid(row=1, column=0, padx=5,

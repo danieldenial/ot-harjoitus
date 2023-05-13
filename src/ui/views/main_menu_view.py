@@ -5,25 +5,21 @@ from ui.utilities.widget_styles import WidgetStyles
 
 
 class MainMenuView(BaseFrame):
-    """Luokka, jonka avulla luodaan sovelluksen päävalikon näkymä.
+    """Päävalikosta vastaava näkymä.
 
     Args:
-        BaseView: MainMenuView-luokan perimä pohjakehyksen näkymälle luova luokka
-    
-    Attributes:
-        _handle_show_new_game_view: UI-luokan metodi peliä edeltävän näkymän luomiseen
-        _handle_show_high_scores: UI-luokan metodi parhaiden pisteiden näkymän luomiseen
-        _handle_show_rules: UI-luokan metodi sääntönäkymän luomiseen
-        _handle_show_quit_view: UI-luokan metodi sovelluksen lopetusnäkymän luomiseen
-        _button_style: Näkymän painikkeiden tyyleistä vastaava luokkaolio
+        BaseView: 
+            Luokka, joka luo kaikille näkymille pohjakehyksen.
     """
 
     def __init__(self, root, views):
-        """Luokan konstruktori, joka alustaa päävalikon näkymän.
+        """Luokan konstruktori. Luo uuden päävalikon näkymän.
 
         Args:
-            root: Tkinter-pääikkunan viite
-            views: Sanakirja UI-luokan metodeista, joilla siirrytään eri näkymiin
+            root: 
+                Tkinter-pääikkuna, jonka sisään näkymä luodaan.
+            views:
+                Sanakirja kutsuttavia arvoja, joilla siirrytään eri näkymiin.
         """
 
         super().__init__(root)
@@ -37,8 +33,7 @@ class MainMenuView(BaseFrame):
         self._initialize()
 
     def _initialize(self):
-        """Aloittaa päävalikon näkymän luomisen kutsumalla 
-        ikkunaan eri elementtejä sijoittavia metodeja.
+        """Aloittaa päävalikon näkymän luomisen
         """
 
         self._initialize_labels()

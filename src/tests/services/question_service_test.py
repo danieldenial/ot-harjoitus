@@ -37,17 +37,17 @@ class TestQuestionService(unittest.TestCase):
         self.test_service.set_next_question_index()
         self.assertEqual(
             self.test_service.get_question(),
-            self.test_service._question_list[self.test_service._index]['Question']
+            self.test_service._question_list[self.test_service._current_index]['Question']
         )
 
     def test_get_options(self):
         self.test_service.set_next_question_index()
         options1 = self.test_service.get_options()
         options2 = [
-            self.test_service._question_list[self.test_service._index]['A'],
-            self.test_service._question_list[self.test_service._index]['B'],
-            self.test_service._question_list[self.test_service._index]['C'],
-            self.test_service._question_list[self.test_service._index]['D'],
+            self.test_service._question_list[self.test_service._current_index]['A'],
+            self.test_service._question_list[self.test_service._current_index]['B'],
+            self.test_service._question_list[self.test_service._current_index]['C'],
+            self.test_service._question_list[self.test_service._current_index]['D'],
         ]
         options1.sort()
         options2.sort()
@@ -55,12 +55,12 @@ class TestQuestionService(unittest.TestCase):
 
     def test_check_answer(self):
         self.test_service.set_next_question_index()
-        answer = self.test_service._question_list[self.test_service._index]['Answer']
+        answer = self.test_service._question_list[self.test_service._current_index]['Answer']
         self.assertEqual(self.test_service.evaluate_user_answer(answer), True)
 
     def test_question_changes(self):
         self.test_service.set_next_question_index()
-        question1 = self.test_service._question_list[self.test_service._index]['Question']
+        question1 = self.test_service._question_list[self.test_service._current_index]['Question']
         self.test_service.set_next_question_index()
-        question2 = self.test_service._question_list[self.test_service._index]['Question']
+        question2 = self.test_service._question_list[self.test_service._current_index]['Question']
         self.assertNotEqual(question1, question2)

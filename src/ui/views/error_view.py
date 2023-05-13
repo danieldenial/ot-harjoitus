@@ -5,8 +5,22 @@ from ui.utilities.widget_creator import WidgetCreator
 
 
 class ErrorView(BaseFrame):
+    """Virhetilanteen ilmoituksesta vastaava näkymä.
+
+    Args:
+        BaseFrame:
+            Luokka, joka luo kaikille näkymille pohjakehyksen.
+    """
 
     def __init__(self, root, quit_view_callback):
+        """Luokan konstruktori. Luo uuden virhetilanteen ilmoituksen näkymän.
+
+        Args:
+            root:
+                Tkinter-pääikkuna, jonka sisään näkymä luodaan.
+            quit_view_callback:
+                Kutsuttava arvo sovelluksen sulkemiseksi.
+        """
         super().__init__(root)
         self._widget_styles = WidgetStyles(root)
         self._widget_creator = WidgetCreator(root)

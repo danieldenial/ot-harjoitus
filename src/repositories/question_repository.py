@@ -8,21 +8,23 @@ from config import DATA_FOLDER, QUESTION_FILE_NAME, QUESTION_FILE_TIMESTAMP_ID
 
 
 class QuestionRepository:
-    """Luokka, joka vastaa kysymysdatan talletuksesta.
-
-    Attributes:
-        question_list: Kysymysdataa varten luotava lista
-        _file_path: Kysymysdatan sisältävän tiedoston polku
+    """Pelin kysymysaineiston käsittelystä vastaava luokka.
     """
 
-    def __init__(self, question_file_id):
-        self.question_list = []
-        
+    def __init__(self, question_file_url):
+        """Luokan konstruktori. Luo pohjan kysymysaineiston käsittelylle.
+
+        Args:
+            question_file_id: Verkko-osoite, josta kysymysaineisto haetaan (merkkijonona).
+        """
+
+        self._question_list = []
+
         self._file_storage_path = Path(__file__).resolve(
         ).parents[2] / DATA_FOLDER / QUESTION_FILE_NAME
-        
-        self._question_file_url = question_file_id
-        
+
+        self._question_file_url = question_file_url
+
         self._qfile_timestamp_url = (
             self._question_file_url +
             f'&gid={QUESTION_FILE_TIMESTAMP_ID}'
@@ -66,7 +68,7 @@ class QuestionRepository:
         storage_file_created = os.path.getmtime(file_path)
         creation_datetime = datetime.fromtimestamp(storage_file_created)
         return creation_datetime.strftime("%d/%m/%Y %H:%M")
-    
+
     def _get_question_file_timestamp(self):
         timestamp_df = pd.read_csv(self._qfile_timestamp_url, header=None, nrows=1)
         return timestamp_df.iloc[0, 0]
@@ -74,16 +76,21 @@ class QuestionRepository:
     def _import_question_data(self):
         question_data = pd.read_csv(self._question_file_url, delimiter='\t')
 
-        self.question_list = question_data.to_dict('records')
+        self._question_list = question_data.to_dict('records')
 
         self._create_local_question_file(question_data)
 
-    def _create_local_question_file(self, dataframe):
+    def _create_local_question_file(self, dataframe: pd.DataFrame):
         dataframe.to_csv(self._file_storage_path, sep="\t", index=False)
 
     def _load_question_data_from_storage_file(self):
         dataframe = pd.read_csv(self._file_storage_path, delimiter="\t")
-        self.question_list = dataframe.to_dict("records")
+        self._question_list = dataframe.to_dict("records")
 
     def get_question_list(self):
-        return self.question_list
+        """Palauttaa sovellukseen ladatun pelin kysymysaineiston.
+
+        Returns:
+            Palauttaa pelin kysymysaineiston listana sanakirjoja.
+        """
+        return self._question_list

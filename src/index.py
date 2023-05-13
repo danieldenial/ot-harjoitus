@@ -22,12 +22,12 @@ def main():
     question_service = QuestionService(question_repo)
     score_service = ScoreService(score_repo)
 
-    service_instances = {
+    service_class_instances = {
         'question_service': question_service,
         'score_service': score_service
     }
 
-    view = UI(window, service_instances)
+    view = UI(window, service_class_instances)
     view.start()
 
     window.mainloop()

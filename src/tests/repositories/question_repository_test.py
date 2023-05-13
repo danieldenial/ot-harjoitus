@@ -31,12 +31,12 @@ class TestQuestions(unittest.TestCase):
             entries = sum(1 for row in reader)
         if entries > 0:
             entries -= 1
-        self.test_repo.question_list = []
+        self.test_repo._question_list = []
         self.test_repo._load_question_data_from_storage_file()
-        self.assertEqual(len(self.test_repo.question_list), entries)
+        self.assertEqual(len(self.test_repo._question_list), entries)
 
     def test_question_list_is_not_empty(self):
-        self.assertGreater(len(self.test_repo.question_list), 0)
+        self.assertGreater(len(self.test_repo._question_list), 0)
 
     def test_compare_questions(self):
         with open(self.test_repo._file_storage_path, mode='r', encoding='utf-8') as csvfile:
@@ -46,7 +46,7 @@ class TestQuestions(unittest.TestCase):
             for row in reader:
                 self.assertEqual(
                     row[0],
-                    self.test_repo.question_list[index]['Question']
+                    self.test_repo._question_list[index]['Question']
                 )
                 index += 1
 
@@ -58,7 +58,7 @@ class TestQuestions(unittest.TestCase):
             for row in reader:
                 self.assertEqual(
                     row[1],
-                    self.test_repo.question_list[index]['A']
+                    self.test_repo._question_list[index]['A']
                 )
                 index += 1
 
@@ -70,7 +70,7 @@ class TestQuestions(unittest.TestCase):
             for row in reader:
                 self.assertEqual(
                     row[2],
-                    self.test_repo.question_list[index]['B']
+                    self.test_repo._question_list[index]['B']
                 )
                 index += 1
 
@@ -82,7 +82,7 @@ class TestQuestions(unittest.TestCase):
             for row in reader:
                 self.assertEqual(
                     row[3],
-                    self.test_repo.question_list[index]['C']
+                    self.test_repo._question_list[index]['C']
                 )
                 index += 1
 
@@ -94,7 +94,7 @@ class TestQuestions(unittest.TestCase):
             for row in reader:
                 self.assertEqual(
                     row[4],
-                    self.test_repo.question_list[index]['D']
+                    self.test_repo._question_list[index]['D']
                 )
                 index += 1
 
@@ -106,7 +106,7 @@ class TestQuestions(unittest.TestCase):
             for row in reader:
                 self.assertEqual(
                     row[5],
-                    self.test_repo.question_list[index]['Answer']
+                    self.test_repo._question_list[index]['Answer']
                 )
                 index += 1
 
@@ -118,19 +118,19 @@ class TestQuestions(unittest.TestCase):
             for row in reader:
                 self.assertEqual(
                     row[6],
-                    self.test_repo.question_list[index]['Detail']
+                    self.test_repo._question_list[index]['Detail']
                 )
                 index += 1
 
     def test_is_answer_in_options(self):
-        for i in range(len(self.test_repo.question_list)):
+        for i in range(len(self.test_repo._question_list)):
             is_true = False
-            answer = self.test_repo.question_list[i]['Answer']
+            answer = self.test_repo._question_list[i]['Answer']
             options = [
-                self.test_repo.question_list[i]['A'],
-                self.test_repo.question_list[i]['B'],
-                self.test_repo.question_list[i]['C'],
-                self.test_repo.question_list[i]['D']
+                self.test_repo._question_list[i]['A'],
+                self.test_repo._question_list[i]['B'],
+                self.test_repo._question_list[i]['C'],
+                self.test_repo._question_list[i]['D']
             ]
             if self.is_value_in_list(answer, options) == True:
                 is_true = True

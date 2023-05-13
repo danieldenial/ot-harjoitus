@@ -6,24 +6,23 @@ from services.score_service import ScoreService
 
 
 class HighScoreView(BaseFrame):
-    """Luokka, jonka avulla luodaan parhaat pistesuoritukset näyttävä näkymä.
+    """Parhaiden pistesuoritusten näyttämisestä vastaava näkymä.
 
     Args:
-        BaseView: HighScoreView-luokan perimä pohjakehyksen näkymälle luova luokka.
-
-    Attributes:
-        _score_service: Näkymän painikkeiden tyyleistä vastaava luokkaolio
-        _handle_show_main_menu: UI-luokan metodi päävalikon näkymän luomiseen
-        _button_style: Pisteytykseen liittyvästä sovelluslogiikasta vastaava luokkaolio
+        BaseView:
+            Luokka, joka luo kaikille näkymille pohjakehyksen.
     """
 
     def __init__(self, root, score_service: ScoreService, main_menu_view):
-        """Luokan konstruktori, joka alustaa parhaiden pistesuoritusten näkymän.
+        """Luokan konstruktori. Luo uuden parhaiden pistesuoritusten näkymän.
 
         Args:
-            root: Tkinter-pääikkunan viite
-            score_service: Pisteytykseen liittyvästä sovelluslogiikasta vastaava luokkaolio
-            main_menu_view: UI-luokan metodi päävalikon näkymän luomiseen
+            root:
+                Tkinter-pääikkuna, jonka sisään näkymä luodaan.
+            score_service: 
+                Pisteytykseen liittyvästä sovelluslogiikasta vastaava luokkaolio.
+            main_menu_view: 
+                Kutsuttava arvo päävalikon näkymään siirtymiseksi.
         """
 
         super().__init__(root)

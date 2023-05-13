@@ -6,25 +6,23 @@ from services.score_service import ScoreService
 
 
 class NewGameView(BaseFrame):
-    """Luokka, jonka avulla luodaan uutta peliä edeltävä näkymä.
+    """Uutta peliä edeltävästä valikosta vastaava näkymä.
 
     Args:
-        BaseView: NewGameView-luokan perimä pohjakehyksen näkymälle luova luokka
-
-    Attributes:
-        _score_service: Pisteytykseen liittyvästä sovelluslogiikasta vastaava luokkaolio
-        _handle_show_gameplay_view: UI-luokan metodi pelinkulun näkymän luomiseen
-        _handle_show_main_menu: UI-luokan metodi päävalikon näkymän luomiseen
-        _button_style: Näkymän painikkeiden tyyleistä vastaava luokkaolio
+        BaseView: 
+            Luokka, joka luo kaikille näkymille pohjakehyksen.
     """
 
     def __init__(self, root, score_service: ScoreService, views):
-        """Luokan konstruktori, joka alustaa uutta peliä edeltävän näkymän.
+        """Luokan konstruktori. Luo uuden peliä edeltävän valikon näkymän.
 
         Args:
-            root: Tkinter-pääikkunan viite
-            main_menu_view: Metodi, jolla siirrytään päävalikon näkymään
-            gameplay_view: Metodi, jolla siirrytään pelinkulkua kuvaavaan näkymään
+            root:
+                Tkinter-pääikkuna, jonka sisään näkymä luodaan
+            score_service:
+                Pisteytykseen liittyvästä sovelluslogiikasta vastaava luokkaolio
+            views:
+                Sanakirja kutsuttavia arvoja, joilla siirrytään eri näkymiin
         """
 
         super().__init__(root)
