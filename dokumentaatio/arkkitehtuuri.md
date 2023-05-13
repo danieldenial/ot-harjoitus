@@ -30,15 +30,16 @@ Käyttöliittymä sisältää kahdeksan erilaista näkymää:
 - Virhetilanne
 - Lopetus
 
-Näistä näkymistä pelinkulku on dynaaminen näkymä, jonka sisältö vaihtuu kysymysten mukana.
+Näistä näkymistä pelinkulku on dynaaminen näkymä, jonka sisältö vaihtuu kysymysten mukana. Kaikki 
+näkymät on toteutettu omana luokkanaan ja niistä vain yksi näkyy kerrallaan.
 
-Kaikki näkymät on toteutettu omana luokkanaan ja niistä vain yksi näkyy kerrallaan. Ulkoasun 
-yhtenäistämiseksi ja koodin toiston välttämiseksi kaikki yllä olevat näkymäluokat perivät
-luokan _BaseFrame_, jonka luoman pohjakehyksen päälle näkymät rakentuvat. Näkymien 
-komponenttien luomisesta vastaa luokka _WidgetCreator_ ja komponenttien tyylien 
-konfiguroimisesta luokka _WidgetStyles_. Näkymien näyttämisestä ja hallinnoinnista vastaa 
-luokka _UI_. Käyttöliittymä on pyritty eristämään sovelluslogiikasta, josta vastaa 
-puolestaan sovelluksen _services_-luokat.
+Ulkoasun yhtenäistämiseksi ja koodin toiston välttämiseksi kaikki yllä olevat näkymäluokat perivät
+luokan _BaseFrame_, jonka luoman pohjakehyksen päälle näkymät rakentuvat. Näkymien komponenttien 
+luomisesta vastaa luokka _WidgetCreator_ ja komponenttien tyylien konfiguroimisesta luokka 
+_WidgetStyles_.
+
+Näkymien näyttämisestä ja hallinnoinnista vastaa luokka _UI_. Käyttöliittymä on pyritty 
+eristämään sovelluslogiikasta, josta vastaa puolestaan sovelluksen _services_-luokat.
 
 ## Sovelluslogiikka
 
@@ -76,15 +77,16 @@ luokille muun muassa seuraavia metodeja:
 - `evaluate_score()`
 - `store_high_scores()`
 
-Metodit tarjoavat käyttöliittymälle tietoa sekä sillä hetkellä käynnissä olevan pelin tuloksesta 
-että parhaista talletetuista tuloksista. Vastuu parhaiden tulosten varsinaisesta
-tallettamisesta kuuluu kuitenkin pakkauksen _repositories_ luokalle _HighScoreRepository_.
+Metodit tarjoavat käyttöliittymälle tietoa ja operaatioita liittyen sekä sillä hetkellä käynnissä 
+olevan pelin tuloksesta että parhaista talletetuista tuloksista. Vastuu parhaiden tulosten 
+varsinaisesta tallettamisesta kuuluu kuitenkin pakkauksen _repositories_ luokalle 
+_HighScoreRepository_.
 
 ## Tietojen hallinnointi ja tallennus
 
 Sovelluksen _repositories_-pakkauksen luokat _QuestionRepository_ ja _HighScoreRepository_ 
-vastaavat pelin kysymysaineistoon ja pisteytykseen liittyvän tiedon lukemisesta ja 
-talletuksesta ja muusta käsittelystä.
+vastaavat pelin kysymysaineistoon ja pisteytykseen liittyvän tiedon lukemisesta, talletuksesta ja 
+muusta käsittelystä.
 
 _QuestionRepository_-luokka tarkastaa sovelluksen käynnistyessä onko pelin kysymysaineiston 
 (eli kysymykset, vastausvaihtoehdot, oikeat vastaukset ja vastauksiin liittyvät lisätiedot) 

@@ -8,19 +8,21 @@ Sovellus käynnistyy päävalikon näkymään:
 
 Käyttäjä voi valita uuden pelin painamalla "NEW GAME" -painiketta.
 
-Pelin sääntöjä pääsee tarkastelemaan painamalla "VIEW RULES" -painiketta.
+Parhaat tulokset saa nähtäville "SCORES" -painiketta painamalla.
+
+Pelin sääntöjä pääsee lukemaan painamalla "RULES" -painiketta.
 
 Sovelluksen voi sulkea painamalla "QUIT"-painiketta.
 
 ## Uuden pelin aloitus
 
-Pelin alkamista edeltää vielä näkymä, josta käyttäjä näkee pelin 
-siihenastisen parhaan tuloksen:
+Pelin alkamista edeltää näkymä, jossa käyttäjä pääsee valitsemaan 
+joukkueensa ja näkee pelin parhaan talletetun tuloksen:
 
 ![](./kuvat/pelin_aloitus.png)
 
-Uusi peli alkaa käyttäjän painettua "START GAME" -painiketta. Käyttäjä voi 
-palata takaisin päävalikkoon painamalla "BACK"-painiketta.
+Uusi peli alkaa käyttäjän painettua "START" -painiketta. Takaisin 
+päävalikkoon voi palata painamalla "BACK"-painiketta.
 
 ## Vastauksen valitseminen
 
@@ -42,7 +44,8 @@ seuraavanlaiseksi:
 ![](./kuvat/oikea_vastaus.png)
 
 Käyttäjä voi huomata vastauksensa menneen oikein painikkeen vihreäksi 
-muuttuneesta väristä sekä lyhyestä tekstimuotoisesta vahvistuksesta.
+muuttuneesta väristä sekä lyhyestä tekstimuotoisesta vahvistuksesta. 
+Käyttäjä voi lukea ruudulta myös pienen vastaukseen liittyvän lisätiedon.
 
 Käyttäjän pistemäärä ("Score") on kasvanut tässä näkymässä myös yhdellä 
 oikein menneen vastauksen myötä.
@@ -57,12 +60,26 @@ päivittyy seuraavanlaiseksi:
 
 ![](./kuvat/vaara_vastaus.png)
 
-Käyttäjä voi huomata vastauksensa menneen väärin painikkeen oranssiksi 
-muuttuneesta väristä sekä lyhyestä tekstimuotoisesta vahvistuksesta.
+Käyttäjä voi huomata vastauksensa menneen väärin painikkeen punaiseksi 
+muuttuneesta väristä sekä lyhyestä tekstimuotoisesta vahvistuksesta. 
+Mikäli käyttäjän tulos on korkeampi kuin aiempi korkein talletettu tulos, 
+kerrotaan se myös käyttäjälle ruudulla (kuten esimerkkikuvassa).
 
 Käyttäjä voi valita uuden pelin painamalla "NEW GAME"-painiketta, palata 
-takaisin päävalikkoon painamalla "MAIN MENU" -painiketta, ja sulkea 
+takaisin päävalikkoon painamalla "MAIN MENU" -painiketta, tai sulkea 
 sovelluksen painamalla "QUIT"-painiketta.
+
+## Parhaiden tulosten tarkastelu
+
+Taulukon parhaista talletetuista tuloksista sisältävä näkymä on 
+seuraavankaltainen:
+
+
+Käyttäjä voi halutessaan nollata tulostaulukon "RESET"-painikkeesta. Tämän 
+jälkeen taulukko ja näkymä päivittyy seuraavankaltaiseksi:
+
+
+Käyttäjä voi palata takaisin päävalikkoon painamalla "MAIN MENU".
 
 ## Sovelluksen sulkeminen
 

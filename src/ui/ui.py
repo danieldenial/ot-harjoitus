@@ -157,9 +157,8 @@ class UI:
 
         self._current_view = CompletedView(
             self._root,
-            self._show_main_menu_view,
-            self._show_high_score_view,
-            self._show_quit_view
+            self._question_service,
+            self._show_high_score_view
         )
 
         self._current_view.pack()

@@ -34,18 +34,23 @@ class ErrorView(BaseFrame):
 
     def _initialize_labels(self):
         font_scaler = 30
-        error_text = self._widget_creator.create_basic_label(
+
+        error_text = "Hmm, seems like the questions did not properly load."
+        
+        error_label = self._widget_creator.create_basic_label(
             self._frame, 
-            "Hmm, seems like the questions did not properly load.", 
+            error_text, 
             font_scaler
             )
 
-        quit_game_text = self._widget_creator.create_basic_label(
-            self._frame, "Please try again later.", font_scaler
+        quit_game_text = "Please try again later."
+
+        quit_game_label = self._widget_creator.create_basic_label(
+            self._frame, quit_game_text, font_scaler
             )
 
-        error_text.place(relx=0.5, rely=0.4, anchor='center')
-        quit_game_text.place(relx=0.5, rely=0.5, anchor='center')
+        error_label.place(relx=0.5, rely=0.4, anchor='center')
+        quit_game_label.place(relx=0.5, rely=0.5, anchor='center')
 
     def _initialize_buttons(self):
         self._widget_styles.config_basic_button()

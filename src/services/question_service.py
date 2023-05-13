@@ -41,6 +41,15 @@ class QuestionService:
 
         return self._question_list
 
+    def get_number_of_questions(self):
+        """Palauttaa kysymysten määrän.
+
+        Returns:
+            Palauttaa kysymysten määrän kokonaislukuna.
+        """
+
+        return len(self._index_list)
+
     def get_question(self):
         """Palauttaa seuraavan kysymyksen indeksin perusteella.
 
