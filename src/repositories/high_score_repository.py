@@ -5,7 +5,7 @@ from config import DATA_FOLDER
 
 
 class HighScoreRepository:
-    """Pisteytykseen liittyvän tiedon käsittelystä vastaava luokka.
+    """Pisteytykseen liittyvän lukemisesta, talletuksesta ja käsittelystä vastaava luokka.
     """
 
     def __init__(self, score_file_name, team_file_name):

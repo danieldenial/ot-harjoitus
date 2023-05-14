@@ -9,7 +9,7 @@ from repositories.question_repository import QuestionRepository
 from config import QUESTION_FILE_URL, DATA_FOLDER, QUESTION_FILE_NAME
 
 
-class TestQuestions(unittest.TestCase):
+class TestQuestionRepositoryLocalFile(unittest.TestCase):
 
     def setUp(self):
         self.test_dir_path = Path(__file__).resolve(
@@ -119,15 +119,6 @@ class TestQuestions(unittest.TestCase):
         format = "%d/%m/%Y %H:%M"
         result = bool(datetime.strptime(date_test, format))
         self.assertEqual(result, True)
-
-    def test_is_online_file_timestamp_correct(self):
-        if self.test_repo._is_url_reachable(self.test_repo._qfile_timestamp_url):
-            date_test = self.test_repo._get_question_file_timestamp()
-            format = "%d/%m/%Y %H:%M"
-            result = bool(datetime.strptime(date_test, format))
-            self.assertEqual(result, True)
-        else:
-            self.skipTest("Request exception")
 
     def is_value_in_list(self, answer, options):
         return answer in options

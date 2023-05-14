@@ -7,12 +7,14 @@ from repositories.high_score_repository import HighScoreRepository
 from config import SCORE_FILE_NAME, TEAM_FILE_NAME, DATA_FOLDER
 
 
-class TestHighScores(unittest.TestCase):
+class TestHighScoreRepository(unittest.TestCase):
 
     def setUp(self):
         self.test_dir_path = Path(__file__).resolve(
         ).parents[3] / DATA_FOLDER
+
         os.makedirs(self.test_dir_path, exist_ok=True)
+
         self._HS = HighScoreRepository(SCORE_FILE_NAME, TEAM_FILE_NAME)
 
     def tearDown(self):

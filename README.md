@@ -25,9 +25,9 @@ Sovellus on testattu Python-versiolla `3.8`, joten vanhempien versioiden kanssa 
 
 - [Loppupalautus](https://github.com/danieldenial/ot-harjoitus/releases/tag/loppupalautus)
 
-- [Versio 1.0](https://github.com/danieldenial/ot-harjoitus/releases/tag/viikko5)
+- [Versio 1.0](https://github.com/danieldenial/ot-harjoitus/releases/tag/viikko6)
 
-- [Versio 0.1](https://github.com/danieldenial/ot-harjoitus/releases/tag/viikko6)
+- [Versio 0.1](https://github.com/danieldenial/ot-harjoitus/releases/tag/viikko5)
 
 ## Asennus
 

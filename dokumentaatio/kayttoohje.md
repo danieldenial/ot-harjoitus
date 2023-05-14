@@ -1,5 +1,18 @@
 # Käyttöohje
 
+Projektin tuoreimman releasen lähdekoodi on ladattavissa valitsemalla version sivulla _Assets_-osion alta _Source code_.
+
+##Konfigurointi
+
+Sovelluksen konfigurointi on mahdollista käynnistyshakemiston _.env_-tiedostossa, mikäli käyttäjä haluaa muuttaa esimerkiksi sovelluksen 
+taustaväriä tai tiedostojen nimiä. Sovelluksen releasen osana olevaa tiedostoa "team_names.csv" muokkaamalla pystyy sovellusta pelaamaan myös 
+omalla nimellään tai mieleisellään käyttäjänimellä. Tiedostoa muokatessa on syytä kuitenkin olla tarkkana siitä, että noudattaa sen (hyvin 
+yksinkertaista) muotoilua, jotta sovellus osaa jatkossakin sitä lukea ilman virheilmoituksia.
+
+![](./kuvat/config.png)
+
+
+
 ## Päävalikko
 
 Sovellus käynnistyy päävalikon näkymään:

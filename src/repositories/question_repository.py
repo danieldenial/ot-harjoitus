@@ -8,7 +8,7 @@ from config import DATA_FOLDER, QUESTION_FILE_NAME, QUESTION_FILE_TIMESTAMP_ID
 
 
 class QuestionRepository:
-    """Pelin kysymysaineiston käsittelystä vastaava luokka.
+    """Pelin kysymysaineiston lukemisesta ja talletuksesta vastaava luokka.
     """
 
     def __init__(self, question_file_url):

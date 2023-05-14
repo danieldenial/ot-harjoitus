@@ -8,7 +8,7 @@ from repositories.high_score_repository import HighScoreRepository
 from random import choice
 from config import SCORE_FILE_NAME, TEAM_FILE_NAME, DATA_FOLDER
 
-class TestHighScoreService(unittest.TestCase):
+class TestScoreService(unittest.TestCase):
 
     def setUp(self):
         self.test_dir_path = Path(__file__).resolve(
