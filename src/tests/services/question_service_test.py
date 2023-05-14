@@ -16,6 +16,11 @@ class TestQuestionService(unittest.TestCase):
 
         os.makedirs(self.test_dir_path, exist_ok=True)
 
+        source_file_path = Path(__file__).resolve(
+        ).parents[3] / 'data' / 'questions.tsv'
+
+        shutil.copy(source_file_path, self.test_dir_path / 'test_questions.tsv')
+
         question_repo = QuestionRepository(QUESTION_FILE_URL)
         self.test_service = QuestionService(question_repo)
 

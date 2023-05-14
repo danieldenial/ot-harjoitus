@@ -37,7 +37,7 @@ class QuestionRepository:
             if self._is_url_reachable(self._question_file_url):
                 self._check_for_updates(self._file_storage_path)
             else:
-                self._import_question_data()
+                self._load_question_data_from_storage_file()
         else:
             if self._is_url_reachable(self._question_file_url):
                 self._import_question_data()
