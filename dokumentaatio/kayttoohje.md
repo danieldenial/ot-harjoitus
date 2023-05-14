@@ -2,7 +2,7 @@
 
 Projektin tuoreimman releasen lähdekoodi on ladattavissa valitsemalla version sivulla _Assets_-osion alta _Source code_.
 
-##Konfigurointi
+## Konfigurointi
 
 Sovelluksen konfigurointi on mahdollista käynnistyshakemiston _.env_-tiedostossa, mikäli käyttäjä haluaa muuttaa esimerkiksi sovelluksen 
 taustaväriä tai tiedostojen nimiä. Sovelluksen releasen osana olevaa tiedostoa "team_names.csv" muokkaamalla pystyy sovellusta pelaamaan myös 
@@ -11,7 +11,18 @@ yksinkertaista) muotoilua, jotta sovellus osaa jatkossakin sitä lukea ilman vir
 
 ![](./kuvat/config.png)
 
+## Ohjelman käynnistäminen
 
+Asenna riippuvuudet ennen käynnistämistä komennolla:
+
+```bash
+poetry install
+```
+
+Ohjelman voi tämän jälkeen käynnistää komennolla:
+
+```poetry run invoke start
+```
 
 ## Päävalikko
 
@@ -19,7 +30,7 @@ Sovellus käynnistyy päävalikon näkymään:
 
 ![](./kuvat/main_menu.png)
 
-Käyttäjä voi valita uuden pelin painamalla "NEW GAME" -painiketta.
+Voit valita uuden pelin painamalla "NEW GAME" -painiketta.
 
 Parhaat tulokset saa nähtäville "SCORES" -painiketta painamalla.
 
@@ -29,12 +40,12 @@ Sovelluksen voi sulkea painamalla "QUIT"-painiketta.
 
 ## Uuden pelin aloitus
 
-Pelin alkamista edeltää näkymä, jossa käyttäjä pääsee valitsemaan 
+Pelin alkamista edeltää näkymä, jossa pääsee valitsemaan 
 joukkueensa ja näkee pelin parhaan talletetun tuloksen:
 
 ![](./kuvat/new_game.png)
 
-Uusi peli alkaa käyttäjän painettua "START" -painiketta. Takaisin 
+Uusi peli alkaa "START"-painikkeesta. Takaisin 
 päävalikkoon voi palata painamalla "BACK"-painiketta.
 
 ## Vastauksen valitseminen
@@ -43,44 +54,37 @@ Pelin alettua vaihtuu näkymä seuraavanlaiseksi:
 
 ![](./kuvat/question.png)
 
-Käyttäjä näkee ruudulta kysymyksen, siihen liittyvät vastausvaihtoehdot 
-sekä oman senhetkisen tuloksensa ("Score").
+Ruudulta näkyy siis kysymys, siihen liittyvät vastausvaihtoehdot 
+sekä pelikerran senhetkisen tulos ("Score").
 
-Käyttäjä voi vastata kysymykseen painamalla painiketta "A", "B", "C" tai 
-"D" sen vaihtoehdon kohdalla, jonka uskoo olevan oikein.
+Kysymykseen voi vastata painamalla painiketta "A", "B", "C" tai "D" sen vaihtoehdon kohdalla, jonka uskoo olevan oikein.
 
 ## Seuraavaan kysymykseen siirtyminen
 
-Mikäli käyttäjän vastaus on oikein, pelikerta jatkuu ja näkymä päivittyy 
-seuraavanlaiseksi:
+Mikäli vastaus on oikein, pelikerta jatkuu ja näkymä päivittyy seuraavanlaiseksi:
 
 ![](./kuvat/correct_answer.png)
 
-Käyttäjä voi huomata vastauksensa menneen oikein painikkeen vihreäksi 
-muuttuneesta väristä sekä lyhyestä tekstimuotoisesta vahvistuksesta. 
-Käyttäjä voi lukea ruudulta myös pienen vastaukseen liittyvän lisätiedon.
+Vastauksen voi huomata menneen oikein painikkeen vihreäksi muuttuneesta väristä sekä lyhyestä tekstimuotoisesta vahvistuksesta. Ruudulla 
+lukee myös pieni vastaukseen liittyvä lisätieto.
 
-Käyttäjän pistemäärä ("Score") on kasvanut tässä näkymässä myös yhdellä 
-oikein menneen vastauksen myötä.
+Pistemäärä ("Score") on kasvanut tässä näkymässä yhdellä oikein menneen vastauksen myötä.
 
-Käyttäjä voi jatkaa seuraavaan kysymykseen painamalla 
-"CONTINUE"-painiketta.
+Seuraavaan kysymykseen voi jatkaa painamalla "CONTINUE"-painiketta.
 
 ## Pelin päättyminen
 
-Mikäli käyttäjän valitsema vastaus on väärin, päättyy peli ja näkymä 
-päivittyy seuraavanlaiseksi:
+Mikäli valittu vastaus on väärin, päättyy peli ja näkymä päivittyy seuraavanlaiseksi:
 
 ![](./kuvat/wrong_answer.png)
 
-Käyttäjä voi huomata vastauksensa menneen väärin painikkeen punaiseksi 
+Vastauksen voi huomata menneen väärin painikkeen punaiseksi 
 muuttuneesta väristä sekä lyhyestä tekstimuotoisesta vahvistuksesta. 
-Mikäli käyttäjän tulos on korkeampi kuin aiempi korkein talletettu tulos, 
-kerrotaan se myös käyttäjälle ruudulla (kuten esimerkkikuvassa).
+Mikäli pelissä saavutettu tulos on korkeampi kuin aiempi korkein talletettu tulos, 
+kerrotaan se myös ruudulla (kuten esimerkkikuvassa).
 
-Käyttäjä voi valita uuden pelin painamalla "NEW GAME"-painiketta, palata 
-takaisin päävalikkoon painamalla "MAIN MENU" -painiketta, tai sulkea 
-sovelluksen painamalla "QUIT"-painiketta.
+Uuden pelin voi valita painamalla "NEW GAME"-painiketta, takaisin päävalikkoon pääsee painamalla "MAIN MENU" -painiketta, ja sovelluksen voi 
+sulkea painamalla "QUIT"-painiketta.
 
 ## Parhaiden tulosten tarkastelu
 
@@ -89,19 +93,17 @@ seuraavankaltainen:
 
 ![](./kuvat/high_scores.png)
 
-Käyttäjä voi halutessaan nollata tulostaulukon "RESET"-painikkeesta. Tämän 
-jälkeen taulukko ja näkymä päivittyy seuraavankaltaiseksi:
+Tulostaulun voi halutessaan nollata "RESET"-painikkeesta. Tämän jälkeen taulukko ja näkymä päivittyy seuraavankaltaiseksi:
 
 ![](./kuvat/high_scores_reset.png)
 
-Käyttäjä voi palata takaisin päävalikkoon painamalla "MAIN MENU".
+Takaisin päävalikkoon voi palata painamalla "MAIN MENU".
 
 ## Sovelluksen sulkeminen
 
-Ennen sovelluksen sulkemista siirrytään näkymään, jossa varmistetaan 
-käyttäjän valinta:
+Ennen sovelluksen sulkemista siirrytään näkymään, jossa varmistetaan valinta:
 
 ![](./kuvat/quitting.png)
 
-Käyttäjä voi sulkea sovelluksen painamalla "YES"-painiketta. 
+Sovellus suljetaan painamalla "YES"-painiketta. 
 "NO"-painikkeen painaminen vie takaisin päävalikkoon.

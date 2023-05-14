@@ -11,9 +11,9 @@ manuaalisesti järjestelmätason testein.
 Tiedostojen lukemisesta ja talletuksesta vastaavaa `QuestionRepository`-luokkaa testataan testiluokilla 
 [TestQuestionRepositoryLocalFile](https://github.com/danieldenial/ot-harjoitus/blob/main/src/tests/repositories/question_repository_local_test.py) 
 sekä 
-[TestQuestionRepositoryOnlineFile(https://github.com/danieldenial/ot-harjoitus/blob/main/src/tests/repositories/question_repository_online_test.py). 
+[TestQuestionRepositoryOnlineFile](https://github.com/danieldenial/ot-harjoitus/blob/main/src/tests/repositories/question_repository_online_test.py). 
 Näiden testiluokkien ero syntyy siitä, että ensimmäinen testaa pelin kysymysaineiston tuomista paikallisesti talletetulta tsv-tiedostolta, kun 
-taas jälkimmäisessä testiluokassa kysymystiedosto löytyy ainoastaan verkosta (Google Sheets)
+taas jälkimmäisessä testiluokassa kysymystiedosto löytyy ainoastaan verkosta (Google Sheets).
 
 Pisteytykseen liittyvän tiedon lukemisesta, talletuksesta ja käsittelystä vastaavaa `HighScoreRepository`-luokkaa testataan puolestaan 
 testiluokalla 
