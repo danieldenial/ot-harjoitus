@@ -39,7 +39,7 @@ class GameplayView(BaseFrame):
         self._handle_show_new_game_view = views['show_new_game_view']
         self._handle_show_quit_view = views['show_quit_view']
         self._handle_show_error_view = views['show_error_view']
-        self._handle_show_genius_view = views['show_genius_view']
+        self._handle_show_completed_view = views['show_completed_view']
         self._widget_creator = WidgetCreator(root)
         self._widget_styles = WidgetStyles(root)
 
@@ -239,7 +239,7 @@ class GameplayView(BaseFrame):
         if self._question_service.confirm_there_are_questions_left():
             command = self._update_view
         else:
-            command = self._handle_show_genius_view
+            command = self._handle_show_completed_view
 
         self.continue_button = self._widget_creator.create_basic_button(
             self._score_and_state_frame, "CONTINUE", command

@@ -97,7 +97,7 @@ class UI:
             'show_new_game_view': self._show_new_game_view,
             'show_quit_view': self._show_quit_view,
             'show_error_view': self._show_error_view,
-            'show_genius_view': self._show_completed_view
+            'show_completed_view': self._show_completed_view
         }
 
         self._current_view = GameplayView(

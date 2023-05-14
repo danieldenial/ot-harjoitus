@@ -33,6 +33,7 @@
 | 10.5. |   7  | Widgetien luominen erilliseen luokkaan tapahtuvaksi +  kansiorakenteen muutos |
 | 11.5. |  10  | Tiedostojen (tsv/csv) lataamista (Sheets) ja paikallista talletusta           |
 | 12.5. |  12  | Testien korjaamista ja lisäämistä. Bugien korjaamista. Dokumentointia.        |
-| 13.5. |   3  | Docstringin lisäämistä ja paljon muuta dokumentointia.                        |
-| Yht.  | 117  |                                     
+| 13.5. |   6  | Docstringin lisäämistä ja paljon muuta dokumentointia.                        |
+| 14.5. |   4  | Testausta. Arkkitehtuurikuvaus, testausdokumentti ja käyttöohje kuntoon.      |
+| Yht.  | 121  |                                     
 |

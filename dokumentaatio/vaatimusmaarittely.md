@@ -71,14 +71,14 @@ joukkueet, joiden nimissä ne saavutettiin
 
 ### Tiedostot
 
-- Sovelluksen uusin versio sisältää tsv-tiedoston, johon on talletettu pelin kysymysaineisto version 
+- Sovelluksen uusimman version osana on tsv-tiedosto, johon on talletettu pelin kysymysaineisto version 
 julkaisuhetkellä
 - Sovellus tarkastaa käynnistyessään, että tiedosto löytyy määritellystä paikallisesta kansiosta
 	- Mikäli tiedosto jostain syystä puuttuu, lataa sovellus sen automaattisesti verkosta määritellystä 
 osoitteesta (Google Sheets) ja tallentaa tämän version paikallisesti sille tarkoitettuun kansioon
 	- Mikäli tiedosto löytyy jo paikallisesta kansiosta, tarkastaa sovellus automaattisesti, ettei 
 saatavilla ole uudempaa versiota kysymystiedostosta
-	- Mikäli verkko-osoitteesta löytyvä tiedosto on uudempi, lataa ja tallettaa sovellus sen
+	- Mikäli verkko-osoitteesta löytyvä tiedosto on uudempi, sovellus lataa ja tallettaa sen paikallisesti
 
 ## Jatkokehitysideoita
 
@@ -98,5 +98,5 @@ käynnistymisen yhteydessä
 - Aikaraja kysymyksiin vastaamisessa
 	- Mahdollisesti myös oikean vastauksen pisteiden määräytyminen 
 vastauksen nopeuden mukaan
-- Paljon, todella paljon lisää kysymyksiä, sillä ne ovat lopulta tämän 
+- Paljon, todella paljon lisää kysymyksiä, sillä ne ovat lopulta tällaisen 
 sovelluksen sydän

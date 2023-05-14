@@ -30,6 +30,8 @@ class CompletedView(BaseFrame):
         self._widget_creator = WidgetCreator(root)
         self._widget_styles = WidgetStyles(root)
 
+        self._initialize()
+
     def _initialize(self):
         self._initialize_labels()
         self._initialize_buttons()
@@ -37,7 +39,7 @@ class CompletedView(BaseFrame):
     def _initialize_labels(self):
         font_scaler = 30
 
-        count = self._question_service.get_number_of_questions()
+        count = self._question_service.get_total_number_of_questions()
 
         no_more_questions_text = "That's all she wrote! There are no more questions left."
         question_number_text = f"You gave {count} correct answers. Pretty impressive!"

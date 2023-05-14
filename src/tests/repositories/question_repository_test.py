@@ -34,19 +34,19 @@ class TestQuestions(unittest.TestCase):
     def test_does_question_data_load_from_storage(self):
         df_test = pd.read_csv(self.test_repo._file_storage_path, delimiter="\t")
         entries = len(df_test)
-        self.test_repo._question_list = []
+        self.test_repo._question_data = []
         self.test_repo._load_question_data_from_storage_file()
-        self.assertEqual(len(self.test_repo._question_list), entries)
+        self.assertEqual(len(self.test_repo._question_data), entries)
 
     def test_question_list_is_not_empty(self):
-        self.assertGreater(len(self.test_repo._question_list), 0)
+        self.assertGreater(len(self.test_repo._question_data), 0)
 
     def test_compare_questions(self):
         df_test = pd.read_csv(self.test_repo._file_storage_path, delimiter="\t")
         for index, row in df_test.iterrows():
             self.assertEqual(
                 row['Question'],
-                self.test_repo._question_list[index]['Question']
+                self.test_repo._question_data.at[index, 'Question']
             )
 
     def test_compare_option_A(self):
@@ -54,7 +54,7 @@ class TestQuestions(unittest.TestCase):
         for index, row in df_test.iterrows():
             self.assertEqual(
                 row['A'],
-                self.test_repo._question_list[index]['A']
+                self.test_repo._question_data.at[index, 'A']
             )
 
     def test_compare_option_B(self):
@@ -62,7 +62,7 @@ class TestQuestions(unittest.TestCase):
         for index, row in df_test.iterrows():
             self.assertEqual(
                 row['B'],
-                self.test_repo._question_list[index]['B']
+                self.test_repo._question_data.at[index, 'B']
             )
 
     def test_compare_option_C(self):
@@ -70,7 +70,7 @@ class TestQuestions(unittest.TestCase):
         for index, row in df_test.iterrows():
             self.assertEqual(
                 row['C'],
-                self.test_repo._question_list[index]['C']
+                self.test_repo._question_data.at[index, 'C']
             )
 
     def test_compare_option_D(self):
@@ -78,7 +78,7 @@ class TestQuestions(unittest.TestCase):
         for index, row in df_test.iterrows():
             self.assertEqual(
                 row['D'],
-                self.test_repo._question_list[index]['D']
+                self.test_repo._question_data.at[index, 'D']
             )
 
     def test_compare_answers(self):
@@ -86,7 +86,7 @@ class TestQuestions(unittest.TestCase):
         for index, row in df_test.iterrows():
             self.assertEqual(
                 row['Answer'],
-                self.test_repo._question_list[index]['Answer']
+                self.test_repo._question_data.at[index, 'Answer']
             )
 
     def test_compare_details(self):
@@ -94,18 +94,18 @@ class TestQuestions(unittest.TestCase):
         for index, row in df_test.iterrows():
             self.assertEqual(
                 row['Detail'],
-                self.test_repo._question_list[index]['Detail']
+                self.test_repo._question_data.at[index, 'Detail']
             )
 
     def test_is_answer_in_options(self):
-        for i in range(len(self.test_repo._question_list)):
+        for i in range(len(self.test_repo._question_data)):
             is_true = False
-            answer = self.test_repo._question_list[i]['Answer']
+            answer = self.test_repo._question_data.at[i, 'Answer']
             options = [
-                self.test_repo._question_list[i]['A'],
-                self.test_repo._question_list[i]['B'],
-                self.test_repo._question_list[i]['C'],
-                self.test_repo._question_list[i]['D']
+                self.test_repo._question_data.at[i, 'A'],
+                self.test_repo._question_data.at[i, 'B'],
+                self.test_repo._question_data.at[i, 'C'],
+                self.test_repo._question_data.at[i, 'D']
             ]
             if self.is_value_in_list(answer, options) == True:
                 is_true = True

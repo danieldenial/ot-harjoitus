@@ -55,5 +55,4 @@ nollaamaan sen.
 (Google Sheets), mikäli paikallista kysymystiedostoa ei ole, tai verkosta löytyvä 
 tiedosto on paikallisesti talletettua versiota uudempi. Näin käyttäjä saa aina ajantasaisimmat kysymykset 
 pelissä.
-- Kysymysten määrä on nelinkertaistettu. Kysymyksiä on nyt 100.
-
+- Kysymysten määrä on lähes nelinkertaistettu.

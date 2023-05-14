@@ -28,10 +28,10 @@ class TestQuestionService(unittest.TestCase):
         shutil.rmtree(self.test_dir_path)
 
     def test_questions_dictionary_not_empty(self):
-        self.assertGreater(len(self.test_service._question_list), 0)
+        self.assertGreater(len(self.test_service._question_data), 0)
 
     def test_key_list_and_number_of_keys_are_equal(self):
-        self.assertEqual(len(self.test_service._question_list),
+        self.assertEqual(len(self.test_service._question_data),
                          len(self.test_service._index_list))
 
     def test_key_list_is_shuffled(self):
@@ -42,17 +42,17 @@ class TestQuestionService(unittest.TestCase):
         self.test_service.set_next_question_index()
         self.assertEqual(
             self.test_service.get_question(),
-            self.test_service._question_list[self.test_service._current_index]['Question']
+            self.test_service._question_data.at[self.test_service._current_index, 'Question']
         )
 
     def test_get_options(self):
         self.test_service.set_next_question_index()
         options1 = self.test_service.get_options()
         options2 = [
-            self.test_service._question_list[self.test_service._current_index]['A'],
-            self.test_service._question_list[self.test_service._current_index]['B'],
-            self.test_service._question_list[self.test_service._current_index]['C'],
-            self.test_service._question_list[self.test_service._current_index]['D'],
+            self.test_service._question_data.at[self.test_service._current_index, 'A'],
+            self.test_service._question_data.at[self.test_service._current_index, 'B'],
+            self.test_service._question_data.at[self.test_service._current_index, 'C'],
+            self.test_service._question_data.at[self.test_service._current_index, 'D'],
         ]
         options1.sort()
         options2.sort()
@@ -60,12 +60,12 @@ class TestQuestionService(unittest.TestCase):
 
     def test_check_answer(self):
         self.test_service.set_next_question_index()
-        answer = self.test_service._question_list[self.test_service._current_index]['Answer']
+        answer = self.test_service._question_data.at[self.test_service._current_index, 'Answer']
         self.assertEqual(self.test_service.evaluate_user_answer(answer), True)
 
     def test_question_changes(self):
         self.test_service.set_next_question_index()
-        question1 = self.test_service._question_list[self.test_service._current_index]['Question']
+        q1 = self.test_service._question_data.at[self.test_service._current_index, 'Question']
         self.test_service.set_next_question_index()
-        question2 = self.test_service._question_list[self.test_service._current_index]['Question']
-        self.assertNotEqual(question1, question2)
+        q2 = self.test_service._question_data.at[self.test_service._current_index, 'Question']
+        self.assertNotEqual(q1, q2)

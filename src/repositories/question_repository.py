@@ -15,10 +15,10 @@ class QuestionRepository:
         """Luokan konstruktori. Luo pohjan kysymysaineiston käsittelylle.
 
         Args:
-            question_file_id: Verkko-osoite, josta kysymysaineisto haetaan (merkkijonona).
+            question_file_id: Verkko-osoite (merkkijonona), jossa kysymysaineisto on.
         """
 
-        self._question_list = []
+        self._question_data = pd.DataFrame()
 
         self._file_storage_path = Path(__file__).resolve(
         ).parents[2] / DATA_FOLDER / QUESTION_FILE_NAME
@@ -74,23 +74,20 @@ class QuestionRepository:
         return timestamp_df.iloc[0, 0]
 
     def _import_question_data(self):
-        question_data = pd.read_csv(self._question_file_url, delimiter='\t')
+        self._question_data = pd.read_csv(self._question_file_url, delimiter='\t')
 
-        self._question_list = question_data.to_dict('records')
-
-        self._create_local_question_file(question_data)
+        self._create_local_question_file(self._question_data)
 
     def _create_local_question_file(self, dataframe: pd.DataFrame):
         dataframe.to_csv(self._file_storage_path, sep="\t", index=False)
 
     def _load_question_data_from_storage_file(self):
-        dataframe = pd.read_csv(self._file_storage_path, delimiter="\t")
-        self._question_list = dataframe.to_dict("records")
+        self._question_data = pd.read_csv(self._file_storage_path, delimiter="\t")
 
     def get_question_list(self):
         """Palauttaa sovellukseen ladatun pelin kysymysaineiston.
 
         Returns:
-            Palauttaa pelin kysymysaineiston listana sanakirjoja.
+            Palauttaa pelin kysymysaineiston datataulukon (DataFrame) muodossa.
         """
-        return self._question_list
+        return self._question_data

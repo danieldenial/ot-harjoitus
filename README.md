@@ -15,15 +15,19 @@ Sovellus on testattu Python-versiolla `3.8`, joten vanhempien versioiden kanssa 
 
 - [Arkkitehtuurikuvaus](./dokumentaatio/arkkitehtuuri.md)
 
+- [Testausdokumentti](./dokumentaatio/testaus.md)
+
 - [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 
 - [Changelog](./dokumentaatio/changelog.md)
 
 ## GitHub-release
 
+- [Loppupalautus](https://github.com/danieldenial/ot-harjoitus/releases/tag/loppupalautus)
+
 - [Versio 1.0](https://github.com/danieldenial/ot-harjoitus/releases/tag/viikko5)
 
-- [Versio 1.1](https://github.com/danieldenial/ot-harjoitus/releases/tag/viikko6)
+- [Versio 0.1](https://github.com/danieldenial/ot-harjoitus/releases/tag/viikko6)
 
 ## Asennus
 
