@@ -92,8 +92,7 @@ _QuestionRepository_-luokka tarkastaa sovelluksen käynnistyessä onko pelin kys
 (eli kysymykset, vastausvaihtoehdot, oikeat vastaukset ja vastauksiin liittyvät lisätiedot) 
 sisältävä (tsv)-tiedosto talletettu paikallisesti. Mikäli tiedostoa ei ole, tai verkossa on 
 tarjolla uudempi versio kyseisestä tiedostosta, lataa sovellus sen määritellystä 
-verkko-osoitteesta ja tallettaa tiedoston paikallisesti. Itse sovelluksessa tapahtuvaa 
-käsittelyä varten _QuestionRepository_-luokka muuntaa kysymysaineiston listaksi sanakirjoja.
+verkko-osoitteesta ja tallettaa tiedoston paikallisesti. Itse sovelluksessa _QuestionRepository_-luokka käsittelee kysymysaineistoa _pandas_-kirjaston _DataFrame_-datataulukkona.
 
 _HighScoreRepository_-luokka tallettaa 10 parasta pelistä saavutettua tulosta 
 csv-tiedostoon. Mikäli tiedostoa ei ole, luo luokka sen automaattisesti sovelluksen 
@@ -101,6 +100,8 @@ käynnistymisen yhteydessä. Luokka tekee samoin joukkueiden nimet sisältäväl
 csv-tiedostolle.
 
 ## Päätoiminnallisuudet
+
+Seuraavaksi kuvataan paria pelinkulkuun liittyvää keskeistä toiminnallisuutta sekvenssikaavioina.
 
 ### Pelinkulun alku
 
@@ -166,3 +167,8 @@ sequenceDiagram
     GameplayView->>WidgetCreator: create_basic_button
     WidgetCreator->>GameplayView: ttk.Button()
 ```
+## Ohjelman rakenteeseen jääneet heikkoudet
+
+### Käyttöliittymä
+
+Kuten yllä olevista kaavioistakin suoraan näkee, joutuu pelinkulun näkymästä (tai oikeastaan sen muuttuvista näkymistä) vastaava luokka _GameplayView_ kantamaan liian raskasta taakkaa pelin etenemisessä. Olisi ensiarvoisen tärkeää luoda luokalle seuraavaksi jonkinlainen apuluokka, joka voisi hallinnoida pelin etenemistä. Koska _GameplayView_ tällä erää kuitenkin kykenee suoriutumaan sille kasatuista vastuista, jäi tämä muutos koodiin tekemättä projektin virallisen osuuden aikataulullisen takarajan lähestyessä.
