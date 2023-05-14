@@ -21,7 +21,8 @@ poetry install
 
 Ohjelman voi tämän jälkeen käynnistää komennolla:
 
-```poetry run invoke start
+```bash
+poetry run invoke start
 ```
 
 ## Päävalikko
